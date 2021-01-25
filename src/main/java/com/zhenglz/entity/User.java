@@ -1,51 +1,68 @@
 package com.zhenglz.entity;
 
+import lombok.Data;
+
+/**
+ * 用户表
+ *
+ * @author zhenglizhi
+ */
+@Data
 public class User {
 
+    /**
+     * 主键
+     */
     private Long id;
+
+    /**
+     * 用户名
+     */
     private String username;
+
+    /**
+     * 密码
+     */
     private String password;
-    private String name;
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * 昵称
+     */
+    private String nickname;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    /**
+     * 手机
+     */
+    private String phone;
 
-    public String getUsername() {
-        return username;
-    }
+    /**
+     * 邮箱
+     */
+    private String email;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    /**
+     * 生日
+     */
+    private Long birthday;
 
-    public String getPassword() {
-        return password;
-    }
+    /**
+     * 性别，男-1，女-2
+     */
+    private Integer sex;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    /**
+     * 状态，启用-1，禁用-0
+     */
+    private Integer status;
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * 创建时间
+     */
+    private Long createTime;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * 更新时间
+     */
+    private Long updateTime;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

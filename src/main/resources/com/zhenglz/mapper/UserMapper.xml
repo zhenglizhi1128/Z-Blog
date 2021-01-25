@@ -3,6 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhenglz.mapper.UserMapper">
     <select id="queryUserList" resultType="com.zhenglz.entity.User">
-        select * from user
+        select *
+        from m_user
+    </select>
+    <select id="findByUsernameOrEmailOrPhone" resultType="com.zhenglz.entity.User">
+        select *
+        from m_user
+        where username = #{username}
+        and (email = #{email} or phone = #{phone})
     </select>
 </mapper>
+
