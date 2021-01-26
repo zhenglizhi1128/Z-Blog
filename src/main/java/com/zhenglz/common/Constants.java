@@ -41,16 +41,6 @@ public interface Constants {
     String SYMBOL_EMAIL = "@";
 
     /**
-     * 默认当前页码
-     */
-    Integer DEFAULT_CURRENT_PAGE = 1;
-
-    /**
-     * 默认每页条数
-     */
-    Integer DEFAULT_PAGE_SIZE = 10;
-
-    /**
      * 匿名用户 用户名
      */
     String ANONYMOUS_NAME = "匿名用户";
