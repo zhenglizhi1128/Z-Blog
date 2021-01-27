@@ -28,7 +28,6 @@ public interface UserMapper {
     
 
     public List<User> queryUserList();
-
     /**
      * 根据用户名、邮箱、手机号查询用户
      *

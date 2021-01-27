@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -79,12 +80,12 @@ public class UserPrincipal implements UserDetails {
     /**
      * 创建时间
      */
-    private Long createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    private Long updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 用户角色列表

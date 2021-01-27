@@ -13,8 +13,8 @@
         <result column="birthday" jdbcType="BIGINT" property="birthday" />
         <result column="sex" jdbcType="INTEGER" property="sex" />
         <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="create_time" jdbcType="BIGINT" property="createTime" />
-        <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     </resultMap>
     
     <sql id="Base_Column_List">
@@ -42,7 +42,7 @@
         values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
         #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
         #{birthday,jdbcType=BIGINT}, #{sex,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
-        #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
     </insert>
     
     <insert id="insertSelective" parameterType="com.zhenglz.entity.User">
@@ -111,10 +111,10 @@
                 #{status,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=BIGINT},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateTime != null">
-                #{updateTime,jdbcType=BIGINT},
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -147,10 +147,10 @@
                 `status` = #{status,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=BIGINT},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=BIGINT},
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
@@ -166,8 +166,8 @@
         birthday = #{birthday,jdbcType=BIGINT},
         sex = #{sex,jdbcType=INTEGER},
         `status` = #{status,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=BIGINT},
-        update_time = #{updateTime,jdbcType=BIGINT}
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
     
@@ -182,5 +182,6 @@
         where username = #{username}
         and (email = #{email} or phone = #{phone})
     </select>
+
 </mapper>
 
