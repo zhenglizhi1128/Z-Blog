@@ -1,13 +1,14 @@
 DROP TABLE IF EXISTS `m_blog`;
 CREATE TABLE `m_blog`
 (
-    `id`          bigint(20)   NOT NULL AUTO_INCREMENT,
-    `user_id`     bigint(20)   NOT NULL,
-    `title`       varchar(255) NOT NULL,
-    `description` varchar(255) NOT NULL,
-    `content`     longtext,
-    `created`     datetime     NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-    `status`      tinyint(4) DEFAULT NULL,
+    `id`          bigint(20)   NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `user_id`     bigint(20)   NOT NULL COMMENT '用户Id',
+    `title`       varchar(255) NOT NULL COMMENT '标题',
+    `description` varchar(255) NOT NULL COMMENT '摘要',
+    `content`     longtext COMMENT '内容',
+    `create_time` datetime     NOT NULL COMMENT '创建时间',
+    `update_time` datetime     NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `status`      tinyint(4) DEFAULT NULL COMMENT '状态',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 15
@@ -81,8 +82,8 @@ CREATE TABLE `m_role`
     `id`          bigint(64)  NOT NULL COMMENT '主键',
     `name`        varchar(50) NOT NULL COMMENT '角色名',
     `description` varchar(100) DEFAULT NULL COMMENT '描述',
-    `create_time` bigint(13)  NOT NULL COMMENT '创建时间',
-    `update_time` bigint(13)  NOT NULL COMMENT '更新时间',
+    `create_time` datetime    NOT NULL COMMENT '创建时间',
+    `update_time` datetime    NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`)
 ) ENGINE = InnoDB
@@ -147,8 +148,8 @@ CREATE TABLE `m_user`
     `birthday`    bigint(13)           DEFAULT NULL COMMENT '生日',
     `sex`         int(2)               DEFAULT NULL COMMENT '性别，男-1，女-2',
     `status`      int(2)      NOT NULL DEFAULT '1' COMMENT '状态，启用-1，禁用-0',
-    `create_time` bigint(13)  NOT NULL COMMENT '创建时间',
-    `update_time` bigint(13)  NOT NULL COMMENT '更新时间',
+    `create_time` datetime    NOT NULL COMMENT '创建时间',
+    `update_time` datetime    NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `username` (`username`),
     UNIQUE KEY `phone` (`phone`),

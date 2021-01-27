@@ -2,14 +2,18 @@ package com.zhenglz.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * 用户表
  *
  * @author zhenglizhi
  */
 @Data
-public class User {
+public class User implements Serializable {
 
+    private static final long serialVersionUID = 4341406796171386247L;
     /**
      * 主键
      */
@@ -58,11 +62,11 @@ public class User {
     /**
      * 创建时间
      */
-    private Long createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    private Long updateTime;
+    private LocalDateTime updateTime;
 
 }

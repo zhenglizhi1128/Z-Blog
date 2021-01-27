@@ -1,4 +1,4 @@
-package com.zhenglz.config;
+package com.zhenglz.config.springsecurityconfig;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.ArrayListMultimap;

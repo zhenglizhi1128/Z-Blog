@@ -1,4 +1,4 @@
-package com.zhenglz.config;
+package com.zhenglz.config.springsecurityconfig;
 
 import com.zhenglz.common.resultModel.Status;
 import com.zhenglz.utils.ResponseUtil;

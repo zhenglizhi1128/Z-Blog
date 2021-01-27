@@ -2,14 +2,17 @@ package com.zhenglz.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- * 权限
- *
- * @author zhenglizhi
+ * @Auther: zlz
+ * @Date: 2021/01/27/10:48
+ * @Description: 权限
  */
 @Data
-public class Permission {
+public class Permission implements Serializable {
 
+    private static final long serialVersionUID = 9069053638651545813L;
     /**
      * 主键
      */

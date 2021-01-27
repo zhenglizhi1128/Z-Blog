@@ -1,8 +1,5 @@
-package com.zhenglz.config.redisConfig;
+package com.zhenglz.config.redisconfig;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.CacheManager;
@@ -15,7 +12,6 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -33,6 +29,12 @@ public class RedisConfig {
 
     /**
      * 支持存实体
+     * 在LocalDateTime属性上加上如下两个注解,否则序列化失败：
+     * @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+     * @JsonSerialize(using = LocalDateTimeSerializer.class)
+     * 在LocalDate属性上加上如下两个注解：
+     * * @JsonDeserialize(using = LocalDateDeserializer.class)
+     *  * @JsonSerialize(using = LocalDateSerializer.class)
      */
     @Bean
     public RedisTemplate<String, Serializable> redisBeanTemplate(LettuceConnectionFactory redisConnectionFactory) {
@@ -55,16 +57,12 @@ public class RedisConfig {
     public RedisTemplate<String, Object> redisObjectTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
         template.setConnectionFactory(factory);
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         template.setKeySerializer(stringRedisSerializer);
         template.setHashKeySerializer(stringRedisSerializer);
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.setValueSerializer(genericJackson2JsonRedisSerializer);
+        template.setHashValueSerializer(genericJackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
 

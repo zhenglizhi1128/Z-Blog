@@ -1,4 +1,4 @@
-package com.zhenglz.config;
+package com.zhenglz.config.springsecurityconfig;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;

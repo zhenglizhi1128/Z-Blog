@@ -1,4 +1,4 @@
-package com.zhenglz.config;
+package com.zhenglz.config.springsecurityconfig;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

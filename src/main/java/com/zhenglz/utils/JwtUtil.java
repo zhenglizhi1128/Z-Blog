@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhenglz.common.Constants;
 import com.zhenglz.common.resultModel.Status;
-import com.zhenglz.config.JwtConfig;
+import com.zhenglz.config.springsecurityconfig.JwtConfig;
 import com.zhenglz.exception.SecurityException;
 import com.zhenglz.vo.UserPrincipal;
 import io.jsonwebtoken.*;

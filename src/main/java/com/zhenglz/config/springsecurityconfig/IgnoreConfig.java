@@ -1,4 +1,4 @@
-package com.zhenglz.config;
+package com.zhenglz.config.springsecurityconfig;
 
 import com.google.common.collect.Lists;
 import lombok.Data;
