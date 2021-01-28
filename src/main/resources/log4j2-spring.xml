@@ -55,6 +55,10 @@
             <AppenderRef ref="Console"/>
         </logger>
 
+        <Logger name="infoLogger" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
         <Root level="debug">
             <AppenderRef ref="Console" />
         </Root>

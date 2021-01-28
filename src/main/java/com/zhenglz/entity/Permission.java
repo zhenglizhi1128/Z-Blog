@@ -1,6 +1,7 @@
 package com.zhenglz.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @Description: 权限
  */
 @Data
+@Accessors(chain = true)
 public class Permission implements Serializable {
 
     private static final long serialVersionUID = 9069053638651545813L;

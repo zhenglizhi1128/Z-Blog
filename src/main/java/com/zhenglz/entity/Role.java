@@ -1,6 +1,7 @@
 package com.zhenglz.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
  * 角色表
  */
 @Data
+@Accessors(chain = true)
 public class Role implements Serializable {
 
     private static final long serialVersionUID = -936825425309384586L;
