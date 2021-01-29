@@ -6,7 +6,8 @@ import com.zhenglz.dto.LoginRequest;
 import com.zhenglz.exception.SecurityException;
 import com.zhenglz.utils.JwtUtil;
 import com.zhenglz.vo.JwtResponse;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,10 +25,12 @@ import javax.servlet.http.HttpServletRequest;
  * 认证 Controller，包括用户注册，用户登录请求
  * </p>
  */
-@Slf4j
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+    public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     @Autowired
     private AuthenticationManager authenticationManager;

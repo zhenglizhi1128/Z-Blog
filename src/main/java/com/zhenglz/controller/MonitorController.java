@@ -4,9 +4,10 @@ import cn.hutool.core.collection.CollUtil;
 import com.zhenglz.common.resultModel.Result;
 import com.zhenglz.common.resultModel.Status;
 import com.zhenglz.exception.SecurityException;
-import com.zhenglz.service.impl.MonitorService;
+import com.zhenglz.service.IMonitorService;
 import com.zhenglz.utils.SecurityUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,13 +18,15 @@ import java.util.List;
  * 监控 Controller，在线用户，手动踢出用户等功能
  * </p>
  */
-@Slf4j
+
 @RestController
 @RequestMapping("/api/monitor")
 public class MonitorController {
 
+    public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
     @Autowired
-    private MonitorService monitorService;
+    private IMonitorService monitorService;
 
     /**
      * 在线用户列表
@@ -49,7 +52,7 @@ public class MonitorController {
         if (names.contains(SecurityUtil.getCurrentUsername())) {
             throw new SecurityException(Status.KICKOUT_SELF);
         }
-        monitorService.kickout(names);
+        monitorService.kicked(names);
         return Result.success();
     }
 }

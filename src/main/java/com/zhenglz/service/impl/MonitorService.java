@@ -2,12 +2,15 @@ package com.zhenglz.service.impl;
 
 import com.zhenglz.common.Constants;
 import com.zhenglz.mapper.UserMapper;
+import com.zhenglz.service.IMonitorService;
 import com.zhenglz.utils.RedisUtil;
 import com.zhenglz.utils.SecurityUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,13 +19,15 @@ import java.util.stream.Collectors;
  * 监控 Service
  * </p>
  */
-@Slf4j
 @Service
-public class MonitorService {
+public class MonitorService implements IMonitorService {
+
+    public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
     @Autowired
     private RedisUtil redisUtil;
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     /**
@@ -48,12 +53,9 @@ public class MonitorService {
         return new PageResult<>(onlineUserList, total);
     }*/
 
-    /**
-     * 踢出在线用户
-     *
-     * @param names 用户名列表
-     */
-    public void kickout(List<String> names) {
+
+    @Override
+    public void kicked(List<String> names) {
         // 清除 Redis 中的 JWT 信息
         List<String> redisKeys = names.parallelStream().map(s -> Constants.REDIS_JWT_KEY_PREFIX + s).collect(Collectors.toList());
         redisUtil.delete(redisKeys);
@@ -61,7 +63,7 @@ public class MonitorService {
         // 获取当前用户名
         String currentUsername = SecurityUtil.getCurrentUsername();
         names.parallelStream().forEach(name -> {
-            log.debug("用户【{}】被用户【{}】手动下线！", name, currentUsername);
+            logger.debug("用户【{}】被用户【{}】手动下线！", name, currentUsername);
         });
     }
 }

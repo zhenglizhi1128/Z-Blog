@@ -1,7 +1,8 @@
 package com.zhenglz.controller;
 
 import com.zhenglz.common.resultModel.Result;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -9,25 +10,28 @@ import org.springframework.web.bind.annotation.*;
  * 测试Controller
  * </p>
  */
-@Slf4j
+
 @RestController
 @RequestMapping("/test")
 public class TestController {
+    
+    public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
     @GetMapping
     public Result list() {
-        log.info("测试列表查询");
+        logger.info("测试列表查询");
         return Result.success("测试列表查询");
     }
 
     @PostMapping
     public Result add() {
-        log.info("测试列表添加");
+        logger.info("测试列表添加");
         return Result.success("测试列表添加");
     }
 
     @PutMapping("/{id}")
     public Result update(@PathVariable Long id) {
-        log.info("测试列表修改");
+        logger.info("测试列表修改");
         return Result.success("测试列表修改");
     }
 }
