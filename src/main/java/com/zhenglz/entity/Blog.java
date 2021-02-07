@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class Blog implements Serializable {
+
     private static final long serialVersionUID = -2846018628963767853L;
     /**
      * 主键
@@ -47,15 +48,15 @@ public class Blog implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createTime=LocalDateTime.now();
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private LocalDateTime updateTime=LocalDateTime.now();
 
     /**
      * 状态
      */
-    private Byte status;
+    private Byte status=0;
 }

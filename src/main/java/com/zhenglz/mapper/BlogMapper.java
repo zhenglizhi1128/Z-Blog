@@ -3,6 +3,8 @@ package com.zhenglz.mapper;
 import com.zhenglz.entity.Blog;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @Auther: zlz
  * @Date: 2021/01/27/16:55
@@ -13,14 +15,18 @@ public interface BlogMapper {
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(Blog record);
+    int insert(Blog blog);
 
-    int insertSelective(Blog record);
+    int insertSelective(Blog blog);
 
     Blog selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(Blog record);
+    int updateByPrimaryKeySelective(Blog blog);
 
-    int updateByPrimaryKey(Blog record);
+    int updateByPrimaryKey(Blog blog);
+
+    List<Blog> listByAll(Blog blog);
+
+    List<Blog> list();
 
 }

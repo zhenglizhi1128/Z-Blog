@@ -60,7 +60,7 @@ public class GlobalExceptionHandler {
             return Result.ofException((BaseException) e);
         }
 
-        log.error("【全局异常拦截】: 异常信息 {} ", e.getMessage());
+        log.error("【全局异常拦截】: 异常信息 {} ", e.getMessage(),e);
         return Result.ofStatus(Status.ERROR);
     }
 }

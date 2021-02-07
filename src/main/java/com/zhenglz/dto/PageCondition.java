@@ -15,16 +15,16 @@ public class PageCondition {
     /**
      * 当前页码
      */
-    private Integer currentPage;
+    private Integer currentPage=1;
 
     /**
      * 每页条数
      */
-    private Integer pageSize;
+    private Integer pageSize=10;
 
     /**
      * 排序规则
      */
-    private String orderType;
+    private String orderType ="";
 
 }

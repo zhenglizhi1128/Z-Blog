@@ -43,7 +43,7 @@ public class PageHelperTest {
         int pageSize = 1;
         String orderBy = "id ASC";
 
-        PageHelper.startPage(currentPage, pageSize,orderBy);
+        PageHelper.startPage(currentPage, pageSize,"");
         List<User> users = userMapper.queryUserList();
         PageInfo<User> userPageInfo = new PageInfo<>(users);
        // Assert.assertEquals(count, userPageInfo.getTotal());
