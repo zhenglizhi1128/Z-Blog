@@ -1,11 +1,13 @@
 package com.zhenglz.controller;
 
+import cn.hutool.core.map.MapUtil;
 import com.zhenglz.common.resultModel.Result;
 import com.zhenglz.common.resultModel.Status;
 import com.zhenglz.dto.LoginRequest;
 import com.zhenglz.exception.SecurityException;
 import com.zhenglz.utils.JwtUtil;
 import com.zhenglz.vo.JwtResponse;
+import com.zhenglz.vo.UserPrincipal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +46,21 @@ public class AuthController {
     @PostMapping("/login")
     public Result login(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmailOrPhone(), loginRequest.getPassword()));
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = jwtUtil.createJWT(authentication, loginRequest.getRememberMe());
-        return Result.success(new JwtResponse(jwt));
+
+        UserPrincipal userPrincipal =(UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        JwtResponse jwtResponse = new JwtResponse(jwt);
+        return Result.success(
+                MapUtil.builder()
+                        .put("token", jwtResponse.getToken())
+                        .put("tokenType", jwtResponse.getTokenType())
+                        .put("id", userPrincipal.getId())
+                        .put("username",userPrincipal.getUsername())
+                        .put("roles",userPrincipal.getRoles())
+                        .put("authorities",userPrincipal.getAuthorities())
+                        .map()
+        );
     }
 
     @PostMapping("/logout")

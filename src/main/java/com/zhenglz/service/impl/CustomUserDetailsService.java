@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,9 +37,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmailOrPhone) throws UsernameNotFoundException {
         User user = userMapper.findByUsernameOrEmailOrPhone(usernameOrEmailOrPhone, usernameOrEmailOrPhone, usernameOrEmailOrPhone);
-        List<Role> roles = roleMapper.selectByUserId(user.getId());
+        if(user == null){
+            throw new UsernameNotFoundException("用户不存在!");
+        }
+        List<Role> roles= new ArrayList<>();
+        List<Permission> permissions= new ArrayList<>();
+        roles = roleMapper.selectByUserId(user.getId());
         List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
-        List<Permission> permissions = permissionMapper.selectByRoleIdList(roleIds);
+        permissions = permissionMapper.selectByRoleIdList(roleIds);
         return UserPrincipal.create(user, roles, permissions);
     }
 }
