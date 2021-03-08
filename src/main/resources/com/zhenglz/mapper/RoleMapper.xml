@@ -108,7 +108,7 @@
              m_user_role
         WHERE m_user.id = m_user_role.user_id
           AND m_role.id = m_user_role.role_id
-          AND m_user.id = :userId
+          AND m_user.id = #{userId,jdbcType=BIGINT}
     </select>
 
 </mapper>

@@ -26,7 +26,7 @@ public interface PermissionMapper {
 
     int updateByPrimaryKey(@Param("record") Permission record);
 
-    List<Permission> selectByRoleIdList(@Param("ids") List<Long> ids);
+    List<Permission> selectByRoleIdList(@Param("roleIds")List<Long> roleIds);
 
 
 }

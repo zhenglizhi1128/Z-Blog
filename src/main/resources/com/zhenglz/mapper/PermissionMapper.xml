@@ -135,14 +135,16 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     
-    <select id="selectByRoleIdList" resultType="com.zhenglz.entity.Permission">
+    <select id="selectByRoleIdList" resultType="com.zhenglz.entity.Permission" parameterType="java.util.List">
         SELECT DISTINCT m_permission.*
         FROM m_permission,
              m_role,
              m_role_permission
         WHERE m_role.id = m_role_permission.role_id
           AND m_permission.id = m_role_permission.permission_id
-          AND m_role.id IN (:ids)
+        <foreach item="roleId" collection="list" open="AND m_role.id IN(" close=")" separator="," >
+            #{roleId}
+        </foreach>
     </select>
     
 </mapper>
