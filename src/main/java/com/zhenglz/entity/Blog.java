@@ -58,5 +58,5 @@ public class Blog implements Serializable {
     /**
      * 状态
      */
-    private Byte status=0;
+    private int status=0;
 }

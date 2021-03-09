@@ -1,39 +1,36 @@
 DROP TABLE IF EXISTS `m_blog`;
-CREATE TABLE `m_blog`
-(
-    `id`          bigint(20)   NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `user_id`     bigint(20)   NOT NULL COMMENT '用户Id',
-    `title`       varchar(255) NOT NULL COMMENT '标题',
-    `description` varchar(255) NOT NULL COMMENT '摘要',
-    `content`     longtext COMMENT '内容',
-    `create_time` datetime     NOT NULL COMMENT '创建时间',
-    `update_time` datetime     NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `status`      tinyint(4) DEFAULT NULL COMMENT '状态',
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 15
-  DEFAULT CHARSET = utf8mb4;
+CREATE TABLE `m_blog` (
+      `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
+      `user_id` bigint(40) NOT NULL DEFAULT '0' COMMENT '用户Id',
+      `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
+      `description` varchar(255) NOT NULL DEFAULT '' COMMENT '摘要',
+      `content` longtext NOT NULL COMMENT '内容',
+      `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+      `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+      `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
+      PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT '博客信息';
 
 -- ----------------------------
 -- Records of m_blog
 -- ----------------------------
 INSERT INTO `m_blog`
-VALUES ('1', '1', '生活就像海洋，只有意志坚强的人才能到达彼岸', '这里是摘要哈哈哈', '内容？？？', '2020-05-21 22:08:42', '0');
+VALUES ('1', '1', '生活就像海洋，只有意志坚强的人才能到达彼岸', '这里是摘要哈哈哈', '内容？？？', now(),now(),'0');
 INSERT INTO `m_blog`
 VALUES ('2', '1', '最值得学习的博客项目',
         'blog是一个基于Springboot2.1.2开发的博客学习项目，为了让项目融合更多的知识点，达到学习目的，编写了详细的从0到1开发文档。主要学习包括：自定义Freemarker标签，使用shiro+redis完成了会话共享，redis的set结构完成本周热议排行榜，t-io+websocket完成即时消息通知和群聊，rabbitmq+elasticsearch完成博客内容搜索引擎等。值得学习的地方很多！',
         '**推荐阅读：**\r\n\r\n[分享一套SpringBoot开发博客系统源码，以及完整开发文档！速度保存！](https://mp.weixin.qq.com/s/jz6e977xP-OyaAKNjNca8w)\r\n\r\n[Github上最值得学习的100个Java开源项目，涵盖各种技术栈！](https://mp.weixin.qq.com/s/N-U0TaEUXnBFfBsmt_OESQ)\r\n\r\n[2020年最新的常问企业面试题大全以及答案](https://mp.weixin.qq.com/s/lR5LC5GnD2Gs59ecV5R0XA)',
-        '2020-05-28 09:36:38', '0');
+        now(),now(), '0');
 INSERT INTO `m_blog`
 VALUES ('7', '1', '你真的会写单例模式吗?',
         '单例模式可能是代码最少的模式了，但是少不一定意味着简单，想要用好、用对单例模式，还真得费一番脑筋。本文对 Java 中常见的单例模式写法做了一个总结，如有错漏之处，恳请读者指正。',
         '> 作者：吃桔子的攻城狮 来源：http://www.tekbroaden.com/singleton-java.html\n\n\n单例模式可能是代码最少的模式了，但是少不一定意味着简单，想要用好、用对单例模式，还真得费一番脑筋。本文对 Java 中常见的单例模式写法做了一个总结，如有错漏之处，恳请读者指正。\n\n饿汉法\n===\n\n顾名思义，饿汉法就是在第一次引用该类的时候就创建对象实例，而不管实际是否需要创建。代码如下：\n\n```\npublic class Singleton {  \n    private static Singleton = new Singleton();\n    private Singleton() {}\n    public static getSingleton(){\n        return singleton;\n    }\n}\n\n```\n\n这样做的好处是编写简单，但是无法做到延迟创建对象。但是我们很多时候都希望对象可以尽可能地延迟加载，从而减小负载，所以就需要下面的懒汉法：\n',
-        '2020-05-22 00:42:44', '0');
+        now(),now(), '0');
 INSERT INTO `m_blog`
 VALUES ('9', '1', '真正理解Mysql的四种隔离级别@',
         '事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。\n\n事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。',
         '### 什么是事务  \n\n> 事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。\n> \n> 事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。\n\n**事务的 ACID**\n\n事务具有四个特征：原子性（ Atomicity ）、一致性（ Consistency ）、隔离性（ Isolation ）和持续性（ Durability ）。这四个特性简称为 ACID 特性。\n\n> 1 、原子性。事务是数据库的逻辑工作单位，事务中包含的各操作要么都做，要么都不做\n> \n> 2 、一致性。事 务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。因此当数据库只包含成功事务提交的结果时，就说数据库处于一致性状态。如果数据库系统 运行中发生故障，有些事务尚未完成就被迫中断，这些未完成事务对数据库所做的修改有一部分已写入物理数据库，这时数据库就处于一种不正确的状态，或者说是 不一致的状态。',
-        '2020-05-22 22:04:46', '0');
+        now(),now(), '0');
 
 -- ----------------------------
 -- Table structure for m_permission
@@ -41,14 +38,14 @@ VALUES ('9', '1', '真正理解Mysql的四种隔离级别@',
 DROP TABLE IF EXISTS `m_permission`;
 CREATE TABLE `m_permission`
 (
-    `id`         bigint(64)  NOT NULL COMMENT '主键',
-    `name`       varchar(50) NOT NULL COMMENT '权限名',
-    `url`        varchar(1000) DEFAULT NULL COMMENT '类型为页面时，代表前端路由地址，类型为按钮时，代表后端接口地址',
-    `type`       int(2)      NOT NULL COMMENT '权限类型，页面-1，按钮-2',
-    `permission` varchar(50)   DEFAULT NULL COMMENT '权限表达式',
-    `method`     varchar(50)   DEFAULT NULL COMMENT '后端接口访问方式',
-    `sort`       int(11)     NOT NULL COMMENT '排序',
-    `parent_id`  bigint(64)  NOT NULL COMMENT '父级id',
+    `id`  bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name` varchar(50) NOT NULL DEFAULT '' COMMENT '权限名',
+    `url`  varchar(200) DEFAULT NULL COMMENT '类型为页面时，代表前端路由地址，类型为按钮时，代表后端接口地址',
+    `type`  tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '权限类型，页面-1，按钮-2',
+    `permission` varchar(50) NOT NULL DEFAULT '' COMMENT '权限表达式',
+    `method` varchar(50) NOT NULL DEFAULT '' COMMENT '后端接口访问方式',
+    `sort` int(11) NOT NULL DEFAULT 0 COMMENT '排序',
+    `parent_id` bigint(40)  NOT NULL DEFAULT 0 COMMENT '父级id',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='权限表';
@@ -79,11 +76,11 @@ COMMIT;
 DROP TABLE IF EXISTS `m_role`;
 CREATE TABLE `m_role`
 (
-    `id`          bigint(64)  NOT NULL COMMENT '主键',
-    `name`        varchar(50) NOT NULL COMMENT '角色名',
-    `description` varchar(100) DEFAULT NULL COMMENT '描述',
-    `create_time` datetime    NOT NULL COMMENT '创建时间',
-    `update_time` datetime    NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `id` bigint(40)  NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name` varchar(20) NOT NULL DEFAULT '' COMMENT '角色名',
+    `description` varchar(100) NOT NULL DEFAULT '' COMMENT '描述',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`)
 ) ENGINE = InnoDB
@@ -94,9 +91,9 @@ CREATE TABLE `m_role`
 -- ----------------------------
 BEGIN;
 INSERT INTO `m_role`
-VALUES (1072806379208708096, '管理员', '超级管理员', 1544611947239, 1544611947239);
+VALUES (1072806379208708096, '管理员', '超级管理员', now(),now());
 INSERT INTO `m_role`
-VALUES (1072806379238068224, '普通用户', '普通用户', 1544611947246, 1544611947246);
+VALUES (1072806379238068224, '普通用户', '普通用户', now(),now());
 COMMIT;
 
 -- ----------------------------
@@ -105,8 +102,8 @@ COMMIT;
 DROP TABLE IF EXISTS `m_role_permission`;
 CREATE TABLE `m_role_permission`
 (
-    `role_id`       bigint(64) NOT NULL COMMENT '角色主键',
-    `permission_id` bigint(64) NOT NULL COMMENT '权限主键',
+    `role_id` bigint(40) NOT NULL COMMENT '角色主键',
+    `permission_id` bigint(40) NOT NULL COMMENT '权限主键',
     PRIMARY KEY (`role_id`, `permission_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='角色权限关系表';
@@ -139,17 +136,17 @@ COMMIT;
 DROP TABLE IF EXISTS `m_user`;
 CREATE TABLE `m_user`
 (
-    `id`          bigint(64)  NOT NULL COMMENT '主键',
-    `username`    varchar(50) NOT NULL COMMENT '用户名',
-    `password`    varchar(60) NOT NULL COMMENT '密码',
-    `nickname`    varchar(255)         DEFAULT NULL COMMENT '昵称',
-    `phone`       varchar(11)          DEFAULT NULL COMMENT '手机',
-    `email`       varchar(50)          DEFAULT NULL COMMENT '邮箱',
-    `birthday`    bigint(13)           DEFAULT NULL COMMENT '生日',
-    `sex`         int(2)               DEFAULT NULL COMMENT '性别，男-1，女-2',
-    `status`      int(2)      NOT NULL DEFAULT '1' COMMENT '状态，启用-1，禁用-0',
-    `create_time` datetime    NOT NULL COMMENT '创建时间',
-    `update_time` datetime    NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `id`          bigint(40)  NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `username`    varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
+    `password`    varchar(60) NOT NULL DEFAULT '' COMMENT '密码',
+    `nickname`    varchar(255) NOT NULL DEFAULT '' COMMENT '昵称',
+    `phone`       varchar(11) NOT NULL DEFAULT '' COMMENT '手机',
+    `email`       varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
+    `birthday`    bigint(13) NOT NULL DEFAULT 0 COMMENT '生日',
+    `sex`         tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '性别，男-1，女-2',
+    `status`      tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '状态，启用-1，禁用-0',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `username` (`username`),
     UNIQUE KEY `phone` (`phone`),
@@ -163,10 +160,10 @@ CREATE TABLE `m_user`
 BEGIN;
 INSERT INTO `m_user`
 VALUES (1072806377661009920, 'admin', '$2a$10$64iuSLkKNhpTN19jGHs7xePvFsub7ZCcCmBqEYw8fbACGTE3XetYq', '管理员',
-        '17300000000', 'admin@xkcoding.com', 785433600000, 1, 1, 1544611947032, 1544611947032);
+        '17300000000', 'admin@xkcoding.com', 785433600000, 1, 1, now(),now());
 INSERT INTO `m_user`
 VALUES (1072806378780889088, 'user', '$2a$10$OUDl4thpcHfs7WZ1kMUOb.ZO5eD4QANW5E.cexBLiKDIzDNt87QbO', '普通用户',
-        '17300001111', 'user@xkcoding.com', 785433600000, 1, 1, 1544611947234, 1544611947234);
+        '17300001111', 'user@xkcoding.com', 785433600000, 1, 1, now(),now());
 COMMIT;
 
 -- ----------------------------
@@ -175,8 +172,8 @@ COMMIT;
 DROP TABLE IF EXISTS `m_user_role`;
 CREATE TABLE `m_user_role`
 (
-    `user_id` bigint(64) NOT NULL COMMENT '用户主键',
-    `role_id` bigint(64) NOT NULL COMMENT '角色主键',
+    `user_id` bigint(64) NOT NULL DEFAULT 0 COMMENT '用户主键',
+    `role_id` bigint(64) NOT NULL DEFAULT 0 COMMENT '角色主键',
     PRIMARY KEY (`user_id`, `role_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='用户角色关系表';
@@ -190,6 +187,74 @@ VALUES (1072806377661009920, 1072806379208708096);
 INSERT INTO `m_user_role`
 VALUES (1072806378780889088, 1072806379238068224);
 COMMIT;
+
+CREATE TABLE `m_login` (
+    `id` bigint(40) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户主键',
+    `ip` varchar(20) NOT NULL DEFAULT '' COMMENT '操作地址的IP',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '第一次登陆时间',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最近登陆时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uniq_userid` (`user_id`)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8 COMMENT ='用户登陆表';
+
+
+CREATE TABLE `m_blog_visit` (
+    `id` bigint(40) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `ip` varchar(20) NOT NULL DEFAULT '' COMMENT '访问IP',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '第一次访问时间',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最近访问时间',
+    `blog_id` bigint(64)  NOT NULL DEFAULT 0 COMMENT '文章ID',
+    PRIMARY KEY (`id`),
+    index idx_blogid (`blog_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文章阅读量表';
+
+CREATE TABLE `m_comment` (
+   `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
+   `content` varchar(200) NOT NULL DEFAULT '' COMMENT '评论内容',
+   `parent_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '回复的评论ID',
+   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+   `blog_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '文章ID',
+   `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户ID',
+   `status` tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否有效，默认为1为有效，0为无效',
+   PRIMARY KEY (`id`),
+   index idx_blogid (`blog_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文章评论表';
+
+CREATE TABLE `m_label` (
+   `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
+   `name` varchar(20) NOT NULL DEFAULT '' COMMENT '标签名称',
+   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+   `status`  tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否有效，默认为1有效，为0无效',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '标签表';
+
+CREATE TABLE `m_blog_label`
+(
+    `blog_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '博客主键',
+    `label_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '标签主键',
+    PRIMARY KEY (`blog_id`, `label_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT ='博客标签关系表';
+
+CREATE TABLE `m_announcement` (
+   `id` int(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
+   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题' ,
+   `detail` text NOT NULL COMMENT '详情',
+   `status`  tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否有效，默认为1有效，为0无效',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '系统通知表';
+
+CREATE TABLE `m_user_announcement`
+(
+    `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户主键',
+    `announcement_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '通知主键',
+    PRIMARY KEY (`user_id`, `announcement_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT ='用户通知关系表';
 
 SET FOREIGN_KEY_CHECKS = 1;
 
