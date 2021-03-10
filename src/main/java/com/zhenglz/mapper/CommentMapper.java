@@ -3,11 +3,11 @@ package com.zhenglz.mapper;
 import com.zhenglz.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
-/*
+/**
+ * @Auther: zlz
+ * @Date: 2021/03/09/18:34
  * @Description:
- * @Author: zlz
- * @Date: 2021/3/7
- **/
+ */
 @Mapper
 public interface CommentMapper {
 

@@ -188,6 +188,7 @@ INSERT INTO `m_user_role`
 VALUES (1072806378780889088, 1072806379238068224);
 COMMIT;
 
+DROP TABLE IF EXISTS `m_login`;
 CREATE TABLE `m_login` (
     `id` bigint(40) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
     `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户主键',
@@ -199,7 +200,7 @@ CREATE TABLE `m_login` (
 ) ENGINE=InnoDB
 DEFAULT CHARSET=utf8 COMMENT ='用户登陆表';
 
-
+DROP TABLE IF EXISTS `m_blog_visit`;
 CREATE TABLE `m_blog_visit` (
     `id` bigint(40) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
     `ip` varchar(20) NOT NULL DEFAULT '' COMMENT '访问IP',
@@ -207,9 +208,10 @@ CREATE TABLE `m_blog_visit` (
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最近访问时间',
     `blog_id` bigint(64)  NOT NULL DEFAULT 0 COMMENT '文章ID',
     PRIMARY KEY (`id`),
-    index idx_blogid (`blog_id`)
+    index idx_blogId (`blog_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文章阅读量表';
 
+DROP TABLE IF EXISTS `m_comment`;
 CREATE TABLE `m_comment` (
    `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
    `content` varchar(200) NOT NULL DEFAULT '' COMMENT '评论内容',
@@ -219,10 +221,12 @@ CREATE TABLE `m_comment` (
    `blog_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '文章ID',
    `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户ID',
    `status` tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否有效，默认为1为有效，0为无效',
+   `is_read`  tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否已读，默认为0 未读，为1已读',
    PRIMARY KEY (`id`),
-   index idx_blogid (`blog_id`)
+   index idx_blogId (`blog_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文章评论表';
 
+DROP TABLE IF EXISTS `m_label`;
 CREATE TABLE `m_label` (
    `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
    `name` varchar(20) NOT NULL DEFAULT '' COMMENT '标签名称',
@@ -232,13 +236,14 @@ CREATE TABLE `m_label` (
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '标签表';
 
-CREATE TABLE `m_blog_label`
-(
+DROP TABLE IF EXISTS `m_blog_label`;
+CREATE TABLE `m_blog_label`(
     `blog_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '博客主键',
     `label_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '标签主键',
     PRIMARY KEY (`blog_id`, `label_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT ='博客标签关系表';
 
+DROP TABLE IF EXISTS `m_announcement`;
 CREATE TABLE `m_announcement` (
    `id` int(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
@@ -249,12 +254,26 @@ CREATE TABLE `m_announcement` (
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '系统通知表';
 
-CREATE TABLE `m_user_announcement`
-(
+DROP TABLE IF EXISTS `m_user_announcement`;
+CREATE TABLE `m_user_announcement`(
     `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户主键',
     `announcement_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '通知主键',
+    `is_read`  tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否已读，默认为0 未读，为1已读',
     PRIMARY KEY (`user_id`, `announcement_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT ='用户通知关系表';
+
+DROP TABLE IF EXISTS `m_like`;
+CREATE TABLE `m_like` (
+     `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
+     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+     `blog_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '文章ID',
+     `user_id` bigint(40) NOT NULL DEFAULT 0 COMMENT '用户ID',
+     `status` tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否有效，默认为1为有效，0为无效',
+     `is_read`  tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '是否已读，默认为0 未读，为1已读',
+     PRIMARY KEY (`id`),
+     index idx_blogId (`blog_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文章点赞';
 
 SET FOREIGN_KEY_CHECKS = 1;
 
