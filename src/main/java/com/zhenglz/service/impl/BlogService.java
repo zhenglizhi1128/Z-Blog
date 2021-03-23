@@ -3,6 +3,8 @@ package com.zhenglz.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.Blog;
+import com.zhenglz.entity.BlogContent;
+import com.zhenglz.mapper.BlogContentMapper;
 import com.zhenglz.mapper.BlogMapper;
 import com.zhenglz.service.IBlogService;
 import org.apache.logging.log4j.LogManager;
@@ -23,8 +25,12 @@ public class BlogService implements IBlogService {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
+
     @Resource
     private BlogMapper blogMapper;
+
+    @Resource
+    private BlogContentMapper blogContentMapper;
 
     @Override
     @Transactional
@@ -36,6 +42,8 @@ public class BlogService implements IBlogService {
 
     @Override
     public Blog getBlogById(long id) {
+        Blog blog= blogMapper.selectByPrimaryKey(id);
+        BlogContent blogContent =blogContentMapper.selectByPrimaryKey(blog.getContentId());
         return blogMapper.selectByPrimaryKey(id);
     }
 

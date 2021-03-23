@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhenglz.mapper.BlogMapper">
-
   <resultMap id="BaseResultMap" type="com.zhenglz.entity.Blog">
     <!--@Table m_blog-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="read_number" jdbcType="BIGINT" property="readNumber" />
+    <result column="like_number" jdbcType="BIGINT" property="likeNumber" />
+    <result column="comment_number" jdbcType="BIGINT" property="commentNumber" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
+    <result column="comment_status" jdbcType="BOOLEAN" property="commentStatus" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, user_id, title, description, content, create_time, update_time, `status`
+    id, user_id, title, description, content_id, create_time, update_time, read_number,
+    like_number, comment_number, `status`, comment_status
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List" />
     from m_blog
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -32,11 +36,13 @@
 
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Blog" useGeneratedKeys="true">
     insert into m_blog (user_id, title, description,
-      content, create_time, update_time, 
-      `status`)
+      content_id, create_time, update_time, 
+      read_number, like_number, comment_number, 
+      `status`, comment_status)
     values (#{userId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=TINYINT})
+      #{contentId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{readNumber,jdbcType=BIGINT}, #{likeNumber,jdbcType=BIGINT}, #{commentNumber,jdbcType=BIGINT}, 
+      #{status,jdbcType=BOOLEAN}, #{commentStatus,jdbcType=BOOLEAN})
   </insert>
 
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Blog" useGeneratedKeys="true">
@@ -51,8 +57,8 @@
       <if test="description != null">
         description,
       </if>
-      <if test="content != null">
-        content,
+      <if test="contentId != null">
+        content_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -60,8 +66,20 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="readNumber != null">
+        read_number,
+      </if>
+      <if test="likeNumber != null">
+        like_number,
+      </if>
+      <if test="commentNumber != null">
+        comment_number,
+      </if>
       <if test="status != null">
         `status`,
+      </if>
+      <if test="commentStatus != null">
+        comment_status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -74,8 +92,8 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=LONGVARCHAR},
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -83,8 +101,20 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="readNumber != null">
+        #{readNumber,jdbcType=BIGINT},
+      </if>
+      <if test="likeNumber != null">
+        #{likeNumber,jdbcType=BIGINT},
+      </if>
+      <if test="commentNumber != null">
+        #{commentNumber,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
-        #{status,jdbcType=TINYINT},
+        #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="commentStatus != null">
+        #{commentStatus,jdbcType=BOOLEAN},
       </if>
     </trim>
   </insert>
@@ -101,8 +131,8 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=LONGVARCHAR},
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -110,8 +140,20 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="readNumber != null">
+        read_number = #{readNumber,jdbcType=BIGINT},
+      </if>
+      <if test="likeNumber != null">
+        like_number = #{likeNumber,jdbcType=BIGINT},
+      </if>
+      <if test="commentNumber != null">
+        comment_number = #{commentNumber,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=TINYINT},
+        `status` = #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="commentStatus != null">
+        comment_status = #{commentStatus,jdbcType=BOOLEAN},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -122,45 +164,16 @@
     set user_id = #{userId,jdbcType=BIGINT},
       title = #{title,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR},
+      content_id = #{contentId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      `status` = #{status,jdbcType=TINYINT}
+      read_number = #{readNumber,jdbcType=BIGINT},
+      like_number = #{likeNumber,jdbcType=BIGINT},
+      comment_number = #{commentNumber,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=BOOLEAN},
+      comment_status = #{commentStatus,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-
-  <select id="listByAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from m_blog
-    <where>
-      <if test="id != null">
-        and id=#{id,jdbcType=BIGINT}
-      </if>
-      <if test="userId != null">
-        and user_id=#{userId,jdbcType=BIGINT}
-      </if>
-      <if test="title != null">
-        and title=#{title,jdbcType=VARCHAR}
-      </if>
-      <if test="description != null">
-        and description=#{description,jdbcType=VARCHAR}
-      </if>
-      <if test="content != null">
-        and content=#{content,jdbcType=LONGVARCHAR}
-      </if>
-      <if test="createTime != null">
-        and create_time=#{createTime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="updateTime != null">
-        and update_time=#{updateTime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="status != null">
-        and `status`=#{status,jdbcType=TINYINT}
-      </if>
-    </where>
-  </select>
 
   <select id="list" resultMap="BaseResultMap">
     select

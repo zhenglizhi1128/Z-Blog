@@ -47,12 +47,12 @@ public class BlogController {
         if(blog.getId() != null) {
             temp = blogService.getBlogById(blog.getId());
             temp.setUpdateTime(LocalDateTime.now());
-            temp.setTitle(blog.getTitle()).setContent(blog.getContent()).setDescription(blog.getDescription());
+           // temp.setTitle(blog.getTitle()).setContent(blog.getContent()).setDescription(blog.getDescription());
             blogService.updateByPrimaryKey(temp);
         } else {
             temp = new Blog();
             temp.setUserId(0L);
-            temp.setTitle(blog.getTitle()).setContent(blog.getContent()).setDescription(blog.getDescription());
+           // temp.setTitle(blog.getTitle()).setContent(blog.getContent()).setDescription(blog.getDescription());
             blogService.insert(temp);
         }
         return Result.success();

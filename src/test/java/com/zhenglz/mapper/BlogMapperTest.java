@@ -21,10 +21,15 @@ public class BlogMapperTest {
     @Autowired
     BlogMapper blogMapper;
 
+    @Autowired
+    LikeMapper likeMapper;
+
+
     @Test
     public void list() {
         List<Blog> list = blogMapper.list();
         System.out.println(list.size());
+        Blog blog = list.get(0);
         System.out.println("------");
     }
 }
