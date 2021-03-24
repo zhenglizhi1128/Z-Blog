@@ -18,10 +18,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.io.Serializable;
 
 /**
- * redis配置
- * 默认的RedisTemplate，key、value为String
- * private StringRedisTemplate stringRedisTemplate
- */
+* @description: redis配置
+* 默认的RedisTemplate，key、value为String
+* private StringRedisTemplate stringRedisTemplate
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Configuration
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 @EnableCaching

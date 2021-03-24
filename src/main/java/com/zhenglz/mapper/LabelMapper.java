@@ -3,23 +3,46 @@ package com.zhenglz.mapper;
 import com.zhenglz.entity.Label;
 import org.apache.ibatis.annotations.Mapper;
 
-/*
- * @Description:
- * @Author: zlz
- * @Date: 2021/3/7
- **/
+/**
+* @description: 标签Mapper
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface LabelMapper {
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int deleteByPrimaryKey(Long id);
+    /**
+     * 新增
+     * @param label
+     * @return
+     */
+    int insert(Label label);
 
-    int insert(Label record);
+    /**
+     * 根据id获取
+     * @param id
+     * @return
+     */
+    Label selectById(Long id);
 
-    int insertSelective(Label record);
+    /**
+     * 根据id部分更新
+     * @param label
+     * @return
+     */
+    int updatePrimaryById(Label label);
 
-    Label selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(Label record);
-
-    int updateByPrimaryKey(Label record);
+    /**
+     * 根据id更新
+     * @param label
+     * @return
+     */
+    int updateById(Label label);
 }

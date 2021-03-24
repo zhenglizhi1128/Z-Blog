@@ -4,10 +4,11 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * <p>
- * JWT 配置
- * </p>
- */
+* @description: JWT 配置
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @ConfigurationProperties(prefix = "jwt.config")
 @Data
 public class JwtConfig {

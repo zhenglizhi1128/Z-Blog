@@ -26,7 +26,7 @@ public class JsonUtils {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
-    private static final ObjectMapper objectMapper;
+    private static  ObjectMapper objectMapper;
 
     static {
         objectMapper = new ObjectMapper();
@@ -180,7 +180,8 @@ public class JsonUtils {
      */
     public static JsonNode getNode(JsonNode node, String keys) {
         String[] pathArray = {keys};
-        if (keys.contains(".")) {
+        String s = ".";
+        if (keys.contains(s)) {
             pathArray = keys.split("\\.");
         }
         JsonNode next = node;

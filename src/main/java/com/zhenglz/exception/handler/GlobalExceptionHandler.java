@@ -3,8 +3,8 @@ package com.zhenglz.exception.handler;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONUtil;
 import com.zhenglz.common.BaseException;
-import com.zhenglz.common.resultModel.Result;
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.common.resultmodel.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,10 +20,11 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import javax.validation.ConstraintViolationException;
 
 /**
- * <p>
- * 全局统一异常处理
- * </p>
- */
+* @description:全局统一异常处理
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {

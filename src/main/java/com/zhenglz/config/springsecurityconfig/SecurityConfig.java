@@ -1,7 +1,7 @@
 package com.zhenglz.config.springsecurityconfig;
 
 
-import com.zhenglz.service.impl.CustomUserDetailsService;
+import com.zhenglz.service.impl.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +19,11 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * <p>
- * Security 配置
- * </p>
- */
+* @description: Security 配置
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties(CustomConfig.class)
@@ -34,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsServiceImpl customUserDetailsService;
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;

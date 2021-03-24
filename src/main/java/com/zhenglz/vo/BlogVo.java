@@ -8,6 +8,12 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+* @description: blogVO
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @Accessors(chain = true)
 public class BlogVo implements Serializable {

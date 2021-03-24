@@ -18,14 +18,14 @@
         id, `name`, url, `type`, permission, `method`, sort, parent_id
     </sql>
     
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getPermissionById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from m_permission
         where id = #{id,jdbcType=BIGINT}
     </select>
     
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from m_permission
         where id = #{id,jdbcType=BIGINT}
     </delete>
@@ -39,63 +39,7 @@
         #{sort,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT})
     </insert>
     
-    <insert id="insertSelective" parameterType="com.zhenglz.entity.Permission">
-        insert into m_permission
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="name != null">
-                `name`,
-            </if>
-            <if test="url != null">
-                url,
-            </if>
-            <if test="type != null">
-                `type`,
-            </if>
-            <if test="permission != null">
-                permission,
-            </if>
-            <if test="method != null">
-                `method`,
-            </if>
-            <if test="sort != null">
-                sort,
-            </if>
-            <if test="parentId != null">
-                parent_id,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="url != null">
-                #{url,jdbcType=VARCHAR},
-            </if>
-            <if test="type != null">
-                #{type,jdbcType=INTEGER},
-            </if>
-            <if test="permission != null">
-                #{permission,jdbcType=VARCHAR},
-            </if>
-            <if test="method != null">
-                #{method,jdbcType=VARCHAR},
-            </if>
-            <if test="sort != null">
-                #{sort,jdbcType=INTEGER},
-            </if>
-            <if test="parentId != null">
-                #{parentId,jdbcType=BIGINT},
-            </if>
-        </trim>
-    </insert>
-    
-    <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.Permission">
+    <update id="updatePrimaryById" parameterType="com.zhenglz.entity.Permission">
         update m_permission
         <set>
             <if test="name != null">
@@ -123,7 +67,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     
-    <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.Permission">
+    <update id="updateById" parameterType="com.zhenglz.entity.Permission">
         update m_permission
         set `name` = #{name,jdbcType=VARCHAR},
         url = #{url,jdbcType=VARCHAR},

@@ -9,10 +9,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @Auther: zlz
- * @Date: 2021/03/09/18:28
- * @Description: 文章点赞
- */
+* @description: 文章点赞表
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

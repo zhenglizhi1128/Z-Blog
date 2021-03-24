@@ -15,12 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * <p>
- * 监控 Service
- * </p>
- */
+* @description:监控 Service
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Service
-public class MonitorService implements IMonitorService {
+public class MonitorServiceImpl implements IMonitorService {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 

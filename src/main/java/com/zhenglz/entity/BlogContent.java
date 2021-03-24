@@ -7,11 +7,13 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
+
 /**
- * @Auther: zlz
- * @Date: 2021/03/19/16:16
- * @Description: 博客内容
- */
+* @description: 博客内容
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -22,14 +22,14 @@
         update_time
     </sql>
     
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from m_user
         where id = #{id,jdbcType=BIGINT}
     </select>
     
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from m_user
         where id = #{id,jdbcType=BIGINT}
     </delete>
@@ -45,81 +45,7 @@
         #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
     </insert>
     
-    <insert id="insertSelective" parameterType="com.zhenglz.entity.User">
-        insert into m_user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="username != null">
-                username,
-            </if>
-            <if test="password != null">
-                `password`,
-            </if>
-            <if test="nickname != null">
-                nickname,
-            </if>
-            <if test="phone != null">
-                phone,
-            </if>
-            <if test="email != null">
-                email,
-            </if>
-            <if test="birthday != null">
-                birthday,
-            </if>
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="status != null">
-                `status`,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="username != null">
-                #{username,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="nickname != null">
-                #{nickname,jdbcType=VARCHAR},
-            </if>
-            <if test="phone != null">
-                #{phone,jdbcType=VARCHAR},
-            </if>
-            <if test="email != null">
-                #{email,jdbcType=VARCHAR},
-            </if>
-            <if test="birthday != null">
-                #{birthday,jdbcType=BIGINT},
-            </if>
-            <if test="sex != null">
-                #{sex,jdbcType=INTEGER},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    
-    <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.User">
+    <update id="updatePrimaryById" parameterType="com.zhenglz.entity.User">
         update m_user
         <set>
             <if test="username != null">
@@ -156,7 +82,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     
-    <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.User">
+    <update id="updateById" parameterType="com.zhenglz.entity.User">
         update m_user
         set username = #{username,jdbcType=VARCHAR},
         `password` = #{password,jdbcType=VARCHAR},
@@ -171,7 +97,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     
-    <select id="queryUserList" resultType="com.zhenglz.entity.User">
+    <select id="listUsers" resultType="com.zhenglz.entity.User">
         select *
         from m_user
     </select>

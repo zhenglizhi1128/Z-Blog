@@ -3,23 +3,47 @@ package com.zhenglz.mapper;
 import com.zhenglz.entity.Visit;
 import org.apache.ibatis.annotations.Mapper;
 
-/*
- * @Description:
- * @Author: zlz
- * @Date: 2021/3/7
- **/
+/**
+* @description: 访问Mapper
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface VisitMapper {
 
-    int deleteByPrimaryKey(Long id);
+    /**
+     * 根据id 删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int insert(Visit record);
+    /**
+     * 新增
+     * @param visit
+     * @return
+     */
+    int insert(Visit visit);
 
-    int insertSelective(Visit record);
+    /**
+     * 根据id获取Visit
+     * @param id
+     * @return
+     */
+    Visit getVisitById(Long id);
 
-    Visit selectByPrimaryKey(Long id);
+    /**
+     * 更新访问的部分内容
+     * @param visit
+     * @return
+     */
+    int updatePartialById(Visit visit);
 
-    int updateByPrimaryKeySelective(Visit record);
-
-    int updateByPrimaryKey(Visit record);
+    /**
+     * 更新访问记录
+     * @param visit
+     * @return
+     */
+    int updateById(Visit visit);
 }

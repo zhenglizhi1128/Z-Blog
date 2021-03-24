@@ -4,22 +4,45 @@ import com.zhenglz.entity.BlogContent;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @Auther: zlz
- * @Date: 2021/03/19/16:16
- * @Description: 
- */
+* @description: 博客内容
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface BlogContentMapper {
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int deleteByPrimaryKey(Long id);
+    /**
+     *新增
+     * @param blogContent
+     * @return
+     */
+    int insert(BlogContent blogContent);
 
-    int insert(BlogContent record);
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    BlogContent getBlogContentById(Long id);
 
-    int insertSelective(BlogContent record);
+    /**
+     *部分更新
+     * @param blogContent
+     * @return
+     */
+    int updatePrimaryById(BlogContent blogContent);
 
-    BlogContent selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(BlogContent record);
-
-    int updateByPrimaryKey(BlogContent record);
+    /**
+     *更新
+     * @param blogContent
+     * @return
+     */
+    int updateById(BlogContent blogContent);
 }

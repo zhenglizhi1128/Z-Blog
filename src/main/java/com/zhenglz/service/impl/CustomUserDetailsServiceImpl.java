@@ -18,12 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * <p>
- * 自定义UserDetails查询
- * </p>
- */
+* @description: 自定义UserDetails查询
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
@@ -42,7 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         List<Role> roles= new ArrayList<>();
         List<Permission> permissions= new ArrayList<>();
-        roles = roleMapper.selectByUserId(user.getId());
+        roles = roleMapper.listRolesByUserId(user.getId());
         List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
         permissions = permissionMapper.selectByRoleIdList(roleIds);
         return UserPrincipal.create(user, roles, permissions);

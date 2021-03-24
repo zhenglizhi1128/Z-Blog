@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * <p>
- * 登录请求参数
- * </p>
- */
+* @description: 登录请求参数
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @Accessors(chain = true)
 public class LoginRequest {

@@ -1,4 +1,4 @@
-package com.zhenglz.common.resultModel;
+package com.zhenglz.common.resultmodel;
 
 import com.zhenglz.common.BaseException;
 import lombok.Data;

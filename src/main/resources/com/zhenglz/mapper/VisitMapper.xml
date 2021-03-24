@@ -13,63 +13,26 @@
     id, ip, create_time, update_time, blog_id
   </sql>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
+  <select id="getVisitById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from m_blog_visit
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
+  <delete id="deleteById" parameterType="java.lang.Long">
     delete from m_blog_visit
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Visit" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into m_blog_visit (ip, create_time, update_time, 
+    insert into m_blog_visit (ip, create_time, update_time,
       blog_id)
     values (#{ip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{blogId,jdbcType=BIGINT})
   </insert>
 
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Visit" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into m_blog_visit
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ip != null and ip != ''">
-        ip,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="blogId != null">
-        blog_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ip != null and ip != ''">
-        #{ip,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="blogId != null">
-        #{blogId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.Visit">
-    <!--@mbg.generated-->
+  <update id="updatePartialById" parameterType="com.zhenglz.entity.Visit">
     update m_blog_visit
     <set>
       <if test="ip != null and ip != ''">
@@ -88,8 +51,7 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.Visit">
-    <!--@mbg.generated-->
+  <update id="updateById" parameterType="com.zhenglz.entity.Visit">
     update m_blog_visit
     set ip = #{ip,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -97,4 +59,5 @@
       blog_id = #{blogId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
 </mapper>

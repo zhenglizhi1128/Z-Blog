@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * <p>
- * 分页请求参数
- * </p>
- */
+* @description: 分页请求 Dto
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @Accessors(chain = true)
 public class PageCondition {

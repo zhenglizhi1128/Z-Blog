@@ -7,8 +7,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 角色表
- */
+* @description: 角色表
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @Accessors(chain = true)
 public class Role implements Serializable {

@@ -8,11 +8,12 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/*
- * @Description: 文章阅读量表
- * @Author: zlz
- * @Date: 2021/3/7
- **/
+/**
+* @description:文章阅读量表
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)

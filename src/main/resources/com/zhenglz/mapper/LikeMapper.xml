@@ -22,14 +22,14 @@
         is_read
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getLikeById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from m_like
         where id = #{id,jdbcType=BIGINT}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete
         from m_like
         where id = #{id,jdbcType=BIGINT}
@@ -42,51 +42,7 @@
                 #{userId,jdbcType=BIGINT}, #{status,jdbcType=BOOLEAN}, #{isRead,jdbcType=BOOLEAN})
     </insert>
 
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Like" useGeneratedKeys="true">
-        insert into m_like
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="blogId != null">
-                blog_id,
-            </if>
-            <if test="userId != null">
-                user_id,
-            </if>
-            <if test="status != null">
-                `status`,
-            </if>
-            <if test="isRead != null">
-                is_read,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="blogId != null">
-                #{blogId,jdbcType=BIGINT},
-            </if>
-            <if test="userId != null">
-                #{userId,jdbcType=BIGINT},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=BOOLEAN},
-            </if>
-            <if test="isRead != null">
-                #{isRead,jdbcType=BOOLEAN},
-            </if>
-        </trim>
-    </insert>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.Like">
+    <update id="updatePartialById" parameterType="com.zhenglz.entity.Like">
         update m_like
         <set>
             <if test="createTime != null">
@@ -111,7 +67,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.Like">
+    <update id="updateById" parameterType="com.zhenglz.entity.Like">
         update m_like
         set create_time = #{createTime,jdbcType=TIMESTAMP},
             update_time = #{updateTime,jdbcType=TIMESTAMP},

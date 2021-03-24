@@ -1,15 +1,17 @@
 package com.zhenglz.config.springsecurityconfig;
 
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.utils.ResponseUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
- * Security 结果处理配置
- * 用来解决认证过的用户访问无权限资源时的异常
- */
+* @description: Security 结果处理配置用来解决认证过的用户访问无权限资源时的异常
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Configuration
 public class SecurityHandlerConfig {
 

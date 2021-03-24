@@ -6,28 +6,56 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/*
- * @Description: 用户
- * @Author: zlz
- * @Date: 2021/1/24
- **/
+/**
+* @description: 用户
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface UserMapper {
-    
-    int deleteByPrimaryKey(Long id);
 
-    int insert(User record);
+    /**
+     * 根据id删除用户
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int insertSelective(User record);
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    int insert(User user);
 
-    User selectByPrimaryKey(Long id);
+    /**
+     * 根据id 获取用户
+     * @param id
+     * @return
+     */
+    User getUserById(Long id);
 
-    int updateByPrimaryKeySelective(User record);
+    /**
+     * 部分更新
+     * @param user
+     * @return
+     */
+    int updatePrimaryById(User user);
 
-    int updateByPrimaryKey(User record);
-    
+    /**
+     * 更新user
+     * @param user
+     * @return
+     */
+    int updateById(User user);
 
-    public List<User> queryUserList();
+    /**
+     *  获取user集合
+     * @return
+     */
+    List<User> listUsers();
+
     /**
      * 根据用户名、邮箱、手机号查询用户
      *

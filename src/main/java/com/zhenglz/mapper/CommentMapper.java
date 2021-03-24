@@ -4,22 +4,47 @@ import com.zhenglz.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @Auther: zlz
- * @Date: 2021/03/09/18:34
- * @Description:
- */
+* @description: 评论Mapper
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface CommentMapper {
 
-    int deleteByPrimaryKey(Long id);
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int insert(Comment record);
+    /**
+     * 新增
+     * @param comment
+     * @return
+     */
+    int insert(Comment comment);
 
-    int insertSelective(Comment record);
+    /**
+     * 根据id获取
+     * @param id
+     * @return
+     */
+    Comment getCommentById(Long id);
 
-    Comment selectByPrimaryKey(Long id);
+    /**
+     * 根据id部分更新
+     * @param comment
+     * @return
+     */
+    int updatePrimaryById(Comment comment);
 
-    int updateByPrimaryKeySelective(Comment record);
+    /**
+     * 更新
+     * @param comment
+     * @return
+     */
+    int updateById(Comment comment);
 
-    int updateByPrimaryKey(Comment record);
 }

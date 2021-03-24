@@ -3,7 +3,7 @@ package com.zhenglz.utils;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhenglz.common.Constants;
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.config.springsecurityconfig.JwtConfig;
 import com.zhenglz.exception.SecurityException;
 import com.zhenglz.vo.UserPrincipal;
@@ -51,7 +51,7 @@ public class JwtUtil {
      * @param authorities 用户权限
      * @return JWT
      */
-    public String createJWT(Boolean rememberMe, Long id, String subject, List<String> roles, Collection<? extends GrantedAuthority> authorities) {
+    public String createJwt(Boolean rememberMe, Long id, String subject, List<String> roles, Collection<? extends GrantedAuthority> authorities) {
         Date now = new Date();
         JwtBuilder builder = Jwts.builder().setId(id.toString()).setSubject(subject).setIssuedAt(now).signWith(SignatureAlgorithm.HS256, jwtConfig.getKey()).claim("roles", roles).claim("authorities", authorities);
 
@@ -74,9 +74,9 @@ public class JwtUtil {
      * @param rememberMe     记住我
      * @return JWT
      */
-    public String createJWT(Authentication authentication, Boolean rememberMe) {
+    public String createJwt(Authentication authentication, Boolean rememberMe) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        return createJWT(rememberMe, userPrincipal.getId(), userPrincipal.getUsername(), userPrincipal.getRoles(), userPrincipal.getAuthorities());
+        return createJwt(rememberMe, userPrincipal.getId(), userPrincipal.getUsername(), userPrincipal.getRoles(), userPrincipal.getAuthorities());
     }
 
     /**
@@ -85,7 +85,7 @@ public class JwtUtil {
      * @param jwt JWT
      * @return {@link Claims}
      */
-    public Claims parseJWT(String jwt) {
+    public Claims parseJwt(String jwt) {
         try {
             Claims claims = Jwts.parser().setSigningKey(jwtConfig.getKey()).parseClaimsJws(jwt).getBody();
 
@@ -127,9 +127,9 @@ public class JwtUtil {
      *
      * @param request 请求
      */
-    public void invalidateJWT(HttpServletRequest request) {
+    public void invalidateJwt(HttpServletRequest request) {
         String jwt = getJwtFromRequest(request);
-        String username = getUsernameFromJWT(jwt);
+        String username = getUsernameFromJwt(jwt);
         // 从redis中清除JWT
         stringRedisTemplate.delete(Constants.REDIS_JWT_KEY_PREFIX + username);
     }
@@ -140,8 +140,8 @@ public class JwtUtil {
      * @param jwt JWT
      * @return 用户名
      */
-    public String getUsernameFromJWT(String jwt) {
-        Claims claims = parseJWT(jwt);
+    public String getUsernameFromJwt(String jwt) {
+        Claims claims = parseJwt(jwt);
         return claims.getSubject();
     }
 
@@ -153,7 +153,8 @@ public class JwtUtil {
      */
     public String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith("Bearer ")) {
+        String prefix = "Bearer ";
+        if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith(prefix)) {
             return bearerToken.substring(7);
         }
         return null;

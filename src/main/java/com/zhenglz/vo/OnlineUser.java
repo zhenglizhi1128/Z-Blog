@@ -7,8 +7,11 @@ import com.zhenglz.entity.User;
 import lombok.Data;
 
 /**
- * 在线用户 VO
- */
+* @description: 在线用户 VO
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 public class OnlineUser {
 

@@ -16,12 +16,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @Auther: zlz
- * @Date: 2021/01/29/13:11
- * @Description:
- */
+* @description: 
+* @author: zlz 
+* @date: 2021/3/24
+* @version:       
+*/
 @Service
-public class BlogService implements IBlogService {
+public class BlogServiceImpl implements IBlogService {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
@@ -32,29 +33,31 @@ public class BlogService implements IBlogService {
     @Resource
     private BlogContentMapper blogContentMapper;
 
+
     @Override
-    @Transactional
     public List<Blog> getBlogs(PageCondition pageCondition) throws RuntimeException {
         PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(),pageCondition.getOrderType());
-        List<Blog> blogs = blogMapper.list();
+        List<Blog> blogs = blogMapper.listBlogs();
         return blogs;
     }
 
     @Override
-    public Blog getBlogById(long id) {
-        Blog blog= blogMapper.selectByPrimaryKey(id);
-        BlogContent blogContent =blogContentMapper.selectByPrimaryKey(blog.getContentId());
-        return blogMapper.selectByPrimaryKey(id);
+    public Blog getBlogById(long id)throws RuntimeException {
+        Blog blog= blogMapper.getBlogById(id);
+        BlogContent blogContent =blogContentMapper.getBlogContentById(blog.getContentId());
+        return blogMapper.getBlogById(id);
     }
 
     @Override
-    public int insert(Blog blog) {
+    @Transactional(rollbackFor = Exception.class)
+    public int insert(Blog blog) throws RuntimeException {
         return blogMapper.insert(blog);
     }
 
     @Override
-    public int updateByPrimaryKey(Blog blog) {
-        return blogMapper.updateByPrimaryKey(blog);
+    @Transactional(rollbackFor = Exception.class)
+    public int updateByPrimaryKey(Blog blog) throws RuntimeException {
+        return blogMapper.updateById(blog);
     }
 
 }

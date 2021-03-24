@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.zhenglz.common.Constants;
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.entity.Permission;
 import com.zhenglz.entity.Role;
 import com.zhenglz.exception.SecurityException;
@@ -29,10 +29,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * <p>
- * 动态路由认证
- * </p>
- */
+* @description: 动态路由认证
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Component
 public class RbacAuthorityService {
     @Autowired
@@ -54,7 +55,7 @@ public class RbacAuthorityService {
             UserPrincipal principal = (UserPrincipal) userInfo;
             Long userId = principal.getId();
 
-            List<Role> roles = roleMapper.selectByUserId(userId);
+            List<Role> roles = roleMapper.listRolesByUserId(userId);
             List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
             List<Permission> permissions = permissionMapper.selectByRoleIdList(roleIds);
 

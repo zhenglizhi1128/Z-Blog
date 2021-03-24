@@ -3,8 +3,8 @@ package com.zhenglz.utils;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.zhenglz.common.BaseException;
-import com.zhenglz.common.resultModel.Result;
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.common.resultmodel.Status;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletResponse;

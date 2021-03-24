@@ -4,9 +4,9 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Sets;
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.exception.SecurityException;
-import com.zhenglz.service.impl.CustomUserDetailsService;
+import com.zhenglz.service.impl.CustomUserDetailsServiceImpl;
 import com.zhenglz.utils.JwtUtil;
 import com.zhenglz.utils.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +28,16 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * <p>
- * Jwt 认证过滤器
- * </p>
- */
+* @description: Jwt 认证过滤器
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Component
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsServiceImpl customUserDetailsService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -56,7 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (StrUtil.isNotBlank(jwt)) {
             try {
-                String username = jwtUtil.getUsernameFromJWT(jwt);
+                String username = jwtUtil.getUsernameFromJwt(jwt);
                 UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

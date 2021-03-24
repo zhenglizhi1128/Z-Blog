@@ -22,14 +22,14 @@
     like_number, comment_number, `status`, comment_status
   </sql>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="getBlogById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from m_blog
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteById" parameterType="java.lang.Long">
     delete from m_blog
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -45,81 +45,8 @@
       #{status,jdbcType=BOOLEAN}, #{commentStatus,jdbcType=BOOLEAN})
   </insert>
 
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Blog" useGeneratedKeys="true">
-    insert into m_blog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="description != null">
-        description,
-      </if>
-      <if test="contentId != null">
-        content_id,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="readNumber != null">
-        read_number,
-      </if>
-      <if test="likeNumber != null">
-        like_number,
-      </if>
-      <if test="commentNumber != null">
-        comment_number,
-      </if>
-      <if test="status != null">
-        `status`,
-      </if>
-      <if test="commentStatus != null">
-        comment_status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="contentId != null">
-        #{contentId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="readNumber != null">
-        #{readNumber,jdbcType=BIGINT},
-      </if>
-      <if test="likeNumber != null">
-        #{likeNumber,jdbcType=BIGINT},
-      </if>
-      <if test="commentNumber != null">
-        #{commentNumber,jdbcType=BIGINT},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=BOOLEAN},
-      </if>
-      <if test="commentStatus != null">
-        #{commentStatus,jdbcType=BOOLEAN},
-      </if>
-    </trim>
-  </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.Blog">
+  <update id="updatePrimaryById" parameterType="com.zhenglz.entity.Blog">
     update m_blog
     <set>
       <if test="userId != null">
@@ -159,7 +86,7 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.Blog">
+  <update id="updateById" parameterType="com.zhenglz.entity.Blog">
     update m_blog
     set user_id = #{userId,jdbcType=BIGINT},
       title = #{title,jdbcType=VARCHAR},
@@ -175,7 +102,7 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <select id="list" resultMap="BaseResultMap">
+  <select id="listBlogs" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from m_blog

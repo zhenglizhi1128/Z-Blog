@@ -13,14 +13,14 @@
         blog_id
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getBlogContentById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from m_blog_content
         where id = #{id,jdbcType=BIGINT}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete
         from m_blog_content
         where id = #{id,jdbcType=BIGINT}
@@ -31,27 +31,7 @@
         values (#{content,jdbcType=LONGVARCHAR}, #{blogId,jdbcType=BIGINT})
     </insert>
 
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.BlogContent" useGeneratedKeys="true">
-        insert into m_blog_content
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="content != null">
-                content,
-            </if>
-            <if test="blogId != null">
-                blog_id,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="content != null">
-                #{content,jdbcType=LONGVARCHAR},
-            </if>
-            <if test="blogId != null">
-                #{blogId,jdbcType=BIGINT},
-            </if>
-        </trim>
-    </insert>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.BlogContent">
+    <update id="updatePrimaryById" parameterType="com.zhenglz.entity.BlogContent">
         update m_blog_content
         <set>
             <if test="content != null">
@@ -64,7 +44,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.BlogContent">
+    <update id="updateById" parameterType="com.zhenglz.entity.BlogContent">
         update m_blog_content
         set content = #{content,jdbcType=LONGVARCHAR},
             blog_id = #{blogId,jdbcType=BIGINT}

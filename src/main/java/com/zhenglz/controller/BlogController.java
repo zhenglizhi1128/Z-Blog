@@ -1,7 +1,7 @@
 package com.zhenglz.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.zhenglz.common.resultModel.Result;
+import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.Blog;
 import com.zhenglz.service.IBlogService;
@@ -15,10 +15,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * @Auther: zlz
- * @Date: 2021/01/29/12:50
- * @Description:
- */
+* @description:
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -28,6 +29,11 @@ public class BlogController {
     @Resource
     private IBlogService blogService;
 
+    /**
+     * 获取blogs
+     * @param pageCondition
+     * @return
+     */
     @GetMapping("/blogs")
     public Result blogs(PageCondition pageCondition){
         List<Blog> blogs = blogService.getBlogs(pageCondition);
@@ -35,12 +41,22 @@ public class BlogController {
         return Result.success(pageInfo);
     }
 
+    /**
+     * 获取单个blog详情
+     * @param id
+     * @return
+     */
     @GetMapping("/blog")
     public Result detail(@RequestParam(value = "id", required = true) Long id) {
         Blog blog = blogService.getBlogById(id);
         return Result.success(blog);
     }
 
+    /**
+     * 保存编辑blog
+     * @param blog
+     * @return
+     */
     @PostMapping("/edit")
     public Result edit(@Validated @RequestBody Blog blog) {
         Blog temp = null;

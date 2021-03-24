@@ -4,22 +4,46 @@ import com.zhenglz.entity.Like;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @Auther: zlz
- * @Date: 2021/03/09/18:28
- * @Description: 
- */
+* @description: 点赞Mapper
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface LikeMapper {
 
-    int deleteByPrimaryKey(Long id);
+    /**
+     * 根据Id删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int insert(Like record);
+    /**
+     * 新增
+     * @param like
+     * @return
+     */
+    int insert(Like like);
 
-    int insertSelective(Like record);
+    /**
+     * 根据Id获取
+     * @param id
+     * @return
+     */
+    Like getLikeById(Long id);
 
-    Like selectByPrimaryKey(Long id);
+    /**
+     * 部分更新
+     * @param like
+     * @return
+     */
+    int updatePartialById(Like like);
 
-    int updateByPrimaryKeySelective(Like record);
-
-    int updateByPrimaryKey(Like record);
+    /**
+     * 更新
+     * @param like
+     * @return
+     */
+    int updateById(Like like);
 }

@@ -22,7 +22,7 @@ public class UserMapperTest {
 
     @Test
     public void queryUserList() {
-        List<User> users = userMapper.queryUserList();
+        List<User> users = userMapper.listUsers();
         System.out.println(users);
 
 

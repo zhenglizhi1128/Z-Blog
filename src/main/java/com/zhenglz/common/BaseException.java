@@ -1,14 +1,16 @@
 package com.zhenglz.common;
 
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Status;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+
 /**
- * <p>
- * 异常基类
- * </p>
- */
+* @Description: 异常基类
+* @Author: zlz
+* @Date: 2021/3/24
+* @Version:
+*/
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class BaseException extends RuntimeException {

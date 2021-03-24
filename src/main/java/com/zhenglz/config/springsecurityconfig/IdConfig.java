@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>
- * 雪花主键生成器
- * </p>
- */
+* @description:雪花主键生成器
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Configuration
 public class IdConfig {
     /**

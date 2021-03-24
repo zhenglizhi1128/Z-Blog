@@ -6,26 +6,54 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/*
- * @Description: 角色
- * @Author: zlz
- * @Date: 2021/1/24
- **/
+/**
+* @description: 角色
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Mapper
 public interface RoleMapper {
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
 
-    int deleteByPrimaryKey(Long id);
+    /**
+     * 新增
+     * @param role
+     * @return
+     */
+    int insert(Role role);
 
-    int insert(Role record);
+    /**
+     * 根据id获取
+     * @param id
+     * @return
+     */
+    Role getRoleById(Long id);
 
-    int insertSelective(Role record);
+    /**
+     * 部分更新
+     * @param role
+     * @return
+     */
+    int updatePrimaryById(Role role);
 
-    Role selectByPrimaryKey(Long id);
+    /**
+     * 更新
+     * @param role
+     * @return
+     */
+    int updateById(Role role);
 
-    int updateByPrimaryKeySelective(Role record);
-
-    int updateByPrimaryKey(Role record);
-
-    List<Role> selectByUserId(@Param("userId") Long userId);
+    /**
+     * 根据userId 获取用户所有角色
+     * @param userId
+     * @return
+     */
+    List<Role> listRolesByUserId(@Param("userId") Long userId);
 
 }

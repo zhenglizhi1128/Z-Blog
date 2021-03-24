@@ -1,8 +1,8 @@
 package com.zhenglz.controller;
 
 import cn.hutool.core.collection.CollUtil;
-import com.zhenglz.common.resultModel.Result;
-import com.zhenglz.common.resultModel.Status;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.exception.SecurityException;
 import com.zhenglz.service.IMonitorService;
 import com.zhenglz.utils.SecurityUtil;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 监控 Controller，在线用户，手动踢出用户等功能
- * </p>
- */
-
+* @description: 监控 Controller，在线用户，手动踢出用户等功能
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @RestController
 @RequestMapping("/api/monitor")
 public class MonitorController {

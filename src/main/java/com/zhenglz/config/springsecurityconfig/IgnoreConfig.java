@@ -6,10 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * <p>
- * 忽略配置
- * </p>
- */
+* @description: 忽略配置
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 public class IgnoreConfig {
     /**

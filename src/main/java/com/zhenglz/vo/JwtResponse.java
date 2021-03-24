@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * JWT 响应返回
- */
+* @description: JWT 响应返回
+* @author: zlz
+* @date: 2021/3/24
+* @version:
+*/
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -27,7 +27,7 @@ public class BlogMapperTest {
 
     @Test
     public void list() {
-        List<Blog> list = blogMapper.list();
+        List<Blog> list = blogMapper.listBlogs();
         System.out.println(list.size());
         Blog blog = list.get(0);
         System.out.println("------");

@@ -44,7 +44,7 @@ public class PageHelperTest {
         String orderBy = "id ASC";
 
         PageHelper.startPage(currentPage, pageSize,"");
-        List<User> users = userMapper.queryUserList();
+        List<User> users = userMapper.listUsers();
         PageInfo<User> userPageInfo = new PageInfo<>(users);
        // Assert.assertEquals(count, userPageInfo.getTotal());
         logger.debug("【userPageInfo】= {}", userPageInfo.getList().get(0).getUsername());
