@@ -1,5 +1,14 @@
 package com.zhenglz.service.impl;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.github.pagehelper.PageHelper;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.Blog;
@@ -7,13 +16,6 @@ import com.zhenglz.entity.BlogContent;
 import com.zhenglz.mapper.BlogContentMapper;
 import com.zhenglz.mapper.BlogMapper;
 import com.zhenglz.service.IBlogService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
 * @description: 
@@ -45,7 +47,8 @@ public class BlogServiceImpl implements IBlogService {
     public Blog getBlogById(long id)throws RuntimeException {
         Blog blog= blogMapper.getBlogById(id);
         BlogContent blogContent =blogContentMapper.getBlogContentById(blog.getContentId());
-        return blogMapper.getBlogById(id);
+        blog.setBlogContent(blogContent);
+        return blog;
     }
 
     @Override
