@@ -51,4 +51,14 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
+    <update id="updatePrimaryByBlogId" parameterType="com.zhenglz.entity.BlogContent">
+        update m_blog_content
+        <set>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where blog_id = #{blogId,jdbcType=BIGINT}
+    </update>
+
 </mapper>

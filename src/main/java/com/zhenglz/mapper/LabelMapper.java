@@ -32,12 +32,19 @@ public interface LabelMapper {
     int insert(Label label);
 
     /**
+     * 查询所有
+     *
+     * @return
+     */
+    List<Label> getLabels();
+
+    /**
      * 根据id获取
      *
      * @param id
      * @return
      */
-    Label selectById(Long id);
+    Label getLabelById(Long id);
 
     /**
      * 根据id部分更新
@@ -47,20 +54,14 @@ public interface LabelMapper {
      */
     int updatePrimaryById(Label label);
 
-    /**
-     * 根据id更新
-     *
-     * @param label
-     * @return
-     */
-    int updateById(Label label);
-
     void updateBatchByName(@Param("labels") List<Label> labels);
 
     void updateBatchById(@Param("labels") List<Label> labels);
 
     void updateBatch(@Param("labels") List<Label> labels);
 
-    int insertList(@Param("list")List<Label> list);
+    int insertList(@Param("list") List<Label> list);
+
+    int countLabelByName(@Param("name") String name);
 
 }

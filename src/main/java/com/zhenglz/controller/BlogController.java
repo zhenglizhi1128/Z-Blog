@@ -1,18 +1,22 @@
 package com.zhenglz.controller;
 
-import com.github.pagehelper.PageInfo;
-import com.zhenglz.common.resultmodel.Result;
-import com.zhenglz.dto.PageCondition;
-import com.zhenglz.entity.Blog;
-import com.zhenglz.service.IBlogService;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.List;
+import com.github.pagehelper.PageInfo;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.dto.PageCondition;
+import com.zhenglz.entity.Blog;
+import com.zhenglz.entity.BlogContent;
+import com.zhenglz.service.IBlogService;
+import com.zhenglz.vo.BlogVo;
 
 /**
 * @description:
@@ -58,13 +62,18 @@ public class BlogController {
      * @return
      */
     @PostMapping("/edit")
-    public Result edit(@Validated @RequestBody Blog blog) {
+    public Result edit(@Validated @RequestBody BlogVo blog) {
         Blog temp = null;
+        Blog newBlog = new Blog();
+        BlogContent blogContent = new BlogContent();
         if(blog.getId() != null) {
-            temp = blogService.getBlogById(blog.getId());
-            temp.setUpdateTime(LocalDateTime.now());
-           // temp.setTitle(blog.getTitle()).setContent(blog.getContent()).setDescription(blog.getDescription());
-            blogService.updateByPrimaryKey(temp);
+            blogContent.setBlogId(blog.getId()).setContent(blog.getContent());
+            newBlog.setId(blog.getId())
+                    .setTitle(blog.getTitle())
+                    .setDescription(blog.getDescription())
+                    .setUpdateTime(LocalDateTime.now())
+                    .setBlogContent(blogContent);
+            blogService.updateByPrimaryKey(newBlog);
         } else {
             temp = new Blog();
             temp.setUserId(0L);

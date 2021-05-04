@@ -1,7 +1,8 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.BlogContent;
 import org.apache.ibatis.annotations.Mapper;
+
+import com.zhenglz.entity.BlogContent;
 
 /**
 * @description: 博客内容
@@ -45,4 +46,11 @@ public interface BlogContentMapper {
      * @return
      */
     int updateById(BlogContent blogContent);
+
+    /**
+     *更新
+     * @param blogContent
+     * @return
+     */
+    int updatePrimaryByBlogId(BlogContent blogContent);
 }

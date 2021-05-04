@@ -12,17 +12,24 @@
   <sql id="Base_Column_List">
     id, `name`, create_time, update_time, `status`
   </sql>
-  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="getLabelById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from m_label
     where id = #{id,jdbcType=BIGINT}
   </select>
 
+  <select id="getLabels" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_label where status =1
+  </select>
+
   <delete id="deleteById" parameterType="java.lang.Long">
     delete from m_label
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
 
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Label" useGeneratedKeys="true">
     insert into m_label (`name`, create_time, update_time,`status`)
@@ -47,15 +54,6 @@
         `status` = #{status,jdbcType=BOOLEAN},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-
-  <update id="updateById" parameterType="com.zhenglz.entity.Label">
-    update m_label
-    set `name` = #{name,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      `status` = #{status,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
@@ -115,5 +113,10 @@
     ON DUPLICATE KEY UPDATE
     id=VALUES(id),name=VALUES(name),status = VALUES(status)
   </insert>
+
+  <select id="countLabelByName" resultType="java.lang.Integer" >
+    select count(*) from m_label where name =#{name}
+  </select>
+
 
 </mapper>
