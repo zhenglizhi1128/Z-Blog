@@ -1,4 +1,4 @@
-package com.zhenglz.controller;
+package com.zhenglz.controller.system;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -59,8 +59,8 @@ public class LabelController {
      * @return
      * @throws RuntimeException
      */
-    @PostMapping("/update")
-    public Result updateName(@RequestBody Label label) throws RuntimeException {
+    @PutMapping("/update")
+    public Result updateName(Label label) throws RuntimeException {
         label.setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE);
         int value = labelService.updateNameById(label);
         if (value == 0) {
@@ -88,9 +88,9 @@ public class LabelController {
      * @return
      * @throws RuntimeException
      */
-    @PostMapping("/delete")
-    public Result deleteLabel(@RequestBody Label label) throws RuntimeException {
-        int value = labelService.updateStatus(label.getId());
+    @DeleteMapping ("/delete")
+    public Result deleteLabel(long id) throws RuntimeException {
+        int value = labelService.updateStatus(id);
         if (value == 0) {
             return Result.failure(Status.ERROR);
         }

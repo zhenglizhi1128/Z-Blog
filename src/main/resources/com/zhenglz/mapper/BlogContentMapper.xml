@@ -61,4 +61,9 @@
         where blog_id = #{blogId,jdbcType=BIGINT}
     </update>
 
+    <delete id="deleteByUserId" parameterType="java.lang.Long">
+        DELETE t1 from m_blog_content as t1,m_blog as t2 WHERE t2.id = t1.blog_id and
+        t2.user_id =#{userId}
+    </delete>
+
 </mapper>

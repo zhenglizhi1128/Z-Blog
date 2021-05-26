@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
             log.error("【全局异常拦截】HttpMessageNotReadableException: 错误信息 {}", ((HttpMessageNotReadableException) e).getMessage());
             return Result.ofStatus(Status.PARAM_NOT_NULL);
         } else if (e instanceof BadCredentialsException) {
-            log.error("【全局异常拦截】BadCredentialsException: 错误信息 {}", e.getMessage());
+            log.error("【全局异常拦截】BadCredentialsException: 错误信息 {}", e.toString());
             return Result.ofStatus(Status.USERNAME_PASSWORD_ERROR);
         } else if (e instanceof DisabledException) {
             log.error("【全局异常拦截】BadCredentialsException: 错误信息 {}", e.getMessage());

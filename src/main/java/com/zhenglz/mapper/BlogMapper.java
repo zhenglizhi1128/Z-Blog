@@ -1,9 +1,10 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Blog;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
+import com.zhenglz.entity.Blog;
 
 /**
 * @description: 博客Mapper
@@ -54,4 +55,20 @@ public interface BlogMapper {
      * @return
      */
     List<Blog> listBlogs();
+
+    Integer countByUserId(long userId);
+
+    /**
+     *获取blog集合
+     * @return
+     */
+    List<Blog> listBlogsByUserId(long userId);
+
+    /**
+     * 根据userId删除
+     * @param userId
+     * @return
+     */
+    int deleteByUserId(Long userId);
+
 }

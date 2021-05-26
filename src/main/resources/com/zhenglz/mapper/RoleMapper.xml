@@ -73,5 +73,22 @@
           AND m_user.id = #{userId,jdbcType=BIGINT}
     </select>
 
+    <delete id="deleteByUserId" parameterType="java.lang.Long">
+        delete from m_user_role
+        where user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByUserIdAndIds" parameterType="java.util.List">
+        delete from m_user_role t where t.user_id = #{userId,jdbcType=BIGINT}
+        and t.role_id in
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item.pathId,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+
+    <insert id="insertByUserId" parameterType="java.lang.Long">
+        insert into m_user_role ( user_id, role_id)
+        values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=VARCHAR})
+    </insert>
 </mapper>
 
