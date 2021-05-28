@@ -106,7 +106,7 @@
         select *
         from m_user
         where username = #{username}
-        and (email = #{email} or phone = #{phone})
+        or email = #{email} or phone = #{phone}
     </select>
 
 </mapper>

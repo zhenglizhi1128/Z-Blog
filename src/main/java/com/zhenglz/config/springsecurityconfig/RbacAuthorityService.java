@@ -1,16 +1,13 @@
 package com.zhenglz.config.springsecurityconfig;
 
-import cn.hutool.core.util.StrUtil;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import com.zhenglz.common.Constants;
-import com.zhenglz.common.resultmodel.Status;
-import com.zhenglz.entity.Permission;
-import com.zhenglz.entity.Role;
-import com.zhenglz.exception.SecurityException;
-import com.zhenglz.mapper.PermissionMapper;
-import com.zhenglz.mapper.RoleMapper;
-import com.zhenglz.vo.UserPrincipal;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,12 +18,18 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import com.zhenglz.common.Constants;
+import com.zhenglz.common.resultmodel.Status;
+import com.zhenglz.entity.Permission;
+import com.zhenglz.entity.Role;
+import com.zhenglz.exception.SecurityException;
+import com.zhenglz.mapper.PermissionMapper;
+import com.zhenglz.mapper.RoleMapper;
+import com.zhenglz.vo.UserPrincipal;
+
+import cn.hutool.core.util.StrUtil;
 
 /**
 * @description: 动态路由认证
@@ -36,10 +39,11 @@ import java.util.stream.Collectors;
 */
 @Component
 public class RbacAuthorityService {
+
     @Autowired
     private RoleMapper roleMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private PermissionMapper permissionMapper;
 
     @Autowired

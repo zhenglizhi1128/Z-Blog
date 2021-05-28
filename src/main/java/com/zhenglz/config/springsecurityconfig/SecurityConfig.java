@@ -1,7 +1,6 @@
 package com.zhenglz.config.springsecurityconfig;
 
 
-import com.zhenglz.service.impl.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.zhenglz.service.impl.CustomUserDetailsServiceImpl;
+
 /**
 * @description: Security 配置
 * @author: zlz
@@ -28,6 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableConfigurationProperties(CustomConfig.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private CustomConfig customConfig;
 

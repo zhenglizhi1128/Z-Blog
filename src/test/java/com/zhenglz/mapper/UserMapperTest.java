@@ -1,15 +1,17 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.User;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+import com.zhenglz.entity.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,7 +30,11 @@ public class UserMapperTest {
 
     }
 
-
+    @Test
     public void findByUsernameOrEmailOrPhone() {
+        String pass = "1";
+        BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
+        String hashPass = bcryptPasswordEncoder.encode(pass);
+        System.out.println(hashPass);
     }
 }
