@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -22,7 +20,6 @@ import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.User;
 import com.zhenglz.service.IUserService;
-import com.zhenglz.entity.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -61,10 +58,12 @@ public class UserMapperTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String password = bCryptPasswordEncoder.encode("123456");
         System.out.println(password);
-        user.setUsername("z").setNickname("z").setStatus(1).setBirthday(785433600000l)
-                .setEmail("1111111@163.com").setPhone("15553626141").setPassword(password)
+        user.setUsername("z3").setNickname("z3").setStatus(1).setBirthday(785433600100l)
+                .setEmail("1113311@163.com").setPhone("15333626141").setPassword(password)
                 .setSex(1).setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now());
-        userMapper.insert(user);
+        int insert = userMapper.insert(user);
+        System.out.println(insert);
+        System.out.println(user.getId());
     }
     @Test
     public void findByUsername() {

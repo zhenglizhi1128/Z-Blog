@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.dto.LoginRequest;
+import com.zhenglz.entity.User;
 import com.zhenglz.exception.SecurityException;
+import com.zhenglz.service.IUserService;
 import com.zhenglz.utils.JwtUtil;
 import com.zhenglz.vo.JwtResponse;
 import com.zhenglz.vo.UserPrincipal;
@@ -44,6 +47,9 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private IUserService userService;
+
     /**
      * 登录
      */
@@ -67,6 +73,14 @@ public class AuthController {
         );
     }
 
+    @PostMapping("/sign-up")
+    public Result signup(@RequestBody User user) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userService.insertUser(user);
+        return Result.success();
+    }
+
     /**
      * 退出登录
      * @param request
@@ -75,7 +89,6 @@ public class AuthController {
     @PostMapping("/logout")
     public Result logout(HttpServletRequest request) {
         try {
-            // 设置JWT过期
             jwtUtil.invalidateJwt(request);
         } catch (SecurityException e) {
             throw new SecurityException(Status.UNAUTHORIZED);

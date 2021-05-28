@@ -80,7 +80,11 @@ public class UserServiceImpl implements IUserService {
         for (Long insertId : insertIds) {
             roleMapper.insertByUserId(user.getId(), insertId);
         }
-
     }
 
+    @Override
+    public void insertUser(User user) throws RuntimeException{
+        int insert = userMapper.insert(user);
+        roleMapper.insertByUserId(user.getId(),1072806379238068224l);
+    }
 }

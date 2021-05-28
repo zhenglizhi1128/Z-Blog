@@ -34,7 +34,7 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
     
-    <insert id="insert" parameterType="com.zhenglz.entity.User">
+    <insert id="insert" parameterType="com.zhenglz.entity.User" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
         insert into m_user (id, username, `password`,
         nickname, phone, email,
         birthday, sex, `status`,

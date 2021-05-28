@@ -1,6 +1,7 @@
 package com.zhenglz.common;
 
 import com.zhenglz.common.resultmodel.Status;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +15,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class BaseException extends RuntimeException {
+
+    private static final long serialVersionUID = 7502914629240225953L;
     private Integer code;
     private String message;
     private Object data;

@@ -2,6 +2,7 @@ package com.zhenglz.service;
 
 import com.github.pagehelper.PageInfo;
 import com.zhenglz.dto.PageCondition;
+import com.zhenglz.entity.User;
 import com.zhenglz.vo.UserVo;
 
 public interface IUserService {
@@ -24,5 +25,11 @@ public interface IUserService {
      * @param userVo
      */
     void updateUser(UserVo userVo);
+
+    /**
+     * 新增用户
+     * @param user
+     */
+    void insertUser(User user);
 
 }
