@@ -1,13 +1,8 @@
 package com.zhenglz.controller;
 
-import cn.hutool.core.map.MapUtil;
-import com.zhenglz.common.resultmodel.Result;
-import com.zhenglz.common.resultmodel.Status;
-import com.zhenglz.dto.LoginRequest;
-import com.zhenglz.exception.SecurityException;
-import com.zhenglz.utils.JwtUtil;
-import com.zhenglz.vo.JwtResponse;
-import com.zhenglz.vo.UserPrincipal;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.common.resultmodel.Status;
+import com.zhenglz.dto.LoginRequest;
+import com.zhenglz.exception.SecurityException;
+import com.zhenglz.utils.JwtUtil;
+import com.zhenglz.vo.JwtResponse;
+import com.zhenglz.vo.UserPrincipal;
+
+import cn.hutool.core.map.MapUtil;
 
 
 /**
@@ -35,7 +38,7 @@ public class AuthController {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
-    @Autowired
+    @Resource
     private AuthenticationManager authenticationManager;
 
     @Autowired

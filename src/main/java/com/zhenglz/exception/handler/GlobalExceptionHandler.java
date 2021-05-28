@@ -1,11 +1,7 @@
 package com.zhenglz.exception.handler;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.json.JSONUtil;
-import com.zhenglz.common.BaseException;
-import com.zhenglz.common.resultmodel.Result;
-import com.zhenglz.common.resultmodel.Status;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -17,7 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.validation.ConstraintViolationException;
+import com.zhenglz.common.BaseException;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.common.resultmodel.Status;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.json.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
 * @description:全局统一异常处理
@@ -51,7 +53,7 @@ public class GlobalExceptionHandler {
             log.error("【全局异常拦截】HttpMessageNotReadableException: 错误信息 {}", ((HttpMessageNotReadableException) e).getMessage());
             return Result.ofStatus(Status.PARAM_NOT_NULL);
         } else if (e instanceof BadCredentialsException) {
-            log.error("【全局异常拦截】BadCredentialsException: 错误信息 {}", e.getMessage());
+            log.error("【全局异常拦截】BadCredentialsException: 错误信息 {}", e.toString());
             return Result.ofStatus(Status.USERNAME_PASSWORD_ERROR);
         } else if (e instanceof DisabledException) {
             log.error("【全局异常拦截】BadCredentialsException: 错误信息 {}", e.getMessage());
@@ -61,7 +63,7 @@ public class GlobalExceptionHandler {
             return Result.ofException((BaseException) e);
         }
 
-        log.error("【全局异常拦截】: 异常信息 {} ", e.getMessage(),e);
+        log.error("【全局异常拦截】: 异常信息 {} ", e.toString(),e);
         return Result.ofStatus(Status.ERROR);
     }
 }

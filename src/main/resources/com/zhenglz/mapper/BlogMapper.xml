@@ -108,4 +108,17 @@
     from m_blog
   </select>
 
+  <select id="countByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer" >
+    select count(*) from m_blog WHERE user_id =#{userId}
+  </select>
+
+  <select id="listBlogsByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from m_blog WHERE user_id =#{userId}
+  </select>
+
+  <delete id="deleteByUserId" parameterType="java.lang.Long">
+    delete from m_blog
+    where user_id =#{userId}
+  </delete>
+
 </mapper>

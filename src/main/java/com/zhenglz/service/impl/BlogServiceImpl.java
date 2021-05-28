@@ -60,7 +60,9 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateByPrimaryKey(Blog blog) throws RuntimeException {
-        return blogMapper.updateById(blog);
+        int value = blogMapper.updatePrimaryById(blog);
+        blogContentMapper.updatePrimaryByBlogId(blog.getBlogContent());
+        return value;
     }
 
 }

@@ -1,10 +1,11 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Role;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.zhenglz.entity.Role;
 
 /**
 * @description: 角色
@@ -55,5 +56,22 @@ public interface RoleMapper {
      * @return
      */
     List<Role> listRolesByUserId(@Param("userId") Long userId);
+
+    /**
+     * 根据userId删除
+     * @param userId
+     * @return
+     */
+    int deleteByUserId(Long userId);
+
+    /**
+     * 删除部分权限
+     * @param userId
+     * @param Ids
+     * @return
+     */
+    int deleteByUserIdAndIds(Long userId,List<Long> Ids);
+
+    void insertByUserId(long userId,long roleId);
 
 }

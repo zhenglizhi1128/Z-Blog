@@ -1,12 +1,13 @@
 package com.zhenglz.vo;
 
-import com.zhenglz.entity.BlogContent;
-import com.zhenglz.entity.User;
-import lombok.Data;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.zhenglz.entity.BlogContent;
+import com.zhenglz.entity.User;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
 * @description: blogVO
@@ -44,6 +45,11 @@ public class BlogVo implements Serializable {
      * 内容Id
      */
     private BlogContent blogContent;
+
+    /**
+     * 内容Id
+     */
+    private String content;
 
     /**
      * 创建时间

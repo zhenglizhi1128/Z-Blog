@@ -1,7 +1,8 @@
 package com.zhenglz.config.springsecurityconfig;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import lombok.Data;
 
 /**
 * @description: JWT 配置
@@ -13,9 +14,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 public class JwtConfig {
     /**
-     * jwt 加密 key，默认值：xkcoding.
+     * jwt 加密 key，默认值：zhenglz.
      */
-    private String key = "xkcoding";
+    private String key = "zhenglz";
 
     /**
      * jwt 过期时间，默认值：600000 {@code 10 分钟}.

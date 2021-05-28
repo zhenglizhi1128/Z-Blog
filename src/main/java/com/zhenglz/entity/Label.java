@@ -1,12 +1,12 @@
 package com.zhenglz.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
 * @description: 标签表
@@ -25,7 +25,7 @@ public class Label implements Serializable {
     /**
     * 主键
     */
-    private Long id;
+    private long id;
 
     /**
     * 标签名称
