@@ -1,9 +1,10 @@
 package com.zhenglz.service;
 
+import java.util.List;
+
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.Blog;
-
-import java.util.List;
+import com.zhenglz.vo.BlogVo;
 
 /**
 * @description:
@@ -32,13 +33,13 @@ public interface IBlogService {
      * @param blog
      * @return
      */
-    int insert(Blog blog);
+    int insert(BlogVo blog);
 
     /**
      * 修改
-     * @param blog
+     * @param blogVo
      * @return
      */
-    int updateByPrimaryKey(Blog blog);
+    int updateByPrimaryKey(BlogVo blogVo);
 
 }

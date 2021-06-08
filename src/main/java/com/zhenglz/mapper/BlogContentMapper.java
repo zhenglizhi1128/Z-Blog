@@ -48,13 +48,6 @@ public interface BlogContentMapper {
     int updateById(BlogContent blogContent);
 
     /**
-     *更新
-     * @param blogContent
-     * @return
-     */
-    int updatePrimaryByBlogId(BlogContent blogContent);
-
-    /**
      * 根据userId删除
      * @param userId
      * @return

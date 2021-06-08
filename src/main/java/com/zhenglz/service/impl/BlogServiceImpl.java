@@ -1,5 +1,6 @@
 package com.zhenglz.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,12 +11,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
+import com.zhenglz.common.Constants;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.Blog;
 import com.zhenglz.entity.BlogContent;
 import com.zhenglz.mapper.BlogContentMapper;
 import com.zhenglz.mapper.BlogMapper;
 import com.zhenglz.service.IBlogService;
+import com.zhenglz.vo.BlogVo;
+
+import cn.hutool.core.bean.BeanUtil;
 
 /**
 * @description: 
@@ -38,7 +43,7 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public List<Blog> getBlogs(PageCondition pageCondition) throws RuntimeException {
-        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(),pageCondition.getOrderType());
+        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize()," id desc ");
         List<Blog> blogs = blogMapper.listBlogs();
         return blogs;
     }
@@ -53,15 +58,31 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insert(Blog blog) throws RuntimeException {
+    public int insert(BlogVo blogvo) throws RuntimeException {
+        Blog blog = new Blog();
+        BlogContent blogContent = blogvo.getBlogContent();
+        int insert = blogContentMapper.insert(blogContent);
+        BeanUtil.copyProperties(blogvo, blog);
+        blog.setContentId(blogContent.getId())
+                .setTitle(blogvo.getTitle())
+                .setUserId(blogvo.getUser().getId())
+                .setCreateTime(LocalDateTime.now())
+                .setUpdateTime(LocalDateTime.now())
+                .setStatus(Constants.ENABLE)
+                .setLikeNumber(0l)
+                .setReadNumber(0l)
+                .setCommentNumber(0l);
         return blogMapper.insert(blog);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateByPrimaryKey(Blog blog) throws RuntimeException {
+    public int updateByPrimaryKey(BlogVo blogVo) throws RuntimeException {
+        Blog blog = new Blog();
+        blog.setUpdateTime(LocalDateTime.now());
+        BeanUtil.copyProperties(blogVo, blog);
         int value = blogMapper.updatePrimaryById(blog);
-        blogContentMapper.updatePrimaryByBlogId(blog.getBlogContent());
+        blogContentMapper.updatePrimaryById(blogVo.getBlogContent());
         return value;
     }
 

@@ -42,14 +42,9 @@ public class BlogVo implements Serializable {
     private String description;
 
     /**
-     * 内容Id
+     * 内容
      */
     private BlogContent blogContent;
-
-    /**
-     * 内容Id
-     */
-    private String content;
 
     /**
      * 创建时间
@@ -85,6 +80,5 @@ public class BlogVo implements Serializable {
      * 评论状态
      */
     private Boolean commentStatus;
-
 
 }

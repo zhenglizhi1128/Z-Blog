@@ -1,12 +1,12 @@
 package com.zhenglz.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
 * @Description: 博客信息
@@ -75,12 +75,13 @@ public class Blog implements Serializable {
     /**
     * 状态
     */
-    private Boolean status;
+    private int status;
 
     /**
     * 评论状态
     */
-    private Boolean commentStatus;
+    private int commentStatus;
+
 
     private User user;
 

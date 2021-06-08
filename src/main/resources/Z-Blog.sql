@@ -21,9 +21,7 @@ CREATE TABLE `m_blog` (
 CREATE TABLE `m_blog_content` (
       `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT '主键',
       `content` longtext NOT NULL COMMENT '内容',
-      `blog_id` bigint(40) NOT NULL DEFAULT '0' COMMENT '对应文章ID',
-      PRIMARY KEY (`id`),
-      UNIQUE KEY `blog_id` (`blog_id`)
+      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '博客内容';
 
 -- ----------------------------
