@@ -1,13 +1,14 @@
 package com.zhenglz.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zhenglz.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zhenglz.entity.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,6 +31,7 @@ public class JsonTest {
 
         System.out.println(JsonUtils.jsonStrToJson(""));
         ObjectMapper objectMapper = JsonUtils.getObjectMapper();
+
 
     }
 

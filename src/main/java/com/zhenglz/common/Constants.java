@@ -45,4 +45,25 @@ public interface Constants {
      * 匿名用户 用户名
      */
     String ANONYMOUS_NAME = "匿名用户";
+
+    /**
+     * int型过滤条件：所有
+     */
+    int ALL = -100;
+
+    /**
+     * int型过滤条件：未分配
+     */
+    int NONE = -99;
+
+    /**
+     * string型过滤条件：全部
+     */
+    String STRING_ALL = "ALL";
+
+    /**
+     * string型过滤条件：未分配
+     */
+    String STRING_NONE = "";
+
 }

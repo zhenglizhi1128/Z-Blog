@@ -61,7 +61,7 @@ public class BlogServiceImpl implements IBlogService {
     public int insert(BlogVo blogvo) throws RuntimeException {
         Blog blog = new Blog();
         BlogContent blogContent = blogvo.getBlogContent();
-        int insert = blogContentMapper.insert(blogContent);
+        blogContentMapper.insert(blogContent);
         BeanUtil.copyProperties(blogvo, blog);
         blog.setContentId(blogContent.getId())
                 .setTitle(blogvo.getTitle())
