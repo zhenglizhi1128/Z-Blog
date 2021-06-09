@@ -1,10 +1,11 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.User;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+import com.zhenglz.entity.User;
 
 /**
 * @description: 用户
@@ -65,5 +66,11 @@ public interface UserMapper {
      * @return 用户信息
      */
     User findByUsernameOrEmailOrPhone(@Param("username") String username, @Param("email") String email, @Param("phone") String phone);
+
+    /**
+     * 获取用户总数
+     * @return
+     */
+    int  countUser();
 
 }

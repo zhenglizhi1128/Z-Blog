@@ -71,4 +71,10 @@ public interface BlogMapper {
      */
     int deleteByUserId(Long userId);
 
+    /**
+     * 文章总数
+     * @return
+     */
+    Integer countBlog();
+
 }

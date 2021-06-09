@@ -1,6 +1,5 @@
 package com.zhenglz.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,7 +13,6 @@ import com.github.pagehelper.PageInfo;
 import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.Blog;
-import com.zhenglz.entity.BlogContent;
 import com.zhenglz.service.IBlogService;
 import com.zhenglz.vo.BlogVo;
 
@@ -63,22 +61,10 @@ public class BlogController {
      */
     @PostMapping("/edit")
     public Result edit(@Validated @RequestBody BlogVo blog) {
-        Blog temp = null;
-        Blog newBlog = new Blog();
-        BlogContent blogContent = new BlogContent();
         if(blog.getId() != null) {
-            blogContent.setBlogId(blog.getId()).setContent(blog.getContent());
-            newBlog.setId(blog.getId())
-                    .setTitle(blog.getTitle())
-                    .setDescription(blog.getDescription())
-                    .setUpdateTime(LocalDateTime.now())
-                    .setBlogContent(blogContent);
-            blogService.updateByPrimaryKey(newBlog);
+            blogService.updateByPrimaryKey(blog);
         } else {
-            temp = new Blog();
-            temp.setUserId(0L);
-           // temp.setTitle(blog.getTitle()).setContent(blog.getContent()).setDescription(blog.getDescription());
-            blogService.insert(temp);
+            blogService.insert(blog);
         }
         return Result.success();
     }

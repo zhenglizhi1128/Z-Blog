@@ -109,5 +109,12 @@
         or email = #{email} or phone = #{phone}
     </select>
 
+    <select id="countUser" resultType="java.lang.Integer">
+        select count(1)
+        from m_user
+        where status =1
+    </select>
+
+
 </mapper>
 
