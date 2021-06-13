@@ -1,122 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhenglz.mapper.LabelMapper">
-  <resultMap id="BaseResultMap" type="com.zhenglz.entity.Label">
-    <!--@Table m_label-->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="status" jdbcType="BOOLEAN" property="status" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, `name`, create_time, update_time, `status`
-  </sql>
-  <select id="getLabelById" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from m_label
-    where id = #{id,jdbcType=BIGINT}
-  </select>
+    <resultMap id="BaseResultMap" type="com.zhenglz.entity.Label">
+        <!--@Table m_label-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="status" jdbcType="BOOLEAN" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,
+        `name`,
+        create_time,
+        update_time,
+        `status`
+    </sql>
+    <select id="getLabelById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from m_label
+        where id = #{id,jdbcType=BIGINT}
+    </select>
 
-  <select id="getLabels" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from m_label where status =1
-  </select>
+    <select id="getLabels" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from m_label where status =1
+    </select>
 
-  <delete id="deleteById" parameterType="java.lang.Long">
-    delete from m_label
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-
-
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Label" useGeneratedKeys="true">
-    insert into m_label (`name`, create_time, update_time,`status`)
-    values (#{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=BOOLEAN})
-  </insert>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from m_label
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
 
 
-  <update id="updatePrimaryById" parameterType="com.zhenglz.entity.Label">
-    update m_label
-    <set>
-      <if test="name != null and name != ''">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=BOOLEAN},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Label"
+            useGeneratedKeys="true">
+        insert into m_label (`name`, create_time, update_time,`status`)
+        values (#{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+        #{status,jdbcType=BOOLEAN})
+    </insert>
 
-  <update id="updateBatchByName" parameterType="java.util.List">
-    <foreach collection="labels" item="item" index="index" open="" close="" separator=";">
-      update m_label
-      <set>
-        create_time = #{item.createTime,jdbcType=TIMESTAMP},update_time = #{item.updateTime,jdbcType=TIMESTAMP},status= #{item.status,jdbcType=BOOLEAN}
-      </set>
-      where name = #{item.name}
-    </foreach>
-  </update>
 
-  <insert id="insertList">
-    INSERT INTO m_label(name, create_time, update_time, status)VALUES
-    <foreach collection="list" item="element" index="index" separator=",">
-      (#{element.name,jdbcType=VARCHAR}, #{element.createTime,jdbcType=TIMESTAMP}, #{element.updateTime,jdbcType=TIMESTAMP}, #{element.status,jdbcType=BOOLEAN})
-    </foreach>
-  </insert>
+    <update id="updatePrimaryById" parameterType="com.zhenglz.entity.Label">
+        update m_label
+        <set>
+            <if test="name != null and name != ''">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=BOOLEAN},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 
-  <update id="updateBatchById" parameterType="java.util.List">
-    update m_label
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="status=case" suffix="end,">
-        <foreach collection="labels" item="i" index="index">
-          <if test="i.status!=null">
-            when id=#{i.id} then #{i.status}
-          </if>
+    <update id="updateBatchByName" parameterType="java.util.List">
+        <foreach collection="labels" item="item" index="index" open="" close="" separator=";">
+            update m_label
+            <set>
+                create_time = #{item.createTime,jdbcType=TIMESTAMP},update_time =
+                #{item.updateTime,jdbcType=TIMESTAMP},status= #{item.status,jdbcType=BOOLEAN}
+            </set>
+            where name = #{item.name}
         </foreach>
-      </trim>
-      <trim prefix="create_time =case" suffix="end,">
-        <foreach collection="labels" item="i" index="index">
-          <if test="i.createTime!=null">
-            when id=#{i.id} then #{i.createTime}
-          </if>
+    </update>
+
+    <insert id="insertList">
+        INSERT INTO m_label(name, create_time, update_time, status)VALUES
+        <foreach collection="list" item="element" index="index" separator=",">
+            (#{element.name,jdbcType=VARCHAR}, #{element.createTime,jdbcType=TIMESTAMP},
+            #{element.updateTime,jdbcType=TIMESTAMP}, #{element.status,jdbcType=BOOLEAN})
         </foreach>
-      </trim>
-      <trim prefix="update_time =case" suffix="end,">
-        <foreach collection="labels" item="i" index="index">
-          <if test="i.updateTime!=null">
-            when id=#{i.id} then #{i.updateTime}
-          </if>
+    </insert>
+
+    <update id="updateBatchById" parameterType="java.util.List">
+        update m_label
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="status=case" suffix="end,">
+                <foreach collection="labels" item="i" index="index">
+                    <if test="i.status != null">
+                        when id=#{i.id} then #{i.status}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time =case" suffix="end,">
+                <foreach collection="labels" item="i" index="index">
+                    <if test="i.createTime != null">
+                        when id=#{i.id} then #{i.createTime}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time =case" suffix="end,">
+                <foreach collection="labels" item="i" index="index">
+                    <if test="i.updateTime != null">
+                        when id=#{i.id} then #{i.updateTime}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        <foreach collection="labels" separator="or" item="i" index="index">
+            id=#{i.id}
         </foreach>
-      </trim>
-    </trim>
-    where
-    <foreach collection="labels" separator="or" item="i" index="index" >
-      id=#{i.id}
-    </foreach>
-  </update>
+    </update>
 
-  <insert id="updateBatch" parameterType="java.util.List">
-    insert into m_label(id,`name`,`status`)VALUES
-    <foreach collection="labels" item="item" index="index" separator=",">
-      (#{item.id,jdbcType=BIGINT},#{item.name,jdbcType=VARCHAR}, #{item.status})
-    </foreach>
-    ON DUPLICATE KEY UPDATE
-    id=VALUES(id),name=VALUES(name),status = VALUES(status)
-  </insert>
+    <insert id="updateBatch" parameterType="java.util.List">
+        insert into m_label(id,`name`,`status`)VALUES
+        <foreach collection="labels" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=BIGINT},#{item.name,jdbcType=VARCHAR}, #{item.status})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        id=VALUES(id),name=VALUES(name),status = VALUES(status)
+    </insert>
 
-  <select id="countLabelByName" resultType="java.lang.Integer" >
-    select count(*) from m_label where name =#{name}
-  </select>
-
-
+    <select id="countLabelByName" resultType="java.lang.Integer">
+        select count(*) from m_label where name =#{name}
+    </select>
 </mapper>

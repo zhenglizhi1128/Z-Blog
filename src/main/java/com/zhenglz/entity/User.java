@@ -1,10 +1,10 @@
 package com.zhenglz.entity;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 用户表

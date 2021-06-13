@@ -3,28 +3,38 @@
 <mapper namespace="com.zhenglz.mapper.BlogMapper">
   <resultMap id="BaseResultMap" type="com.zhenglz.entity.Blog">
     <!--@Table m_blog-->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="content_id" jdbcType="BIGINT" property="contentId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="read_number" jdbcType="BIGINT" property="readNumber" />
-    <result column="like_number" jdbcType="BIGINT" property="likeNumber" />
-    <result column="comment_number" jdbcType="BIGINT" property="commentNumber" />
-    <result column="status" jdbcType="BOOLEAN" property="status" />
-    <result column="comment_status" jdbcType="BOOLEAN" property="commentStatus" />
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    <result column="title" jdbcType="VARCHAR" property="title"/>
+    <result column="description" jdbcType="VARCHAR" property="description"/>
+    <result column="content_id" jdbcType="BIGINT" property="contentId"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    <result column="read_number" jdbcType="BIGINT" property="readNumber"/>
+    <result column="like_number" jdbcType="BIGINT" property="likeNumber"/>
+    <result column="comment_number" jdbcType="BIGINT" property="commentNumber"/>
+    <result column="status" jdbcType="BOOLEAN" property="status"/>
+    <result column="comment_status" jdbcType="BOOLEAN" property="commentStatus"/>
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, user_id, title, description, content_id, create_time, update_time, read_number,
-    like_number, comment_number, `status`, comment_status
+    id,
+    user_id,
+    title,
+    description,
+    content_id,
+    create_time,
+    update_time,
+    read_number,
+    like_number,
+    comment_number,
+    `status`,
+    comment_status
   </sql>
 
   <select id="getBlogById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from m_blog
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -36,13 +46,13 @@
 
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Blog" useGeneratedKeys="true">
     insert into m_blog (user_id, title, description,
-      content_id, create_time, update_time, 
-      read_number, like_number, comment_number, 
-      `status`, comment_status)
-    values (#{userId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{contentId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{readNumber,jdbcType=BIGINT}, #{likeNumber,jdbcType=BIGINT}, #{commentNumber,jdbcType=BIGINT}, 
-      #{status,jdbcType=BOOLEAN}, #{commentStatus,jdbcType=BOOLEAN})
+    content_id, create_time, update_time,
+    read_number, like_number, comment_number,
+    `status`, comment_status)
+    values (#{userId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+    #{contentId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{readNumber,jdbcType=BIGINT}, #{likeNumber,jdbcType=BIGINT}, #{commentNumber,jdbcType=BIGINT},
+    #{status,jdbcType=BOOLEAN}, #{commentStatus,jdbcType=BOOLEAN})
   </insert>
 
 
@@ -89,16 +99,16 @@
   <update id="updateById" parameterType="com.zhenglz.entity.Blog">
     update m_blog
     set user_id = #{userId,jdbcType=BIGINT},
-      title = #{title,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      content_id = #{contentId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      read_number = #{readNumber,jdbcType=BIGINT},
-      like_number = #{likeNumber,jdbcType=BIGINT},
-      comment_number = #{commentNumber,jdbcType=BIGINT},
-      `status` = #{status,jdbcType=BOOLEAN},
-      comment_status = #{commentStatus,jdbcType=BOOLEAN}
+    title = #{title,jdbcType=VARCHAR},
+    description = #{description,jdbcType=VARCHAR},
+    content_id = #{contentId,jdbcType=BIGINT},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    read_number = #{readNumber,jdbcType=BIGINT},
+    like_number = #{likeNumber,jdbcType=BIGINT},
+    comment_number = #{commentNumber,jdbcType=BIGINT},
+    `status` = #{status,jdbcType=BOOLEAN},
+    comment_status = #{commentStatus,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
@@ -108,12 +118,14 @@
     from m_blog where status = 1
   </select>
 
-  <select id="countByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer" >
+  <select id="countByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer">
     select count(1) from m_blog WHERE user_id =#{userId}
   </select>
 
   <select id="listBlogsByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from m_blog WHERE user_id =#{userId}
+    select
+    <include refid="Base_Column_List"/>
+    from m_blog WHERE user_id =#{userId}
   </select>
 
   <delete id="deleteByUserId" parameterType="java.lang.Long">
@@ -121,8 +133,53 @@
     where user_id =#{userId}
   </delete>
 
-  <select id="countBlog" resultType="java.lang.Integer" >
-    select count(1) from m_blog WHERE status = 1
+  <select id="countBlog" resultType="java.lang.Integer">
+    select count(1)
+    from m_blog
+    WHERE status = 1
   </select>
 
+  <select id="getBlogsByTitleAndStatus" resultMap="ordersUserResultType">
+    SELECT t1.id,
+    t1.title,
+    t1.create_time,
+    t1.update_time,
+    t1.read_number,
+    t1.status,
+    t1.comment_status,
+    t2.id as userId,
+    t2.nickname,
+    t4.name,
+    t4.id as labelId
+    FROM m_blog t1
+    JOIN m_user t2 ON t1.user_id = t2.id
+    JOIN m_blog_label t3 on t3.blog_id = t1.id
+    left join m_label t4 ON t3.label_id = t4.id
+    <if test="title != null and title != ''">
+      and t1.title = #{title,jdbcType=BIGINT}
+    </if>
+    <if test="labelId != null">
+      and t1.status = #{status}
+    </if>
+    <if test="labelId != null">
+      and t3.label_id = #{labelId,jdbcType=BIGINT}
+    </if>
+  </select>
+  <resultMap id="ordersUserResultType" type="com.zhenglz.vo.BlogVo">
+    <id column="id" property="id"/>
+    <result column="title" property="title"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    <result column="read_number" jdbcType="BIGINT" property="readNumber"/>
+    <result column="status" jdbcType="BOOLEAN" property="status"/>
+    <result column="comment_status" jdbcType="BOOLEAN" property="commentStatus"/>
+    <association property="user" javaType="com.zhenglz.entity.User">
+      <id column="userId" property="id"/>
+      <result column="nickname" property="nickname"/>
+    </association>
+    <collection property="labels" ofType="com.zhenglz.entity.Label">
+      <id column="labelId" property="id"/>
+      <result column="name" property="name"/>
+    </collection>
+  </resultMap>
 </mapper>

@@ -8,16 +8,17 @@ import org.apache.ibatis.annotations.Param;
 import com.zhenglz.entity.User;
 
 /**
-* @description: 用户
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 用户
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface UserMapper {
 
     /**
      * 根据id删除用户
+     * 
      * @param id
      * @return
      */
@@ -25,6 +26,7 @@ public interface UserMapper {
 
     /**
      * 新增用户
+     * 
      * @param user
      * @return
      */
@@ -32,6 +34,7 @@ public interface UserMapper {
 
     /**
      * 根据id 获取用户
+     * 
      * @param id
      * @return
      */
@@ -39,6 +42,7 @@ public interface UserMapper {
 
     /**
      * 部分更新
+     * 
      * @param user
      * @return
      */
@@ -46,13 +50,15 @@ public interface UserMapper {
 
     /**
      * 更新user
+     * 
      * @param user
      * @return
      */
     int updateById(User user);
 
     /**
-     *  获取user集合
+     * 获取user集合
+     * 
      * @return
      */
     List<User> listUsers();
@@ -60,17 +66,22 @@ public interface UserMapper {
     /**
      * 根据用户名、邮箱、手机号查询用户
      *
-     * @param username 用户名
-     * @param email    邮箱
-     * @param phone    手机号
+     * @param username
+     *            用户名
+     * @param email
+     *            邮箱
+     * @param phone
+     *            手机号
      * @return 用户信息
      */
-    User findByUsernameOrEmailOrPhone(@Param("username") String username, @Param("email") String email, @Param("phone") String phone);
+    User findByUsernameOrEmailOrPhone(@Param("username") String username, @Param("email") String email,
+        @Param("phone") String phone);
 
     /**
      * 获取用户总数
+     * 
      * @return
      */
-    int  countUser();
+    int countUser();
 
 }

@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.zhenglz.entity.Label;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LabelMapperTest {
@@ -31,12 +30,12 @@ public class LabelMapperTest {
     }
 
     @Test
-    public void test1(){
+    public void test1() {
         int spring = labelMapper.countLabelByName("spring");
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         Label label = labelMapper.getLabelById(12l);
         System.out.println(label);
     }

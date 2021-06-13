@@ -39,13 +39,14 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Comment" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Comment"
+            useGeneratedKeys="true">
         insert into m_comment (content, parent_id, create_time,
-                               update_time, blog_id, user_id,
-                               `status`, is_read)
+        update_time, blog_id, user_id,
+        `status`, is_read)
         values (#{content,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
-                #{updateTime,jdbcType=TIMESTAMP}, #{blogId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
-                #{status,jdbcType=BOOLEAN}, #{isRead,jdbcType=BOOLEAN})
+        #{updateTime,jdbcType=TIMESTAMP}, #{blogId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
+        #{status,jdbcType=BOOLEAN}, #{isRead,jdbcType=BOOLEAN})
     </insert>
 
 
@@ -82,15 +83,14 @@
 
     <update id="updateById" parameterType="com.zhenglz.entity.Comment">
         update m_comment
-        set content     = #{content,jdbcType=VARCHAR},
-            parent_id   = #{parentId,jdbcType=BIGINT},
-            create_time = #{createTime,jdbcType=TIMESTAMP},
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            blog_id     = #{blogId,jdbcType=BIGINT},
-            user_id     = #{userId,jdbcType=BIGINT},
-            `status`    = #{status,jdbcType=BOOLEAN},
-            is_read     = #{isRead,jdbcType=BOOLEAN}
+        set content = #{content,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=BIGINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        blog_id = #{blogId,jdbcType=BIGINT},
+        user_id = #{userId,jdbcType=BIGINT},
+        `status` = #{status,jdbcType=BOOLEAN},
+        is_read = #{isRead,jdbcType=BOOLEAN}
         where id = #{id,jdbcType=BIGINT}
     </update>
-
 </mapper>

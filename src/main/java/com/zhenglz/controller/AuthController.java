@@ -28,13 +28,12 @@ import com.zhenglz.vo.UserPrincipal;
 
 import cn.hutool.core.map.MapUtil;
 
-
 /**
-* @Description: 认证 Controller，包括用户注册，用户登录请求
-* @Author: zlz
-* @Date: 2021/3/24
-* @Version:
-*/
+ * @Description: 认证 Controller，包括用户注册，用户登录请求
+ * @Author: zlz
+ * @Date: 2021/3/24
+ * @Version:
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -54,27 +53,24 @@ public class AuthController {
      * 登录
      */
     @PostMapping("/login")
-    public Result login(@RequestBody LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmailOrPhone(), loginRequest.getPassword()));
+    public Result login(@RequestBody LoginRequest loginRequest) throws Exception {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+            loginRequest.getUsernameOrEmailOrPhone(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtil.createJwt(authentication, loginRequest.getRememberMe());
 
-        UserPrincipal userPrincipal =(UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserPrincipal userPrincipal =
+            (UserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         JwtResponse jwtResponse = new JwtResponse(jwt);
-        return Result.success(
-                MapUtil.builder()
-                        .put("token", jwtResponse.getToken())
-                        .put("tokenType", jwtResponse.getTokenType())
-                        .put("id", userPrincipal.getId())
-                        .put("username",userPrincipal.getUsername())
-                        .put("roles",userPrincipal.getRoles())
-                        .put("authorities",userPrincipal.getAuthorities())
-                        .map()
-        );
+        logger.info(userPrincipal.getId());
+        return Result
+            .success(MapUtil.builder().put("token", jwtResponse.getToken()).put("tokenType", jwtResponse.getTokenType())
+                .put("id", userPrincipal.getId()).put("username", userPrincipal.getUsername())
+                .put("roles", userPrincipal.getRoles()).put("authorities", userPrincipal.getAuthorities()).map());
     }
 
     @PostMapping("/sign-up")
-    public Result signup(@RequestBody User user) {
+    public Result signup(@RequestBody User user) throws Exception {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.insertUser(user);
@@ -83,11 +79,12 @@ public class AuthController {
 
     /**
      * 退出登录
+     * 
      * @param request
      * @return
      */
     @PostMapping("/logout")
-    public Result logout(HttpServletRequest request) {
+    public Result logout(HttpServletRequest request) throws Exception {
         try {
             jwtUtil.invalidateJwt(request);
         } catch (SecurityException e) {

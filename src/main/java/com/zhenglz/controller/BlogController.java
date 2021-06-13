@@ -21,11 +21,11 @@ import com.zhenglz.vo.BlogVo;
 import cn.hutool.json.JSONObject;
 
 /**
-* @description:
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description:
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -40,11 +40,12 @@ public class BlogController {
 
     /**
      * 获取blogs
+     * 
      * @param pageCondition
      * @return
      */
     @GetMapping("/blogs")
-    public Result blogs(PageCondition pageCondition){
+    public Result blogs(PageCondition pageCondition) throws Exception {
         List<Blog> blogs = blogService.getBlogs(pageCondition);
         PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
         return Result.success(pageInfo);
@@ -52,23 +53,25 @@ public class BlogController {
 
     /**
      * 获取单个blog详情
+     * 
      * @param id
      * @return
      */
     @GetMapping("/blog")
-    public Result detail(@RequestParam(value = "id", required = true) Long id) {
+    public Result detail(@RequestParam(value = "id", required = true) Long id) throws Exception {
         Blog blog = blogService.getBlogById(id);
         return Result.success(blog);
     }
 
     /**
      * 保存编辑blog
+     * 
      * @param blog
      * @return
      */
     @PostMapping("/edit")
-    public Result edit(@Validated @RequestBody BlogVo blog) {
-        if(blog.getId() != null) {
+    public Result edit(@Validated @RequestBody BlogVo blog) throws Exception {
+        if (blog.getId() != null) {
             blogService.updateByPrimaryKey(blog);
         } else {
             blogService.insert(blog);
@@ -77,19 +80,18 @@ public class BlogController {
     }
 
     @GetMapping("/set/blogs")
-    public Result setBlogs(String title,long labelId,int status ) throws Exception{
-        /*PageCondition pageCondition,*/
-        /*List<Blog> blogs = blogService.getBlogs(pageCondition);
-        PageInfo<Blog> pageInfo = new PageInfo<>(blogs);*/
+    public Result setBlogs(String title, @RequestParam(required = false) Long labelId,
+        @RequestParam(required = false) Integer status, PageCondition pageCondition) throws Exception {
+        List<BlogVo> blogVos = blogService.getBlogsByTitleAndStatus(title, labelId, status, pageCondition);
+        PageInfo<BlogVo> pageInfo = new PageInfo<>(blogVos);
         List<Label> labels = labelService.getLabels();
-        logger.info(labelId);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("title",title);
-        jsonObject.put("labelId",labelId);
-        jsonObject.put("status",status);
-        jsonObject.put("labels",labels);
+        jsonObject.putOnce("title", title);
+        jsonObject.putOnce("labelId", labelId);
+        jsonObject.putOnce("status", status);
+        jsonObject.putOnce("labels", labels);
+        jsonObject.putOnce("pageInfo", pageInfo);
         return Result.success(jsonObject);
     }
-
 
 }

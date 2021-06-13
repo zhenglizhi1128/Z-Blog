@@ -62,7 +62,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteUser(Long userId) throws RuntimeException{
+    public void deleteUser(Long userId) throws RuntimeException {
         roleMapper.deleteByUserId(userId);
         blogContentMapper.deleteByUserId(userId);
         blogMapper.deleteByUserId(userId);
@@ -70,21 +70,24 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateUser(UserVo userVo) throws RuntimeException{
+    public void updateUser(UserVo userVo) throws RuntimeException {
         User user = new User();
         user.setId(userVo.getId()).setStatus(userVo.getStatus()).setUpdateTime(LocalDateTime.now());
         userMapper.updatePrimaryById(user);
-        List<Long> collect = roleMapper.listRolesByUserId(user.getId()).stream().map(x -> x.getId()).collect(Collectors.toList());
-        List<Long> insertIds = collect.stream().filter(x -> !userVo.getRoleIds().contains(x)).collect(Collectors.toList());
-        List<Long> deleteIds = userVo.getRoleIds().stream().filter(x -> !collect.contains(x)).collect(Collectors.toList());
+        List<Long> collect =
+            roleMapper.listRolesByUserId(user.getId()).stream().map(x -> x.getId()).collect(Collectors.toList());
+        List<Long> insertIds =
+            collect.stream().filter(x -> !userVo.getRoleIds().contains(x)).collect(Collectors.toList());
+        List<Long> deleteIds =
+            userVo.getRoleIds().stream().filter(x -> !collect.contains(x)).collect(Collectors.toList());
         for (Long insertId : insertIds) {
             roleMapper.insertByUserId(user.getId(), insertId);
         }
     }
 
     @Override
-    public void insertUser(User user) throws RuntimeException{
+    public void insertUser(User user) throws RuntimeException {
         int insert = userMapper.insert(user);
-        roleMapper.insertByUserId(user.getId(),1072806379238068224l);
+        roleMapper.insertByUserId(user.getId(), 1072806379238068224L);
     }
 }

@@ -1,13 +1,14 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Blog;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+import com.zhenglz.entity.Blog;
 
 /**
  * @Auther: zlz
@@ -23,7 +24,6 @@ public class BlogMapperTest {
 
     @Autowired
     LikeMapper likeMapper;
-
 
     @Test
     public void list() {

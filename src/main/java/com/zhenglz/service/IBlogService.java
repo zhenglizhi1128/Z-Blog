@@ -7,15 +7,16 @@ import com.zhenglz.entity.Blog;
 import com.zhenglz.vo.BlogVo;
 
 /**
-* @description:
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description:
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 public interface IBlogService {
 
     /**
      * 获取blogs
+     * 
      * @param pageCondition
      * @return
      */
@@ -23,6 +24,7 @@ public interface IBlogService {
 
     /**
      * 根据id查询
+     * 
      * @param id
      * @return
      */
@@ -30,6 +32,7 @@ public interface IBlogService {
 
     /**
      * 新增
+     * 
      * @param blog
      * @return
      */
@@ -37,9 +40,21 @@ public interface IBlogService {
 
     /**
      * 修改
+     * 
      * @param blogVo
      * @return
      */
     int updateByPrimaryKey(BlogVo blogVo);
+
+    /**
+     * 根据状态、名称、标签获取文章列表
+     * 
+     * @param title
+     * @param labelId
+     * @param status
+     * @param pageCondition
+     * @return
+     */
+    List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Integer status, PageCondition pageCondition);
 
 }

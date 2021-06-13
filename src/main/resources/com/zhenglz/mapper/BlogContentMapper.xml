@@ -24,7 +24,8 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.BlogContent" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.BlogContent"
+            useGeneratedKeys="true">
         insert into m_blog_content (content)
         values (#{content,jdbcType=LONGVARCHAR})
     </insert>
@@ -50,5 +51,4 @@
         DELETE t1 from m_blog_content as t1,m_blog as t2 WHERE t2.content_id = t1.id and
         t2.user_id =#{userId}
     </delete>
-
 </mapper>

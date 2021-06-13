@@ -8,11 +8,9 @@ import com.zhenglz.entity.Role;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-/*
- * @Description: 用户设置VO
- * @Author: zlz
- * @Date: 2021/5/17
- **/
+/**
+ * 用户设置VO
+ */
 @Data
 @Accessors(chain = true)
 public class UserVo {

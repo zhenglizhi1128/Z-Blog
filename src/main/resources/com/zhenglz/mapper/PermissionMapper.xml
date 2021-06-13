@@ -4,32 +4,39 @@
 <mapper namespace="com.zhenglz.mapper.PermissionMapper">
     <resultMap id="BaseResultMap" type="com.zhenglz.entity.Permission">
         <!--@Table m_permission-->
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="url" jdbcType="VARCHAR" property="url" />
-        <result column="type" jdbcType="INTEGER" property="type" />
-        <result column="permission" jdbcType="VARCHAR" property="permission" />
-        <result column="method" jdbcType="VARCHAR" property="method" />
-        <result column="sort" jdbcType="INTEGER" property="sort" />
-        <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="permission" jdbcType="VARCHAR" property="permission"/>
+        <result column="method" jdbcType="VARCHAR" property="method"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
     </resultMap>
-    
+
     <sql id="Base_Column_List">
-        id, `name`, url, `type`, permission, `method`, sort, parent_id
+        id,
+        `name`,
+        url,
+        `type`,
+        permission,
+        `method`,
+        sort,
+        parent_id
     </sql>
-    
+
     <select id="getPermissionById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from m_permission
         where id = #{id,jdbcType=BIGINT}
     </select>
-    
+
     <delete id="deleteById" parameterType="java.lang.Long">
         delete from m_permission
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    
+
     <insert id="insert" parameterType="com.zhenglz.entity.Permission">
         insert into m_permission (id, `name`, url,
         `type`, permission, `method`,
@@ -38,7 +45,7 @@
         #{type,jdbcType=INTEGER}, #{permission,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
         #{sort,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT})
     </insert>
-    
+
     <update id="updatePrimaryById" parameterType="com.zhenglz.entity.Permission">
         update m_permission
         <set>
@@ -66,7 +73,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    
+
     <update id="updateById" parameterType="com.zhenglz.entity.Permission">
         update m_permission
         set `name` = #{name,jdbcType=VARCHAR},
@@ -78,19 +85,17 @@
         parent_id = #{parentId,jdbcType=BIGINT}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    
+
     <select id="selectByRoleIdList" resultType="com.zhenglz.entity.Permission" parameterType="java.util.List">
         SELECT DISTINCT m_permission.*
         FROM m_permission,
-             m_role,
-             m_role_permission
+        m_role,
+        m_role_permission
         WHERE m_role.id = m_role_permission.role_id
-          AND m_permission.id = m_role_permission.permission_id
-        <foreach item="roleId" collection="list" open="AND m_role.id IN(" close=")" separator="," >
+        AND m_permission.id = m_role_permission.permission_id
+        <foreach item="roleId" collection="list" open="AND m_role.id IN(" close=")" separator=",">
             #{roleId}
         </foreach>
     </select>
-
-    
 </mapper>
 

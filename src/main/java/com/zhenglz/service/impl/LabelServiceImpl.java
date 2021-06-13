@@ -14,11 +14,6 @@ import com.zhenglz.entity.Label;
 import com.zhenglz.mapper.LabelMapper;
 import com.zhenglz.service.ILabelService;
 
-/*
- * @Description:
- * @Author: zlz
- * @Date: 2021/4/26
- **/
 @Service
 public class LabelServiceImpl implements ILabelService {
 
@@ -27,35 +22,39 @@ public class LabelServiceImpl implements ILabelService {
     @Resource
     private LabelMapper labelMapper;
 
-    public List<Label> getLabels()throws RuntimeException{
+    @Override
+    public List<Label> getLabels() throws RuntimeException {
         List<Label> labels = labelMapper.getLabels();
         return labels;
     }
 
-    public int updateNameById(Label label) throws RuntimeException{
+    @Override
+    public int updateNameById(Label label) throws RuntimeException {
+        label.setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE);
         return labelMapper.updatePrimaryById(label);
     }
 
-    public int updateStatus(long id) throws RuntimeException{
+    @Override
+    public int updateStatus(long id) throws RuntimeException {
         Label label = new Label();
         label.setId(id).setStatus(Constants.DISABLE).setUpdateTime(LocalDateTime.now());
         return labelMapper.updatePrimaryById(label);
     }
 
-    public int insert(Label label) throws RuntimeException{
+    @Override
+    public int insert(Label label) throws RuntimeException {
+        label.setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE);
         return labelMapper.insert(label);
     }
 
-    public int countLabelByName(String name) throws RuntimeException{
+    @Override
+    public int countLabelByName(String name) throws RuntimeException {
         return labelMapper.countLabelByName(name);
     }
 
-    public Label getLabelById(long id) throws RuntimeException{
+    @Override
+    public Label getLabelById(long id) throws RuntimeException {
         return labelMapper.getLabelById(id);
     }
-
-
-
-
 
 }

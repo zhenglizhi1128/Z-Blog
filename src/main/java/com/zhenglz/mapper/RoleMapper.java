@@ -8,15 +8,16 @@ import org.springframework.data.repository.query.Param;
 import com.zhenglz.entity.Role;
 
 /**
-* @description: 角色
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 角色
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface RoleMapper {
     /**
      * 根据id删除
+     * 
      * @param id
      * @return
      */
@@ -24,6 +25,7 @@ public interface RoleMapper {
 
     /**
      * 新增
+     * 
      * @param role
      * @return
      */
@@ -31,6 +33,7 @@ public interface RoleMapper {
 
     /**
      * 根据id获取
+     * 
      * @param id
      * @return
      */
@@ -38,6 +41,7 @@ public interface RoleMapper {
 
     /**
      * 部分更新
+     * 
      * @param role
      * @return
      */
@@ -45,6 +49,7 @@ public interface RoleMapper {
 
     /**
      * 更新
+     * 
      * @param role
      * @return
      */
@@ -52,6 +57,7 @@ public interface RoleMapper {
 
     /**
      * 根据userId 获取用户所有角色
+     * 
      * @param userId
      * @return
      */
@@ -59,6 +65,7 @@ public interface RoleMapper {
 
     /**
      * 根据userId删除
+     * 
      * @param userId
      * @return
      */
@@ -66,12 +73,19 @@ public interface RoleMapper {
 
     /**
      * 删除部分权限
+     * 
      * @param userId
-     * @param Ids
+     * @param ids
      * @return
      */
-    int deleteByUserIdAndIds(Long userId,List<Long> Ids);
+    int deleteByUserIdAndIds(Long userId, List<Long> ids);
 
-    void insertByUserId(long userId,long roleId);
+    /**
+     * 增加角色
+     * 
+     * @param userId
+     * @param roleId
+     */
+    void insertByUserId(long userId, long roleId);
 
 }

@@ -1,19 +1,21 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Visit;
 import org.apache.ibatis.annotations.Mapper;
 
+import com.zhenglz.entity.Visit;
+
 /**
-* @description: 访问Mapper
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 访问Mapper
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface VisitMapper {
 
     /**
      * 根据id 删除
+     * 
      * @param id
      * @return
      */
@@ -21,6 +23,7 @@ public interface VisitMapper {
 
     /**
      * 新增
+     * 
      * @param visit
      * @return
      */
@@ -28,6 +31,7 @@ public interface VisitMapper {
 
     /**
      * 根据id获取Visit
+     * 
      * @param id
      * @return
      */
@@ -35,6 +39,7 @@ public interface VisitMapper {
 
     /**
      * 更新访问的部分内容
+     * 
      * @param visit
      * @return
      */
@@ -42,6 +47,7 @@ public interface VisitMapper {
 
     /**
      * 更新访问记录
+     * 
      * @param visit
      * @return
      */

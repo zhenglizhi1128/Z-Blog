@@ -23,16 +23,15 @@ import com.zhenglz.vo.BlogVo;
 import cn.hutool.core.bean.BeanUtil;
 
 /**
-* @description: 
-* @author: zlz 
-* @date: 2021/3/24
-* @version:       
-*/
+ * @description:
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Service
 public class BlogServiceImpl implements IBlogService {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
-
 
     @Resource
     private BlogMapper blogMapper;
@@ -40,18 +39,17 @@ public class BlogServiceImpl implements IBlogService {
     @Resource
     private BlogContentMapper blogContentMapper;
 
-
     @Override
     public List<Blog> getBlogs(PageCondition pageCondition) throws RuntimeException {
-        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize()," id desc ");
+        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(), " id desc ");
         List<Blog> blogs = blogMapper.listBlogs();
         return blogs;
     }
 
     @Override
-    public Blog getBlogById(long id)throws RuntimeException {
-        Blog blog= blogMapper.getBlogById(id);
-        BlogContent blogContent =blogContentMapper.getBlogContentById(blog.getContentId());
+    public Blog getBlogById(long id) throws RuntimeException {
+        Blog blog = blogMapper.getBlogById(id);
+        BlogContent blogContent = blogContentMapper.getBlogContentById(blog.getContentId());
         blog.setBlogContent(blogContent);
         return blog;
     }
@@ -63,15 +61,9 @@ public class BlogServiceImpl implements IBlogService {
         BlogContent blogContent = blogvo.getBlogContent();
         blogContentMapper.insert(blogContent);
         BeanUtil.copyProperties(blogvo, blog);
-        blog.setContentId(blogContent.getId())
-                .setTitle(blogvo.getTitle())
-                .setUserId(blogvo.getUser().getId())
-                .setCreateTime(LocalDateTime.now())
-                .setUpdateTime(LocalDateTime.now())
-                .setStatus(Constants.ENABLE)
-                .setLikeNumber(0l)
-                .setReadNumber(0l)
-                .setCommentNumber(0l);
+        blog.setContentId(blogContent.getId()).setTitle(blogvo.getTitle()).setUserId(blogvo.getUser().getId())
+            .setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE)
+            .setLikeNumber(0L).setReadNumber(0L).setCommentNumber(0L);
         return blogMapper.insert(blog);
     }
 
@@ -84,6 +76,15 @@ public class BlogServiceImpl implements IBlogService {
         int value = blogMapper.updatePrimaryById(blog);
         blogContentMapper.updatePrimaryById(blogVo.getBlogContent());
         return value;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Integer status,
+        PageCondition pageCondition) throws RuntimeException {
+        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(), " create_time desc ");
+        List<BlogVo> blogVos = blogMapper.getBlogsByTitleAndStatus(title, labelId, status);
+        return blogVos;
     }
 
 }

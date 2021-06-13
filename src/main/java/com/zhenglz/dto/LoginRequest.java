@@ -4,11 +4,11 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
-* @description: 登录请求参数
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 登录请求参数
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Data
 @Accessors(chain = true)
 public class LoginRequest {
@@ -27,6 +27,5 @@ public class LoginRequest {
      * 记住我
      */
     private Boolean rememberMe = false;
-
 
 }

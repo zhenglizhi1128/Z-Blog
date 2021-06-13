@@ -1,6 +1,5 @@
 package com.zhenglz.config.springsecurityconfig;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -20,11 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.zhenglz.service.impl.CustomUserDetailsServiceImpl;
 
 /**
-* @description: Security 配置
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: Security 配置
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties(CustomConfig.class)
@@ -94,8 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 放行所有不需要登录就可以访问的请求，参见 AuthController
-     * 也可以在 {@link #configure(HttpSecurity)} 中配置
+     * 放行所有不需要登录就可以访问的请求，参见 AuthController 也可以在 {@link #configure(HttpSecurity)} 中配置
      * {@code http.authorizeRequests().antMatchers("/api/auth/**").permitAll()}
      */
     @Override

@@ -1,12 +1,14 @@
 package com.zhenglz.common.resultmodel;
 
-import com.zhenglz.common.BaseException;
-import lombok.Data;
-
 import java.io.Serializable;
+
+import com.zhenglz.common.BaseException;
+
+import lombok.Data;
 
 /**
  * 返回结果
+ * 
  * @author zhenglizhi
  * @date 2021-1-17
  * @param <T>
@@ -35,9 +37,12 @@ public class Result<T> implements Serializable {
     /**
      * 构造一个自定义的API返回
      *
-     * @param code    状态码
-     * @param message 返回内容
-     * @param data    返回数据
+     * @param code
+     *            状态码
+     * @param message
+     *            返回内容
+     * @param data
+     *            返回数据
      * @return ApiResponse
      */
     public static Result of(Integer code, String message, Object data) {
@@ -71,8 +76,10 @@ public class Result<T> implements Serializable {
     /**
      * 构造一个异常的API返回
      *
-     * @param t   异常
-     * @param <T> {@link BaseException} 的子类
+     * @param t
+     *            异常
+     * @param <T>
+     *            {@link BaseException} 的子类
      * @return ApiResponse
      */
     public static <T extends BaseException> Result ofException(T t) {

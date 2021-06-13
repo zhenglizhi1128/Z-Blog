@@ -1,11 +1,11 @@
 package com.zhenglz.common;
 
 /**
-* @description:常量池
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description:常量池
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 public interface Constants {
     /**
      * 启用

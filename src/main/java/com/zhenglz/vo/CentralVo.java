@@ -8,15 +8,12 @@ import com.zhenglz.entity.Blog;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-/*
- * @Description: 中控台vo
- * @Author: zlz
- * @Date: 2021/6/6
- **/
+/**
+ * 中控台vo
+ */
 @Data
 @Accessors(chain = true)
 public class CentralVo implements Serializable {
-
 
     private static final long serialVersionUID = -192900659608445205L;
 
@@ -39,6 +36,5 @@ public class CentralVo implements Serializable {
      * 最新文章
      */
     private List<Blog> blogs;
-
 
 }

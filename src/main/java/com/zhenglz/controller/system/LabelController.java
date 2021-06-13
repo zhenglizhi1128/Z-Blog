@@ -1,6 +1,5 @@
 package com.zhenglz.controller.system;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
-import com.zhenglz.common.Constants;
 import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.entity.Label;
@@ -32,7 +30,7 @@ public class LabelController {
      * @throws RuntimeException
      */
     @GetMapping("/countLabel")
-    public Result countLabelByName(String name) throws RuntimeException {
+    public Result countLabelByName(String name) throws Exception {
         int count = labelService.countLabelByName(name);
         return Result.success(count);
     }
@@ -45,9 +43,7 @@ public class LabelController {
      * @throws RuntimeException
      */
     @PostMapping("/label")
-    public Result insertLabel(@RequestBody Label label) throws RuntimeException {
-        label.setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now())
-            .setStatus(Constants.ENABLE);
+    public Result insertLabel(@RequestBody Label label) throws Exception {
         labelService.insert(label);
         return Result.success();
     }
@@ -60,8 +56,7 @@ public class LabelController {
      * @throws RuntimeException
      */
     @PutMapping("/update")
-    public Result updateName(Label label) throws RuntimeException {
-        label.setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE);
+    public Result updateName(Label label) throws Exception {
         int value = labelService.updateNameById(label);
         if (value == 0) {
             return Result.failure(Status.ERROR);
@@ -88,7 +83,7 @@ public class LabelController {
      * @return
      * @throws RuntimeException
      */
-    @DeleteMapping ("/delete")
+    @DeleteMapping("/delete")
     public Result deleteLabel(long id) throws RuntimeException {
         int value = labelService.updateStatus(id);
         if (value == 0) {

@@ -42,7 +42,7 @@ public class test {
         old.add(3l);
 
         List<Long> insertIds = collect.stream().filter(x -> !old.contains(x)).collect(Collectors.toList());
-        List<Long> deleteIds  = old.stream().filter(x -> !collect.contains(x)).collect(Collectors.toList());
+        List<Long> deleteIds = old.stream().filter(x -> !collect.contains(x)).collect(Collectors.toList());
         System.out.println(deleteIds.toString());
         System.out.println(insertIds.toString());
     }

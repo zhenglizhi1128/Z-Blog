@@ -2,19 +2,21 @@ package com.zhenglz.vo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.zhenglz.entity.BlogContent;
+import com.zhenglz.entity.Label;
 import com.zhenglz.entity.User;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
-* @description: blogVO
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: blogVO
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Data
 @Accessors(chain = true)
 public class BlogVo implements Serializable {
@@ -80,5 +82,7 @@ public class BlogVo implements Serializable {
      * 评论状态
      */
     private Boolean commentStatus;
+
+    private List<Label> labels;
 
 }
