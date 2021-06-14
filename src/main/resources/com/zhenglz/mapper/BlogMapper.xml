@@ -87,10 +87,10 @@
         comment_number = #{commentNumber,jdbcType=BIGINT},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=BOOLEAN},
+        `status` = #{status},
       </if>
       <if test="commentStatus != null">
-        comment_status = #{commentStatus,jdbcType=BOOLEAN},
+        comment_status = #{commentStatus},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

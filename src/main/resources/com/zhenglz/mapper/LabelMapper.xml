@@ -124,4 +124,10 @@
     <select id="countLabelByName" resultType="java.lang.Integer">
         select count(*) from m_label where name =#{name}
     </select>
+
+    <delete id="deleteBlogLabelByBlogId" parameterType="java.lang.Long">
+        delete from m_blog_label
+        where label_id = #{blogId,jdbcType=BIGINT}
+    </delete>
+
 </mapper>

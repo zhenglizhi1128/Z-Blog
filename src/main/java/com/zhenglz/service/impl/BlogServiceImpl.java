@@ -17,6 +17,7 @@ import com.zhenglz.entity.Blog;
 import com.zhenglz.entity.BlogContent;
 import com.zhenglz.mapper.BlogContentMapper;
 import com.zhenglz.mapper.BlogMapper;
+import com.zhenglz.mapper.LabelMapper;
 import com.zhenglz.service.IBlogService;
 import com.zhenglz.vo.BlogVo;
 
@@ -38,6 +39,9 @@ public class BlogServiceImpl implements IBlogService {
 
     @Resource
     private BlogContentMapper blogContentMapper;
+
+    @Resource
+    private LabelMapper labelMapper;
 
     @Override
     public List<Blog> getBlogs(PageCondition pageCondition) throws RuntimeException {
@@ -74,7 +78,7 @@ public class BlogServiceImpl implements IBlogService {
         blog.setUpdateTime(LocalDateTime.now());
         BeanUtil.copyProperties(blogVo, blog);
         int value = blogMapper.updatePrimaryById(blog);
-        blogContentMapper.updatePrimaryById(blogVo.getBlogContent());
+        blogContentMapper.updateById(blogVo.getBlogContent());
         return value;
     }
 
@@ -85,6 +89,30 @@ public class BlogServiceImpl implements IBlogService {
         PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(), " create_time desc ");
         List<BlogVo> blogVos = blogMapper.getBlogsByTitleAndStatus(title, labelId, status);
         return blogVos;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteBlog(long blogId) throws RuntimeException {
+        blogContentMapper.deleteByBlogId(blogId);
+        labelMapper.deleteBlogLabelByBlogId(blogId);
+        blogMapper.deleteById(blogId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateStatus(long blogId,int status) throws RuntimeException {
+       Blog blog = new Blog();
+       blog.setId(blogId).setUpdateTime(LocalDateTime.now()).setStatus(status);
+       blogMapper.updatePrimaryById(blog);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateCommentStatus(long blogId,int commentStatus) throws RuntimeException {
+        Blog blog = new Blog();
+        blog.setId(blogId).setUpdateTime(LocalDateTime.now()).setCommentStatus(commentStatus);
+        blogMapper.updatePrimaryById(blog);
     }
 
 }

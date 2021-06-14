@@ -57,4 +57,23 @@ public interface IBlogService {
      */
     List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Integer status, PageCondition pageCondition);
 
+    /**
+     * 删除一篇文章
+     * @param blogId
+     */
+    void deleteBlog(long blogId);
+
+    /**
+     * 修改状态
+     * @param blogId
+     * @param status
+     */
+    void updateStatus(long blogId,int status);
+
+    /**
+     * 修改评论开关
+     * @param blogId
+     * @param commentStatus
+     */
+    void updateCommentStatus(long blogId,int commentStatus);
 }

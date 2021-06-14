@@ -91,4 +91,10 @@ public interface LabelMapper {
      */
     int countLabelByName(@Param("name") String name);
 
+    /**
+     * 删除文章的标签
+     * @param blogId
+     */
+    void deleteBlogLabelByBlogId(Long blogId);
+
 }

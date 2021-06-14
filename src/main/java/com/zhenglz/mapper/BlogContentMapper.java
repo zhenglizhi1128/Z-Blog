@@ -37,14 +37,6 @@ public interface BlogContentMapper {
     BlogContent getBlogContentById(Long id);
 
     /**
-     * 部分更新
-     * 
-     * @param blogContent
-     * @return
-     */
-    int updatePrimaryById(BlogContent blogContent);
-
-    /**
      * 更新
      * 
      * @param blogContent
@@ -59,4 +51,10 @@ public interface BlogContentMapper {
      * @return
      */
     int deleteByUserId(Long userId);
+
+    /**
+     * 根据文章Id删除
+     * @param blogId
+     */
+    void deleteByBlogId(Long blogId);
 }

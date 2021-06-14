@@ -94,4 +94,21 @@ public class BlogController {
         return Result.success(jsonObject);
     }
 
+    @DeleteMapping("/set/deleteBlog")
+    public Result deleteBlog(long id) throws Exception {
+        blogService.deleteBlog(id);
+        return Result.success();
+    }
+
+    @PutMapping("/set/updateStatus")
+    public Result updateStatus(long blogId,int status) throws Exception {
+        blogService.updateStatus(blogId,status);
+        return Result.success();
+    }
+
+    @PutMapping("/set/updateCommentStatus")
+    public Result updateCommentStatus(long blogId,int commentStatus) throws Exception {
+        blogService.updateCommentStatus(blogId,commentStatus);
+        return Result.success();
+    }
 }

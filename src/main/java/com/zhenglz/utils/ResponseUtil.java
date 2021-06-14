@@ -17,8 +17,6 @@ import lombok.extern.slf4j.Slf4j;
  * Response 通用工具类
  * </p>
  *
- * @author yangkai.shen
- * @date Created in 2018-12-07 17:37
  */
 @Slf4j
 public class ResponseUtil {
