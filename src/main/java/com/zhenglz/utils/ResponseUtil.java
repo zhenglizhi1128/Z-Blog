@@ -33,8 +33,6 @@ public class ResponseUtil {
      */
     public static void renderJson(HttpServletResponse response, Status status, Object data) {
         try {
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "*");
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(200);
             response.getWriter().write(JSONUtil.toJsonStr(new JSONObject(Result.ofStatus(status, data), false)));
@@ -53,8 +51,6 @@ public class ResponseUtil {
      */
     public static void renderJson(HttpServletResponse response, BaseException exception) {
         try {
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "*");
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(200);
             response.getWriter().write(JSONUtil.toJsonStr(new JSONObject(Result.ofException(exception), false)));
