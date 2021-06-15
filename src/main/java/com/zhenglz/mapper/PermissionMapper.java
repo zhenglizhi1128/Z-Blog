@@ -1,21 +1,23 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Permission;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.zhenglz.entity.Permission;
 
 /**
-* @description: 权限
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 权限
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface PermissionMapper {
     /**
      * 根据id删除
+     * 
      * @param id
      * @return
      */
@@ -23,6 +25,7 @@ public interface PermissionMapper {
 
     /**
      * 新增
+     * 
      * @param record
      * @return
      */
@@ -30,6 +33,7 @@ public interface PermissionMapper {
 
     /**
      * 根据id获取权限
+     * 
      * @param id
      * @return
      */
@@ -37,6 +41,7 @@ public interface PermissionMapper {
 
     /**
      * 部分更新
+     * 
      * @param permission
      * @return
      */
@@ -44,6 +49,7 @@ public interface PermissionMapper {
 
     /**
      * 更新
+     * 
      * @param permission
      * @return
      */
@@ -51,9 +57,10 @@ public interface PermissionMapper {
 
     /**
      * 根据用户角色id 获取权限
+     * 
      * @param roleIds
      * @return
      */
-    List<Permission> selectByRoleIdList(@Param("roleIds")List<Long> roleIds);
+    List<Permission> selectByRoleIdList(@Param("roleIds") List<Long> roleIds);
 
 }

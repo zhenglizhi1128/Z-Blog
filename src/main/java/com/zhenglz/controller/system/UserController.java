@@ -12,12 +12,9 @@ import com.zhenglz.dto.PageCondition;
 import com.zhenglz.service.IUserService;
 import com.zhenglz.vo.UserVo;
 
-
-/*
- * @Description: 用户设置
- * @Author: zlz
- * @Date: 2021/5/17
- **/
+/**
+ * 用户设置
+ */
 @RestController
 @RequestMapping("/userSet")
 public class UserController {
@@ -28,22 +25,21 @@ public class UserController {
     private IUserService userService;
 
     @GetMapping("/users")
-    public Result getUsers(PageCondition pageCondition) throws RuntimeException{
+    public Result getUsers(PageCondition pageCondition) throws RuntimeException {
         PageInfo<UserVo> pageInfo = userService.getUserPage(pageCondition);
         return Result.success(pageInfo);
     }
 
     @PutMapping("/user")
-    public Result updateUser(UserVo userVo) throws RuntimeException{
+    public Result updateUser(UserVo userVo) throws RuntimeException {
         userService.updateUser(userVo);
         return Result.success();
     }
 
     @DeleteMapping("/user")
-    public Result deleteUser(long id) throws RuntimeException{
-       userService.deleteUser(id);
+    public Result deleteUser(long id) throws RuntimeException {
+        userService.deleteUser(id);
         return Result.success();
     }
-
 
 }

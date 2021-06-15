@@ -8,7 +8,9 @@
         <!-- 格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
         <!-- %logger{36} 表示 Logger 名字最长36个字符 -->
         <!--<property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{%line} - %msg%n" />-->
-        <Property name="LOG_PATTERN">%clr{%d{MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{---}{faint} %clr{[%t]}{faint} %clr{%logger}{cyan} [%line] %clr{:}{faint} %m%n%xwEx</Property>
+        <Property name="LOG_PATTERN">%clr{%d{MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{---}{faint} %clr{[%t]}{faint}
+            %clr{%logger}{cyan} [%line] %clr{:}{faint} %m%n%xwEx
+        </Property>
         <!-- 定义日志存储的路径 -->
         <!--<property name="FILE_PATH" value="更换为你的日志路径" />
         <property name="FILE_NAME" value="更换为你的项目名" />-->
@@ -64,7 +66,7 @@
         </Logger>
 
         <Root level="debug">
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
     <!--Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。-->

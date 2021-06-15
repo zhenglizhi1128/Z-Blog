@@ -4,21 +4,18 @@ import java.util.List;
 
 import com.zhenglz.entity.Label;
 
-/*
- * @Description:
- * @Author: zlz
- * @Date: 2021/4/26
- **/
 public interface ILabelService {
 
     /**
      * 获取blogs
+     * 
      * @return
      */
     List<Label> getLabels();
 
     /**
      * 修改名字
+     * 
      * @param label
      * @return
      */
@@ -26,6 +23,7 @@ public interface ILabelService {
 
     /**
      * 物理删除
+     * 
      * @param id
      * @return
      */
@@ -33,6 +31,7 @@ public interface ILabelService {
 
     /**
      * 新增
+     * 
      * @param label
      * @return
      */
@@ -40,6 +39,7 @@ public interface ILabelService {
 
     /**
      * 查寻数据库中是否有相同名字的标签
+     * 
      * @param name
      * @return
      */
@@ -47,6 +47,7 @@ public interface ILabelService {
 
     /**
      * 根据id查询
+     * 
      * @param id
      * @return
      */

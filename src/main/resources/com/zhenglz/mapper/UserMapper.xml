@@ -4,37 +4,46 @@
 <mapper namespace="com.zhenglz.mapper.UserMapper">
     <resultMap id="BaseResultMap" type="com.zhenglz.entity.User">
         <!--@Table m_user-->
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="username" jdbcType="VARCHAR" property="username" />
-        <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-        <result column="phone" jdbcType="VARCHAR" property="phone" />
-        <result column="email" jdbcType="VARCHAR" property="email" />
-        <result column="birthday" jdbcType="BIGINT" property="birthday" />
-        <result column="sex" jdbcType="INTEGER" property="sex" />
-        <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="birthday" jdbcType="BIGINT" property="birthday"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
-    
+
     <sql id="Base_Column_List">
-        id, username, `password`, nickname, phone, email, birthday, sex, `status`, create_time,
+        id,
+        username,
+        `password`,
+        nickname,
+        phone,
+        email,
+        birthday,
+        sex,
+        `status`,
+        create_time,
         update_time
     </sql>
-    
+
     <select id="getUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from m_user
         where id = #{id,jdbcType=BIGINT}
     </select>
-    
+
     <delete id="deleteById" parameterType="java.lang.Long">
         delete from m_user
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    
-    <insert id="insert" parameterType="com.zhenglz.entity.User" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+
+    <insert id="insert" parameterType="com.zhenglz.entity.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into m_user (id, username, `password`,
         nickname, phone, email,
         birthday, sex, `status`,
@@ -44,7 +53,7 @@
         #{birthday,jdbcType=BIGINT}, #{sex,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
         #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
     </insert>
-    
+
     <update id="updatePrimaryById" parameterType="com.zhenglz.entity.User">
         update m_user
         <set>
@@ -81,7 +90,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    
+
     <update id="updateById" parameterType="com.zhenglz.entity.User">
         update m_user
         set username = #{username,jdbcType=VARCHAR},
@@ -96,12 +105,12 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    
+
     <select id="listUsers" resultType="com.zhenglz.entity.User">
         select *
         from m_user
     </select>
-    
+
     <select id="findByUsernameOrEmailOrPhone" resultType="com.zhenglz.entity.User">
         select *
         from m_user
@@ -112,9 +121,7 @@
     <select id="countUser" resultType="java.lang.Integer">
         select count(1)
         from m_user
-        where status =1
+        where status = 1
     </select>
-
-
 </mapper>
 

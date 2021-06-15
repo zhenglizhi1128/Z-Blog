@@ -50,14 +50,20 @@ public class JwtUtil {
     /**
      * 创建JWT
      *
-     * @param rememberMe  记住我
-     * @param id          用户id
-     * @param subject     用户名
-     * @param roles       用户角色
-     * @param authorities 用户权限
+     * @param rememberMe
+     *            记住我
+     * @param id
+     *            用户id
+     * @param subject
+     *            用户名
+     * @param roles
+     *            用户角色
+     * @param authorities
+     *            用户权限
      * @return JWT
      */
-    public String createJwt(Boolean rememberMe, Long id, String subject, List<String> roles, Collection<? extends GrantedAuthority> authorities) {
+    public String createJwt(Boolean rememberMe, Long id, String subject, List<String> roles,
+        Collection<? extends GrantedAuthority> authorities) {
         Date now = new Date();
         JwtBuilder builder = Jwts.builder().setId(id.toString()).setSubject(subject).setIssuedAt(now)
             .signWith(SignatureAlgorithm.HS256, jwtConfig.getKey()).claim("roles", roles)
@@ -71,26 +77,31 @@ public class JwtUtil {
 
         String jwt = builder.compact();
         // 将生成的JWT保存至Redis
-        stringRedisTemplate.opsForValue().set(Constants.REDIS_JWT_KEY_PREFIX + subject, jwt, ttl, TimeUnit.MILLISECONDS);
+        stringRedisTemplate.opsForValue().set(Constants.REDIS_JWT_KEY_PREFIX + subject, jwt, ttl,
+            TimeUnit.MILLISECONDS);
         return jwt;
     }
 
     /**
      * 创建JWT
      *
-     * @param authentication 用户认证信息
-     * @param rememberMe     记住我
+     * @param authentication
+     *            用户认证信息
+     * @param rememberMe
+     *            记住我
      * @return JWT
      */
     public String createJwt(Authentication authentication, Boolean rememberMe) {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        return createJwt(rememberMe, userPrincipal.getId(), userPrincipal.getUsername(), userPrincipal.getRoles(), userPrincipal.getAuthorities());
+        UserPrincipal userPrincipal = (UserPrincipal)authentication.getPrincipal();
+        return createJwt(rememberMe, userPrincipal.getId(), userPrincipal.getUsername(), userPrincipal.getRoles(),
+            userPrincipal.getAuthorities());
     }
 
     /**
      * 解析JWT
      *
-     * @param jwt JWT
+     * @param jwt
+     *            JWT
      * @return {@link Claims}
      */
     public Claims parseJwt(String jwt) {
@@ -133,7 +144,8 @@ public class JwtUtil {
     /**
      * 设置JWT过期
      *
-     * @param request 请求
+     * @param request
+     *            请求
      */
     public void invalidateJwt(HttpServletRequest request) {
         String jwt = getJwtFromRequest(request);
@@ -145,7 +157,8 @@ public class JwtUtil {
     /**
      * 根据 jwt 获取用户名
      *
-     * @param jwt JWT
+     * @param jwt
+     *            JWT
      * @return 用户名
      */
     public String getUsernameFromJwt(String jwt) {
@@ -156,7 +169,8 @@ public class JwtUtil {
     /**
      * 从 request 的 header 中获取 JWT
      *
-     * @param request 请求
+     * @param request
+     *            请求
      * @return JWT
      */
     public String getJwtFromRequest(HttpServletRequest request) {

@@ -1,16 +1,17 @@
 package com.zhenglz.config.springsecurityconfig;
 
-import com.google.common.collect.Lists;
-import lombok.Data;
-
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
+import lombok.Data;
+
 /**
-* @description: 忽略配置
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 忽略配置
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Data
 public class IgnoreConfig {
     /**

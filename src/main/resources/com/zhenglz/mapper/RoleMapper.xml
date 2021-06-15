@@ -2,23 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhenglz.mapper.RoleMapper">
-
     <resultMap id="BaseResultMap" type="com.zhenglz.entity.Role">
         <!--@Table m_role-->
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="description" jdbcType="VARCHAR" property="description" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, `name`, description, create_time, update_time
+        id,
+        `name`,
+        description,
+        create_time,
+        update_time
     </sql>
 
     <select id="getRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from m_role
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -66,11 +69,11 @@
     <select id="listRolesByUserId" resultType="com.zhenglz.entity.Role">
         SELECT m_role.*
         FROM m_role,
-             m_user,
-             m_user_role
+        m_user,
+        m_user_role
         WHERE m_user.id = m_user_role.user_id
-          AND m_role.id = m_user_role.role_id
-          AND m_user.id = #{userId,jdbcType=BIGINT}
+        AND m_role.id = m_user_role.role_id
+        AND m_user.id = #{userId,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteByUserId" parameterType="java.lang.Long">

@@ -1,19 +1,19 @@
 package com.zhenglz.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 /**
-* @description: 文章评论表
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 文章评论表
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

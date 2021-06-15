@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Mybatis config sample -->
 <!DOCTYPE configuration
-    PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-        <typeAliases>
+    <typeAliases>
         <package name="com.demo.entity"/>
     </typeAliases>
 
 
-    <environments default = "default">
+    <environments default="default">
         <environment id="default">
             <transactionManager type="JDBC"/>
             <dataSource type="UNPOOLED">
-                <property name = "driver" value = "com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://3j836971s9.qicp.vip:17732/zblog?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;serverTimezone=GMT%2B8"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://3j836971s9.qicp.vip:17732/zblog?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;serverTimezone=GMT%2B8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
             </dataSource>
         </environment>
     </environments>
-
 
 
     <mappers>

@@ -32,18 +32,18 @@ import com.zhenglz.vo.UserPrincipal;
 import cn.hutool.core.util.StrUtil;
 
 /**
-* @description: 动态路由认证
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 动态路由认证
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Component
 public class RbacAuthorityService {
 
     @Autowired
     private RoleMapper roleMapper;
 
-    @Autowired(required=false)
+    @Autowired(required = false)
     private PermissionMapper permissionMapper;
 
     @Autowired
@@ -56,21 +56,21 @@ public class RbacAuthorityService {
         boolean hasPermission = false;
 
         if (userInfo instanceof UserDetails) {
-            UserPrincipal principal = (UserPrincipal) userInfo;
+            UserPrincipal principal = (UserPrincipal)userInfo;
             Long userId = principal.getId();
 
             List<Role> roles = roleMapper.listRolesByUserId(userId);
             List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
             List<Permission> permissions = permissionMapper.selectByRoleIdList(roleIds);
 
-            //获取资源，前后端分离，所以过滤页面权限，只保留按钮权限
+            // 获取资源，前后端分离，所以过滤页面权限，只保留按钮权限
             List<Permission> btnPerms = permissions.stream()
-                    // 过滤页面权限
-                    .filter(permission -> Objects.equals(permission.getType(), Constants.BUTTON))
-                    // 过滤 URL 为空
-                    .filter(permission -> StrUtil.isNotBlank(permission.getUrl()))
-                    // 过滤 METHOD 为空
-                    .filter(permission -> StrUtil.isNotBlank(permission.getMethod())).collect(Collectors.toList());
+                // 过滤页面权限
+                .filter(permission -> Objects.equals(permission.getType(), Constants.BUTTON))
+                // 过滤 URL 为空
+                .filter(permission -> StrUtil.isNotBlank(permission.getUrl()))
+                // 过滤 METHOD 为空
+                .filter(permission -> StrUtil.isNotBlank(permission.getMethod())).collect(Collectors.toList());
 
             for (Permission btnPerm : btnPerms) {
                 AntPathRequestMatcher antPathMatcher = new AntPathRequestMatcher(btnPerm.getUrl(), btnPerm.getMethod());
@@ -89,7 +89,8 @@ public class RbacAuthorityService {
     /**
      * 校验请求是否存在
      *
-     * @param request 请求
+     * @param request
+     *            请求
      */
     private void checkRequest(HttpServletRequest request) {
         // 获取当前 request 的方法
@@ -131,7 +132,8 @@ public class RbacAuthorityService {
             RequestMethodsRequestCondition method = k.getMethodsCondition();
 
             // 为每个URL添加所有的请求方法
-            url.forEach(s -> urlMapping.putAll(s, method.getMethods().stream().map(Enum::toString).collect(Collectors.toList())));
+            url.forEach(s -> urlMapping.putAll(s,
+                method.getMethods().stream().map(Enum::toString).collect(Collectors.toList())));
         });
 
         return urlMapping;

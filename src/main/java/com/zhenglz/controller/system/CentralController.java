@@ -14,6 +14,8 @@ import com.zhenglz.vo.CentralVo;
 
 /**
  * 中控台
+ * 
+ * @author zhenglizhi
  */
 @RestController
 @RequestMapping("/central")
@@ -24,9 +26,8 @@ public class CentralController {
     @Resource
     private ISystemService systemService;
 
-
     @GetMapping("/initialize")
-    public Result initialization() throws RuntimeException {
+    public Result initialization() throws Exception {
         CentralVo central = systemService.getCentral();
         return Result.success(central);
     }

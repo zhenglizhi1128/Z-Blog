@@ -1,24 +1,26 @@
 package com.zhenglz.controller;
 
-import cn.hutool.core.collection.CollUtil;
-import com.zhenglz.common.resultmodel.Result;
-import com.zhenglz.common.resultmodel.Status;
-import com.zhenglz.exception.SecurityException;
-import com.zhenglz.service.IMonitorService;
-import com.zhenglz.utils.SecurityUtil;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.zhenglz.common.resultmodel.Result;
+import com.zhenglz.common.resultmodel.Status;
+import com.zhenglz.exception.SecurityException;
+import com.zhenglz.service.IMonitorService;
+import com.zhenglz.utils.SecurityUtil;
+
+import cn.hutool.core.collection.CollUtil;
 
 /**
-* @description: 监控 Controller，在线用户，手动踢出用户等功能
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 监控 Controller，在线用户，手动踢出用户等功能
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @RestController
 @RequestMapping("/api/monitor")
 public class MonitorController {
@@ -31,10 +33,11 @@ public class MonitorController {
     /**
      * 在线用户列表
      *
-     * @param pageCondition 分页参数
+     * @param pageCondition
+     *            分页参数
      */
     @GetMapping("/online/user")
-    public Result onlineUser() {
+    public Result onlineUser() throws Exception {
         /*PageResult<OnlineUser> pageResult = monitorService.onlineUser(pageCondition);*/
         return Result.success("");
     }
@@ -42,10 +45,11 @@ public class MonitorController {
     /**
      * 批量踢出在线用户
      *
-     * @param names 用户名列表
+     * @param names
+     *            用户名列表
      */
     @DeleteMapping("/online/user/kickout")
-    public Result kickoutOnlineUser(@RequestBody List<String> names) {
+    public Result kickoutOnlineUser(@RequestBody List<String> names) throws Exception {
         if (CollUtil.isEmpty(names)) {
             throw new SecurityException(Status.PARAM_NOT_NULL);
         }

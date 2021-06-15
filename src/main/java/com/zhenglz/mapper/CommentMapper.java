@@ -1,19 +1,21 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
+import com.zhenglz.entity.Comment;
+
 /**
-* @description: 评论Mapper
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 评论Mapper
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface CommentMapper {
 
     /**
      * 根据id删除
+     * 
      * @param id
      * @return
      */
@@ -21,6 +23,7 @@ public interface CommentMapper {
 
     /**
      * 新增
+     * 
      * @param comment
      * @return
      */
@@ -28,6 +31,7 @@ public interface CommentMapper {
 
     /**
      * 根据id获取
+     * 
      * @param id
      * @return
      */
@@ -35,6 +39,7 @@ public interface CommentMapper {
 
     /**
      * 根据id部分更新
+     * 
      * @param comment
      * @return
      */
@@ -42,6 +47,7 @@ public interface CommentMapper {
 
     /**
      * 更新
+     * 
      * @param comment
      * @return
      */

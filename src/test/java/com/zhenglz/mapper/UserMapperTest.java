@@ -45,7 +45,7 @@ public class UserMapperTest {
         pageCondition.setCurrentPage(1);
         pageCondition.setPageSize(1);
         pageCondition.setOrderType("id");
-        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(),pageCondition.getOrderType());
+        PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(), pageCondition.getOrderType());
         List<User> users = userMapper.listUsers();
         PageInfo<User> pageInfo = new PageInfo<>(users);
         Result.success(pageInfo);
@@ -58,17 +58,18 @@ public class UserMapperTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String password = bCryptPasswordEncoder.encode("123456");
         System.out.println(password);
-        user.setUsername("z3").setNickname("z3").setStatus(1).setBirthday(785433600100l)
-                .setEmail("1113311@163.com").setPhone("15333626141").setPassword(password)
-                .setSex(1).setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now());
+        user.setUsername("z3").setNickname("z3").setStatus(1).setBirthday(785433600100l).setEmail("1113311@163.com")
+            .setPhone("15333626141").setPassword(password).setSex(1).setCreateTime(LocalDateTime.now())
+            .setUpdateTime(LocalDateTime.now());
         int insert = userMapper.insert(user);
         System.out.println(insert);
         System.out.println(user.getId());
     }
+
     @Test
     public void findByUsername() {
-        String password="123456";
-        String password1="$2a$10$DJVHOmBjLktuLpFZFRd8w.o8Wm8ycI3lgbBRx4eXhkVWflwxXQt/i";
+        String password = "123456";
+        String password1 = "$2a$10$DJVHOmBjLktuLpFZFRd8w.o8Wm8ycI3lgbBRx4eXhkVWflwxXQt/i";
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String newPassword = bCryptPasswordEncoder.encode(password);
         boolean matches = bCryptPasswordEncoder.matches(password, newPassword);

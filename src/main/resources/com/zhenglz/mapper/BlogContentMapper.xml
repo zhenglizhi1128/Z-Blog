@@ -24,20 +24,11 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.BlogContent" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.BlogContent"
+            useGeneratedKeys="true">
         insert into m_blog_content (content)
         values (#{content,jdbcType=LONGVARCHAR})
     </insert>
-
-    <update id="updatePrimaryById" parameterType="com.zhenglz.entity.BlogContent">
-        update m_blog_content
-        <set>
-            <if test="content != null">
-                content = #{content,jdbcType=LONGVARCHAR},
-            </if>
-        </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
 
     <update id="updateById" parameterType="com.zhenglz.entity.BlogContent">
         update m_blog_content
@@ -45,10 +36,14 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-
     <delete id="deleteByUserId" parameterType="java.lang.Long">
         DELETE t1 from m_blog_content as t1,m_blog as t2 WHERE t2.content_id = t1.id and
         t2.user_id =#{userId}
+    </delete>
+
+    <delete id="deleteByBlogId" parameterType="java.lang.Long">
+        DELETE t1 from m_blog_content as t1,m_blog as t2 WHERE t2.content_id = t1.id and
+        t2.id =#{blogId}
     </delete>
 
 </mapper>

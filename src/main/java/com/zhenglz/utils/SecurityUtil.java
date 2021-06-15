@@ -1,10 +1,12 @@
 package com.zhenglz.utils;
 
-import cn.hutool.core.util.ObjectUtil;
-import com.zhenglz.common.Constants;
-import com.zhenglz.vo.UserPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.zhenglz.common.Constants;
+import com.zhenglz.vo.UserPrincipal;
+
+import cn.hutool.core.util.ObjectUtil;
 
 /**
  * <p>
@@ -33,7 +35,7 @@ public class SecurityUtil {
     public static UserPrincipal getCurrentUser() {
         Object userInfo = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userInfo instanceof UserDetails) {
-            return (UserPrincipal) userInfo;
+            return (UserPrincipal)userInfo;
         }
         return null;
     }

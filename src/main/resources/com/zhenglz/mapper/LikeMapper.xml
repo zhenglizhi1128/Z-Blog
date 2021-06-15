@@ -37,9 +37,9 @@
 
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Like" useGeneratedKeys="true">
         insert into m_like (create_time, update_time, blog_id,
-                            user_id, `status`, is_read)
+        user_id, `status`, is_read)
         values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{blogId,jdbcType=BIGINT},
-                #{userId,jdbcType=BIGINT}, #{status,jdbcType=BOOLEAN}, #{isRead,jdbcType=BOOLEAN})
+        #{userId,jdbcType=BIGINT}, #{status,jdbcType=BOOLEAN}, #{isRead,jdbcType=BOOLEAN})
     </insert>
 
     <update id="updatePartialById" parameterType="com.zhenglz.entity.Like">
@@ -70,12 +70,11 @@
     <update id="updateById" parameterType="com.zhenglz.entity.Like">
         update m_like
         set create_time = #{createTime,jdbcType=TIMESTAMP},
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            blog_id     = #{blogId,jdbcType=BIGINT},
-            user_id     = #{userId,jdbcType=BIGINT},
-            `status`    = #{status,jdbcType=BOOLEAN},
-            is_read     = #{isRead,jdbcType=BOOLEAN}
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        blog_id = #{blogId,jdbcType=BIGINT},
+        user_id = #{userId,jdbcType=BIGINT},
+        `status` = #{status,jdbcType=BOOLEAN},
+        is_read = #{isRead,jdbcType=BOOLEAN}
         where id = #{id,jdbcType=BIGINT}
     </update>
-
 </mapper>

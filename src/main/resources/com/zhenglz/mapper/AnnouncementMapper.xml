@@ -1,111 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhenglz.mapper.AnnouncementMapper">
-  <resultMap id="BaseResultMap" type="com.zhenglz.entity.Announcement">
-    <!--@Table m_announcement-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
-    <result column="status" jdbcType="BOOLEAN" property="status" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.zhenglz.entity.Announcement">
+        <!--@Table m_announcement-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="detail" jdbcType="LONGVARCHAR" property="detail"/>
+        <result column="status" jdbcType="BOOLEAN" property="status"/>
+    </resultMap>
 
-  <sql id="Base_Column_List">
-    id, create_time, update_time, title, detail, `status`
-  </sql>
-
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from m_announcement
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from m_announcement
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Announcement" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into m_announcement (create_time, update_time, title, 
-      detail, `status`)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
-      #{detail,jdbcType=LONGVARCHAR}, #{status,jdbcType=BOOLEAN})
-  </insert>
-
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Announcement" useGeneratedKeys="true">
-    insert into m_announcement
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
+    <sql id="Base_Column_List">
+        id,
         create_time,
-      </if>
-      <if test="updateTime != null">
         update_time,
-      </if>
-      <if test="title != null and title != ''">
         title,
-      </if>
-      <if test="detail != null and detail != ''">
         detail,
-      </if>
-      <if test="status != null">
-        `status`,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="title != null and title != ''">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="detail != null and detail != ''">
-        #{detail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=BOOLEAN},
-      </if>
-    </trim>
-  </insert>
+        `status`
+    </sql>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.Announcement">
-    <!--@mbg.generated-->
-    update m_announcement
-    <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from m_announcement
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from m_announcement
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Announcement"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into m_announcement (create_time, update_time, title,
+        detail, `status`)
+        values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR},
+        #{detail,jdbcType=LONGVARCHAR}, #{status,jdbcType=BOOLEAN})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhenglz.entity.Announcement"
+            useGeneratedKeys="true">
+        insert into m_announcement
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="title != null and title != ''">
+                title,
+            </if>
+            <if test="detail != null and detail != ''">
+                detail,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null and title != ''">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null and detail != ''">
+                #{detail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhenglz.entity.Announcement">
+        <!--@mbg.generated-->
+        update m_announcement
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null and detail != ''">
+                detail = #{detail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=BOOLEAN},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.Announcement">
+        <!--@mbg.generated-->
+        update m_announcement
+        set create_time = #{createTime,jdbcType=TIMESTAMP},
         update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="title != null and title != ''">
         title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="detail != null and detail != ''">
         detail = #{detail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=BOOLEAN},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-
-  <update id="updateByPrimaryKey" parameterType="com.zhenglz.entity.Announcement">
-    <!--@mbg.generated-->
-    update m_announcement
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      title = #{title,jdbcType=VARCHAR},
-      detail = #{detail,jdbcType=LONGVARCHAR},
-      `status` = #{status,jdbcType=BOOLEAN}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        `status` = #{status,jdbcType=BOOLEAN}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

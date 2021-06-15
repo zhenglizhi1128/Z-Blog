@@ -54,14 +54,47 @@ public interface LabelMapper {
      */
     int updatePrimaryById(Label label);
 
+    /**
+     * 批量更新根据名字
+     * 
+     * @param labels
+     */
     void updateBatchByName(@Param("labels") List<Label> labels);
 
+    /**
+     * 根据Id 批量更新
+     * 
+     * @param labels
+     */
     void updateBatchById(@Param("labels") List<Label> labels);
 
+    /**
+     * 批量更新
+     * 
+     * @param labels
+     */
     void updateBatch(@Param("labels") List<Label> labels);
 
+    /**
+     * 批量添加
+     * 
+     * @param list
+     * @return
+     */
     int insertList(@Param("list") List<Label> list);
 
+    /**
+     * 根据明名字统计个数
+     * 
+     * @param name
+     * @return
+     */
     int countLabelByName(@Param("name") String name);
+
+    /**
+     * 删除文章的标签
+     * @param blogId
+     */
+    void deleteBlogLabelByBlogId(Long blogId);
 
 }

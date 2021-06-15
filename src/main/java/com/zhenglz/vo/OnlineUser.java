@@ -1,17 +1,18 @@
 package com.zhenglz.vo;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import com.zhenglz.common.Constants;
 import com.zhenglz.entity.User;
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import lombok.Data;
 
 /**
-* @description: 在线用户 VO
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 在线用户 VO
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Data
 public class OnlineUser {
 
@@ -55,7 +56,8 @@ public class OnlineUser {
         BeanUtil.copyProperties(user, onlineUser);
         // 脱敏
         onlineUser.setPhone(StrUtil.hide(user.getPhone(), 3, 7));
-        onlineUser.setEmail(StrUtil.hide(user.getEmail(), 1, StrUtil.indexOfIgnoreCase(user.getEmail(), Constants.SYMBOL_EMAIL)));
+        onlineUser.setEmail(
+            StrUtil.hide(user.getEmail(), 1, StrUtil.indexOfIgnoreCase(user.getEmail(), Constants.SYMBOL_EMAIL)));
         return onlineUser;
     }
 }

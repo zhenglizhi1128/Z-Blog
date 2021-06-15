@@ -18,11 +18,9 @@ public class JsonTest {
 
     private User user;
 
-
-
     @Test
-    public void loggerTest()  {
-      /*  ArrayNode jsonArray = JsonUtils.createJsonArray();
+    public void loggerTest() {
+        /*  ArrayNode jsonArray = JsonUtils.createJsonArray();
         ObjectNode json = JsonUtils.createJson();
         json.put("username","张三");
         ObjectNode json1 = JsonUtils.createJson();
@@ -31,7 +29,6 @@ public class JsonTest {
 
         System.out.println(JsonUtils.jsonStrToJson(""));
         ObjectMapper objectMapper = JsonUtils.getObjectMapper();
-
 
     }
 

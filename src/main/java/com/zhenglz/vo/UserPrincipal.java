@@ -1,23 +1,25 @@
 package com.zhenglz.vo;
 
-import cn.hutool.core.util.StrUtil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zhenglz.common.Constants;
-import com.zhenglz.entity.Permission;
-import com.zhenglz.entity.Role;
-import com.zhenglz.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zhenglz.common.Constants;
+import com.zhenglz.entity.Permission;
+import com.zhenglz.entity.Role;
+import com.zhenglz.entity.User;
+
+import cn.hutool.core.util.StrUtil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -102,9 +104,13 @@ public class UserPrincipal implements UserDetails {
     public static UserPrincipal create(User user, List<Role> roles, List<Permission> permissions) {
         List<String> roleNames = roles.stream().map(Role::getName).collect(Collectors.toList());
 
-        List<GrantedAuthority> authorities = permissions.stream().filter(permission -> StrUtil.isNotBlank(permission.getPermission())).map(permission -> new SimpleGrantedAuthority(permission.getPermission())).collect(Collectors.toList());
+        List<GrantedAuthority> authorities =
+            permissions.stream().filter(permission -> StrUtil.isNotBlank(permission.getPermission()))
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission())).collect(Collectors.toList());
 
-        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), user.getNickname(), user.getPhone(), user.getEmail(), user.getBirthday(), user.getSex(), user.getStatus(), user.getCreateTime(), user.getUpdateTime(), roleNames, authorities);
+        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), user.getNickname(),
+            user.getPhone(), user.getEmail(), user.getBirthday(), user.getSex(), user.getStatus(), user.getCreateTime(),
+            user.getUpdateTime(), roleNames, authorities);
     }
 
     @Override

@@ -1,21 +1,21 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Announcement;
 import org.apache.ibatis.annotations.Mapper;
 
+import com.zhenglz.entity.Announcement;
 
 /**
-* @description: 公告Mapper
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 公告Mapper
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface AnnouncementMapper {
 
-
     /**
      * 根据id删除
+     * 
      * @param id
      * @return
      */
@@ -23,6 +23,7 @@ public interface AnnouncementMapper {
 
     /**
      * 新增公告
+     * 
      * @param record
      * @return
      */
@@ -30,6 +31,7 @@ public interface AnnouncementMapper {
 
     /**
      * 新增
+     * 
      * @param record
      * @return
      */
@@ -37,6 +39,7 @@ public interface AnnouncementMapper {
 
     /**
      * 根据id查询
+     * 
      * @param id
      * @return
      */
@@ -44,6 +47,7 @@ public interface AnnouncementMapper {
 
     /**
      * 更新
+     * 
      * @param record
      * @return
      */
@@ -51,6 +55,7 @@ public interface AnnouncementMapper {
 
     /**
      * 更新
+     * 
      * @param record
      * @return
      */

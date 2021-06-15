@@ -15,7 +15,6 @@ import com.zhenglz.mapper.UserMapper;
 import com.zhenglz.service.ISystemService;
 import com.zhenglz.vo.CentralVo;
 
-
 @Service
 public class SystemServiceImpl implements ISystemService {
 
@@ -27,11 +26,12 @@ public class SystemServiceImpl implements ISystemService {
     @Resource
     private UserMapper userMapper;
 
-    public CentralVo getCentral()throws RuntimeException{
+    @Override
+    public CentralVo getCentral() throws RuntimeException {
         CentralVo centralVo = new CentralVo();
         centralVo.setUserNum(userMapper.countUser());
         centralVo.setBlogNum(blogMapper.countBlog());
-        PageHelper.startPage(1, 5," id desc ");
+        PageHelper.startPage(1, 5, " id desc ");
         List<Blog> blogs = blogMapper.listBlogs();
         centralVo.setBlogs(blogs);
         return centralVo;

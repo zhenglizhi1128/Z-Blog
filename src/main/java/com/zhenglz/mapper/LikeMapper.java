@@ -1,19 +1,21 @@
 package com.zhenglz.mapper;
 
-import com.zhenglz.entity.Like;
 import org.apache.ibatis.annotations.Mapper;
 
+import com.zhenglz.entity.Like;
+
 /**
-* @description: 点赞Mapper
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 点赞Mapper
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Mapper
 public interface LikeMapper {
 
     /**
      * 根据Id删除
+     * 
      * @param id
      * @return
      */
@@ -21,6 +23,7 @@ public interface LikeMapper {
 
     /**
      * 新增
+     * 
      * @param like
      * @return
      */
@@ -28,6 +31,7 @@ public interface LikeMapper {
 
     /**
      * 根据Id获取
+     * 
      * @param id
      * @return
      */
@@ -35,6 +39,7 @@ public interface LikeMapper {
 
     /**
      * 部分更新
+     * 
      * @param like
      * @return
      */
@@ -42,6 +47,7 @@ public interface LikeMapper {
 
     /**
      * 更新
+     * 
      * @param like
      * @return
      */

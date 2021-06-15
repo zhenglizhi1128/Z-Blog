@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
-* @description: 权限表
-* @author: zlz
-* @date: 2021/3/24
-* @version:
-*/
+ * @description: 权限表
+ * @author: zlz
+ * @date: 2021/3/24
+ * @version:
+ */
 @Data
 @Accessors(chain = true)
 public class Permission implements Serializable {
