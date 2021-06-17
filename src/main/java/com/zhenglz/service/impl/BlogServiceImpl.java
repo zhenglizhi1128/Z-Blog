@@ -66,7 +66,7 @@ public class BlogServiceImpl implements IBlogService {
         blogContentMapper.insert(blogContent);
         BeanUtil.copyProperties(blogvo, blog);
         blog.setContentId(blogContent.getId()).setTitle(blogvo.getTitle()).setUserId(blogvo.getUser().getId())
-            .setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE)
+            .setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()).setStatus(Constants.TRYE)
             .setLikeNumber(0L).setReadNumber(0L).setCommentNumber(0L);
         return blogMapper.insert(blog);
     }
@@ -101,7 +101,7 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateStatus(long blogId,int status) throws RuntimeException {
+    public void updateStatus(long blogId, Boolean status) throws RuntimeException {
        Blog blog = new Blog();
        blog.setId(blogId).setUpdateTime(LocalDateTime.now()).setStatus(status);
        blogMapper.updatePrimaryById(blog);
@@ -109,7 +109,7 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateCommentStatus(long blogId,int commentStatus) throws RuntimeException {
+    public void updateCommentStatus(long blogId, boolean commentStatus) throws RuntimeException {
         Blog blog = new Blog();
         blog.setId(blogId).setUpdateTime(LocalDateTime.now()).setCommentStatus(commentStatus);
         blogMapper.updatePrimaryById(blog);

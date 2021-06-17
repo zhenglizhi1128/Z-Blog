@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.zhenglz.entity.Label;
 
+/**
+ * @author zlz
+ */
 public interface ILabelService {
 
     /**

@@ -48,7 +48,7 @@ public class Like implements Serializable {
     private Long userId;
 
     /**
-     * 是否有效，默认为1为有效，0为无效
+     * 是否有效
      */
     private Boolean status;
 

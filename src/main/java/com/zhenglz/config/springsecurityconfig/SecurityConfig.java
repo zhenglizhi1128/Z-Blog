@@ -83,7 +83,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 // 因为使用了JWT，所以这里不管理Session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
                 // 异常处理
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
         // @formatter:on

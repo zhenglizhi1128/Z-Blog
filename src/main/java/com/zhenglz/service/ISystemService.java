@@ -2,6 +2,9 @@ package com.zhenglz.service;
 
 import com.zhenglz.vo.CentralVo;
 
+/**
+ * @author zlz
+ */
 public interface ISystemService {
 
     /**

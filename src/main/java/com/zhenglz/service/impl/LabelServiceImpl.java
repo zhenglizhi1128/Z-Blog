@@ -14,6 +14,9 @@ import com.zhenglz.entity.Label;
 import com.zhenglz.mapper.LabelMapper;
 import com.zhenglz.service.ILabelService;
 
+/**
+ * @author zlz
+ */
 @Service
 public class LabelServiceImpl implements ILabelService {
 
@@ -30,20 +33,20 @@ public class LabelServiceImpl implements ILabelService {
 
     @Override
     public int updateNameById(Label label) throws RuntimeException {
-        label.setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE);
+        label.setUpdateTime(LocalDateTime.now()).setStatus(Constants.TRYE);
         return labelMapper.updatePrimaryById(label);
     }
 
     @Override
     public int updateStatus(long id) throws RuntimeException {
         Label label = new Label();
-        label.setId(id).setStatus(Constants.DISABLE).setUpdateTime(LocalDateTime.now());
+        label.setId(id).setStatus(Constants.FALSE).setUpdateTime(LocalDateTime.now());
         return labelMapper.updatePrimaryById(label);
     }
 
     @Override
     public int insert(Label label) throws RuntimeException {
-        label.setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()).setStatus(Constants.ENABLE);
+        label.setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()).setStatus(Constants.TRYE);
         return labelMapper.insert(label);
     }
 

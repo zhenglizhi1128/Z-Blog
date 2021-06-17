@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * 用户设置VO
+ * @author zlz
  */
 @Data
 @Accessors(chain = true)
@@ -41,9 +42,9 @@ public class UserVo {
     private LocalDateTime lastTime;
 
     /**
-     * 状态，启用-1，禁用-0
+     * 状态
      */
-    private Integer status;
+    private Boolean status;
 
     /**
      * 在线状态，在线-1，不在线-0

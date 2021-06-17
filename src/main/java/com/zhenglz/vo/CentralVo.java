@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * 中控台vo
+ * @author zlz
  */
 @Data
 @Accessors(chain = true)

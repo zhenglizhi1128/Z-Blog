@@ -62,7 +62,6 @@ public class AuthController {
         UserPrincipal userPrincipal =
             (UserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         JwtResponse jwtResponse = new JwtResponse(jwt);
-        logger.info(userPrincipal.getId());
         return Result
             .success(MapUtil.builder().put("token", jwtResponse.getToken()).put("tokenType", jwtResponse.getTokenType())
                 .put("id", userPrincipal.getId()).put("username", userPrincipal.getUsername())

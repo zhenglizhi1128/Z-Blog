@@ -43,7 +43,7 @@ public class Label implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 是否有效，默认为1有效，为0无效
+     * 是否有效
      */
-    private int status;
+    private boolean status;
 }

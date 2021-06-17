@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class redisTest {
+class RedisTest {
 
     public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 

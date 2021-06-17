@@ -75,12 +75,12 @@ public class Blog implements Serializable {
     /**
      * 状态
      */
-    private int status;
+    private Boolean status;
 
     /**
      * 评论状态
      */
-    private int commentStatus;
+    private Boolean commentStatus;
 
     private User user;
 

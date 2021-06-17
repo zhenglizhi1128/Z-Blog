@@ -21,10 +21,10 @@ public class JwtConfig {
     /**
      * jwt 过期时间，默认值：600000 {@code 10 分钟}.
      */
-    private Long ttl = 600000L;
+    private Long ttl = 1000*60*60*24L;
 
     /**
      * 开启 记住我 之后 jwt 过期时间，默认值 604800000 {@code 7 天}
      */
-    private Long remember = 604800000L;
+    private Long remember = 1000*60*60*24*7L;
 }

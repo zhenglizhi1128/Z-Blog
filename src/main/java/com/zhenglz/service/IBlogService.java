@@ -68,12 +68,12 @@ public interface IBlogService {
      * @param blogId
      * @param status
      */
-    void updateStatus(long blogId,int status);
+    void updateStatus(long blogId, Boolean status);
 
     /**
      * 修改评论开关
      * @param blogId
      * @param commentStatus
      */
-    void updateCommentStatus(long blogId,int commentStatus);
+    void updateCommentStatus(long blogId, boolean commentStatus);
 }

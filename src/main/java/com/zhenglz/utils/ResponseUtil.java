@@ -13,9 +13,8 @@ import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>
  * Response 通用工具类
- * </p>
+ * @author zlz
  *
  */
 @Slf4j

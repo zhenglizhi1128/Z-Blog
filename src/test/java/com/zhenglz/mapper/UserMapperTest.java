@@ -3,10 +3,6 @@ package com.zhenglz.mapper;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +15,14 @@ import com.github.pagehelper.PageInfo;
 import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.User;
-import com.zhenglz.service.IUserService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserMapperTest {
 
-    public static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
-
     @Autowired
     UserMapper userMapper;
 
-    @Resource
-    private IUserService userService;
 
     @Test
     public void queryUserList() {
@@ -58,7 +49,7 @@ public class UserMapperTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String password = bCryptPasswordEncoder.encode("123456");
         System.out.println(password);
-        user.setUsername("z3").setNickname("z3").setStatus(1).setBirthday(785433600100l).setEmail("1113311@163.com")
+        user.setUsername("z3").setNickname("z3").setStatus(true).setBirthday(785433600100l).setEmail("1113311@163.com")
             .setPhone("15333626141").setPassword(password).setSex(1).setCreateTime(LocalDateTime.now())
             .setUpdateTime(LocalDateTime.now());
         int insert = userMapper.insert(user);

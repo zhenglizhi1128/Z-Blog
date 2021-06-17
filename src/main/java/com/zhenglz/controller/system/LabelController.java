@@ -13,6 +13,10 @@ import com.zhenglz.common.resultmodel.Status;
 import com.zhenglz.entity.Label;
 import com.zhenglz.service.ILabelService;
 
+/**
+ * 标签Controller
+ * @author zlz
+ */
 @RestController
 @RequestMapping("/label")
 public class LabelController {

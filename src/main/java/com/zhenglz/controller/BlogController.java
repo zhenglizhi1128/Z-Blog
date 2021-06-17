@@ -101,13 +101,13 @@ public class BlogController {
     }
 
     @PutMapping("/set/updateStatus")
-    public Result updateStatus(long blogId,int status) throws Exception {
+    public Result updateStatus(long blogId,Boolean status) throws Exception {
         blogService.updateStatus(blogId,status);
         return Result.success();
     }
 
     @PutMapping("/set/updateCommentStatus")
-    public Result updateCommentStatus(long blogId,int commentStatus) throws Exception {
+    public Result updateCommentStatus(long blogId,Boolean commentStatus) throws Exception {
         blogService.updateCommentStatus(blogId,commentStatus);
         return Result.success();
     }

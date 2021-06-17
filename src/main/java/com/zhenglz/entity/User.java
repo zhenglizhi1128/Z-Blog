@@ -57,9 +57,9 @@ public class User implements Serializable {
     private Integer sex;
 
     /**
-     * 状态，启用-1，禁用-0
+     * 状态
      */
-    private Integer status;
+    private Boolean status;
 
     /**
      * 创建时间

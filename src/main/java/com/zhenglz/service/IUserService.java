@@ -5,6 +5,9 @@ import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.User;
 import com.zhenglz.vo.UserVo;
 
+/**
+ * @author zlz
+ */
 public interface IUserService {
 
     /**

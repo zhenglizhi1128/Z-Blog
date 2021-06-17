@@ -16,6 +16,10 @@ public interface Constants {
      */
     Integer DISABLE = 0;
 
+    Boolean TRYE = true;
+
+    Boolean FALSE = false;
+
     /**
      * 页面
      */

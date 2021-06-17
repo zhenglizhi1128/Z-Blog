@@ -23,6 +23,9 @@ import com.zhenglz.vo.UserVo;
 
 import cn.hutool.core.bean.BeanUtil;
 
+/**
+ * @author zlz
+ */
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -87,7 +90,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void insertUser(User user) throws RuntimeException {
-        int insert = userMapper.insert(user);
+        userMapper.insert(user);
         roleMapper.insertByUserId(user.getId(), 1072806379238068224L);
     }
 }

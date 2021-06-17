@@ -21,11 +21,11 @@ public class LabelMapperTest {
     @Test
     public void list() {
         Label label = new Label();
-        label.setName("Mybatis").setStatus(1).setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now());
+        label.setName("Mybatis").setStatus(true).setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now());
         // labelMapper.insert(label);
         List<Label> labels = labelMapper.getLabels();
         Label label1 = labels.get(0);
-        label1.setUpdateTime(LocalDateTime.now()).setStatus(0);
+        label1.setUpdateTime(LocalDateTime.now()).setStatus(false);
         labelMapper.updatePrimaryById(label1);
     }
 

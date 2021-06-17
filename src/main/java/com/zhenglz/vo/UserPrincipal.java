@@ -79,7 +79,7 @@ public class UserPrincipal implements UserDetails {
     /**
      * 状态，启用-1，禁用-0
      */
-    private Integer status;
+    private Boolean status;
 
     /**
      * 创建时间
@@ -145,6 +145,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return Objects.equals(this.status, Constants.ENABLE);
+        return Objects.equals(this.status, Constants.TRYE);
     }
 }
