@@ -104,6 +104,6 @@ public interface BlogMapper {
      * @return
      */
     List<BlogVo> getBlogsByTitleAndStatus(@Param("title") String title, @Param("labelId") Long labelId,
-        @Param("status") Integer status);
+        @Param("status") Boolean status);
 
 }

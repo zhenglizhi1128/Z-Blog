@@ -81,7 +81,7 @@ public class BlogController {
 
     @GetMapping("/set/blogs")
     public Result setBlogs(String title, @RequestParam(required = false) Long labelId,
-        @RequestParam(required = false) Integer status, PageCondition pageCondition) throws Exception {
+        @RequestParam(value = "status",required = false) Boolean status, PageCondition pageCondition) throws Exception {
         List<BlogVo> blogVos = blogService.getBlogsByTitleAndStatus(title, labelId, status, pageCondition);
         PageInfo<BlogVo> pageInfo = new PageInfo<>(blogVos);
         List<Label> labels = labelService.getLabels();

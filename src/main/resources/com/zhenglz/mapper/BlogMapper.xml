@@ -155,15 +155,17 @@
     LEFT JOIN m_user t2 ON t1.user_id = t2.id
     LEFT JOIN m_blog_label t3 on t3.blog_id = t1.id
     LEFT JOIN m_label t4 ON t3.label_id = t4.id
-    <if test="title != null and title != ''">
-      and t1.title = #{title,jdbcType=BIGINT}
-    </if>
-    <if test="labelId != null">
-      and t1.status = #{status}
-    </if>
-    <if test="labelId != null">
-      and t3.label_id = #{labelId,jdbcType=BIGINT}
-    </if>
+    <where>
+      <if test="title != null and title != ''">
+        and t1.title = #{title,jdbcType=BIGINT}
+      </if>
+      <if test="status != null">
+        and t1.status = #{status,jdbcType=BOOLEAN}
+      </if>
+      <if test="labelId != null">
+        and t3.label_id = #{labelId,jdbcType=BIGINT}
+      </if>
+    </where>
   </select>
   <resultMap id="ordersUserResultType" type="com.zhenglz.vo.BlogVo">
     <id column="id" property="id"/>

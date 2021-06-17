@@ -55,7 +55,7 @@ public interface IBlogService {
      * @param pageCondition
      * @return
      */
-    List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Integer status, PageCondition pageCondition);
+    List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Boolean status, PageCondition pageCondition);
 
     /**
      * 删除一篇文章

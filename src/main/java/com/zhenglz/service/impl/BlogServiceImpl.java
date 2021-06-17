@@ -84,8 +84,8 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Integer status,
-        PageCondition pageCondition) throws RuntimeException {
+    public List<BlogVo> getBlogsByTitleAndStatus(String title, Long labelId, Boolean status,
+                                                 PageCondition pageCondition) throws RuntimeException {
         PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(), " create_time desc ");
         List<BlogVo> blogVos = blogMapper.getBlogsByTitleAndStatus(title, labelId, status);
         return blogVos;
