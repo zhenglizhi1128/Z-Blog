@@ -3,6 +3,9 @@ package com.zhenglz.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,9 +19,11 @@ import lombok.experimental.Accessors;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 4341406796171386247L;
+
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

@@ -1,5 +1,7 @@
 package com.zhenglz.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.zhenglz.common.Constants;
 import com.zhenglz.entity.User;
 
@@ -19,6 +21,7 @@ public class OnlineUser {
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

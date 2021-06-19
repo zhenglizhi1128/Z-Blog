@@ -1,7 +1,6 @@
 package com.zhenglz.service.impl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zhenglz.common.Constants;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.User;
 import com.zhenglz.mapper.BlogContentMapper;
@@ -20,8 +20,6 @@ import com.zhenglz.mapper.RoleMapper;
 import com.zhenglz.mapper.UserMapper;
 import com.zhenglz.service.IUserService;
 import com.zhenglz.vo.UserVo;
-
-import cn.hutool.core.bean.BeanUtil;
 
 /**
  * @author zlz
@@ -44,23 +42,18 @@ public class UserServiceImpl implements IUserService {
     @Resource
     private BlogContentMapper blogContentMapper;
 
+    //TODO
     @Override
-    public PageInfo<UserVo> getUserPage(PageCondition pageCondition) throws RuntimeException {
+    public PageInfo<UserVo> getUserPage(Boolean status, Long roleId, String userNameOrPhone, PageCondition pageCondition) throws RuntimeException {
         PageHelper.startPage(pageCondition.getCurrentPage(), pageCondition.getPageSize(), pageCondition.getOrderType());
-        List<User> users = userMapper.listUsers();
-        List<UserVo> userVos = new ArrayList<>();
-        for (User user : users) {
-            UserVo userVo = new UserVo();
-            BeanUtil.copyProperties(user, userVo);
-            userVo.setRoles(roleMapper.listRolesByUserId(user.getId()));
-            userVo.setLastTime(LocalDateTime.now()).setOnlineStatus(0)
-                // .setOnlineStatus((stringRedisTemplate.hasKey(Constants.REDIS_JWT_KEY_PREFIX + user.getUsername()) ? 1
-                // : 0))
-                .setBlogNum(blogMapper.countByUserId(user.getId()));
-            userVos.add(userVo);
+        List<UserVo> userVos = userMapper.listUsersForSet(status, roleId, userNameOrPhone);
+        for (UserVo userVo : userVos) {
+            userVo.setBlogNum(1)
+                        .setOnlineStatus(stringRedisTemplate.hasKey(Constants.REDIS_JWT_KEY_PREFIX + userVo.getUsername()))
+            .setLastTime(LocalDateTime.now())
+            .setIp("127.0.0.1");
         }
-        PageInfo pageInfo = new PageInfo(users);
-        pageInfo.setList(userVos);
+        PageInfo pageInfo = new PageInfo(userVos);
         return pageInfo;
     }
 

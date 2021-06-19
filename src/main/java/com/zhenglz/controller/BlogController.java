@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.zhenglz.common.resultmodel.Result;
 import com.zhenglz.dto.PageCondition;
@@ -18,7 +19,6 @@ import com.zhenglz.service.IBlogService;
 import com.zhenglz.service.ILabelService;
 import com.zhenglz.vo.BlogVo;
 
-import cn.hutool.json.JSONObject;
 
 /**
  * @description:
@@ -86,11 +86,11 @@ public class BlogController {
         PageInfo<BlogVo> pageInfo = new PageInfo<>(blogVos);
         List<Label> labels = labelService.getLabels();
         JSONObject jsonObject = new JSONObject();
-        jsonObject.putOnce("title", title);
-        jsonObject.putOnce("labelId", labelId);
-        jsonObject.putOnce("status", status);
-        jsonObject.putOnce("labels", labels);
-        jsonObject.putOnce("pageInfo", pageInfo);
+        jsonObject.put("title", title);
+        jsonObject.put("labelId", labelId);
+        jsonObject.put("status", status);
+        jsonObject.put("labels", labels);
+        jsonObject.put("pageInfo", pageInfo);
         return Result.success(jsonObject);
     }
 

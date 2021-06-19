@@ -3,6 +3,9 @@ package com.zhenglz.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -20,6 +23,7 @@ public class Role implements Serializable {
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

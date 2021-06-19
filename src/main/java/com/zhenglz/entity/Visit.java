@@ -3,6 +3,9 @@ package com.zhenglz.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +28,7 @@ public class Visit implements Serializable {
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**
@@ -45,6 +49,7 @@ public class Visit implements Serializable {
     /**
      * 文章ID
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long blogId;
 
 }

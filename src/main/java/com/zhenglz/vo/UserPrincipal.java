@@ -11,6 +11,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.zhenglz.common.Constants;
 import com.zhenglz.entity.Permission;
 import com.zhenglz.entity.Role;
@@ -35,9 +37,11 @@ import lombok.NoArgsConstructor;
 public class UserPrincipal implements UserDetails {
 
     private static final long serialVersionUID = 2645835313684650630L;
+
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

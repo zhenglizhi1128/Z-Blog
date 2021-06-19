@@ -13,10 +13,14 @@ public interface IUserService {
     /**
      * 获取users
      * 
+     *
+     * @param status
+     * @param roleId
+     * @param userNameOrPhone
      * @param pageCondition
      * @return
      */
-    PageInfo<UserVo> getUserPage(PageCondition pageCondition);
+    PageInfo<UserVo> getUserPage(Boolean status, Long roleId, String userNameOrPhone, PageCondition pageCondition);
 
     /**
      * 删除

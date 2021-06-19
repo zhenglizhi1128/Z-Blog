@@ -2,6 +2,9 @@ package com.zhenglz.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,9 +19,11 @@ import lombok.experimental.Accessors;
 public class Permission implements Serializable {
 
     private static final long serialVersionUID = 9069053638651545813L;
+
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     public Long id;
 
     /**
@@ -54,5 +59,6 @@ public class Permission implements Serializable {
     /**
      * 父级id
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     public Long parentId;
 }

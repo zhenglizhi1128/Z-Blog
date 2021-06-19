@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.zhenglz.entity.BlogContent;
 import com.zhenglz.entity.Label;
 import com.zhenglz.entity.User;
@@ -26,6 +28,7 @@ public class BlogVo implements Serializable {
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

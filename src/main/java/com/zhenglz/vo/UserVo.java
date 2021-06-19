@@ -3,6 +3,8 @@ package com.zhenglz.vo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.zhenglz.entity.Role;
 
 import lombok.Data;
@@ -19,6 +21,7 @@ public class UserVo {
     /**
      * 主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**
@@ -47,9 +50,9 @@ public class UserVo {
     private Boolean status;
 
     /**
-     * 在线状态，在线-1，不在线-0
+     * 在线状态，
      */
-    private Integer onlineStatus;
+    private Boolean onlineStatus;
 
     /**
      * 发布文章数
@@ -59,5 +62,15 @@ public class UserVo {
     private List<Role> roles;
 
     private List<Long> roleIds;
+
+    /**
+     * ip地址
+     */
+    private String ip;
+
+    /**
+     * 手机号
+     */
+    private String phone;
 
 }

@@ -88,4 +88,12 @@ public interface RoleMapper {
      */
     void insertByUserId(long userId, long roleId);
 
+    /**
+     * 获取所有角色
+     *
+     * @param userId
+     * @return
+     */
+    List<Role> listRoles();
+
 }
