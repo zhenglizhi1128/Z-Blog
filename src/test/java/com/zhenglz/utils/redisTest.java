@@ -23,8 +23,7 @@ class RedisTest {
     @Test
     public void test1() {
 
-        stringRedisTemplate.opsForValue().set("2222",
-            "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0Iiwic3ViIjoieiIsImlhdCI6MTYyMjE4OTg3NSwicm9sZXMiOltdLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoicGFnZTp0ZXN0In0seyJhdXRob3JpdHkiOiJidG46dGVzdDpxdWVyeSJ9LHsiYXV0aG9yaXR5IjoiYnRuOnRlc3Q6aW5zZXJ0In0seyJhdXRob3JpdHkiOiJwYWdlOm1vbml0b3I6b25saW5lIn0seyJhdXRob3JpdHkiOiJidG46bW9uaXRvcjpvbmxpbmU6cXVlcnkifSx7ImF1dGhvcml0eSI6ImJ0bjptb25pdG9yOm9ubGluZTpraWNrb3V0In1dLCJleHAiOjE2MjIxOTA0NzV9.pYcSUpdR-eK9nPrCZaXKn8HpMxHNIn2Mjww8Ekhm7Og",
-            1, TimeUnit.MILLISECONDS);
+        stringRedisTemplate.opsForValue().set("2222","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0Iiwic3ViIjoieiIsImlhdCI6MTYyMjE4OTg3NSwicm9sZXMiOltdLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoicGFnZTp0ZXN0In0seyJhdXRob3JpdHkiOiJidG46dGVzdDpxdWVyeSJ9LHsiYXV0aG9yaXR5IjoiYnRuOnRlc3Q6aW5zZXJ0In0seyJhdXRob3JpdHkiOiJwYWdlOm1vbml0b3I6b25saW5lIn0seyJhdXRob3JpdHkiOiJidG46bW9uaXRvcjpvbmxpbmU6cXVlcnkifSx7ImF1dGhvcml0eSI6ImJ0bjptb25pdG9yOm9ubGluZTpraWNrb3V0In1dLCJleHAiOjE2MjIxOTA0NzV9.pYcSUpdR-eK9nPrCZaXKn8HpMxHNIn2Mjww8Ekhm7Og",
+                1,TimeUnit.MILLISECONDS);
     }
 }
