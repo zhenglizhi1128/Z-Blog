@@ -1,5 +1,7 @@
 package com.zhenglz.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.zhenglz.dto.PageCondition;
 import com.zhenglz.entity.User;
@@ -42,5 +44,17 @@ public interface IUserService {
      * @param user
      */
     void insertUser(User user);
+
+    /**
+     * 强制退出
+     * @param username
+     */
+    void logout(String username);
+
+    /**
+     * 获取在线用户
+     * @return
+     */
+    List<UserVo> getOnlineUsers();
 
 }

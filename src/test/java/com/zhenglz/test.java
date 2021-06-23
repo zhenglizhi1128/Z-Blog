@@ -2,6 +2,7 @@ package com.zhenglz;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
@@ -12,8 +13,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.zhenglz.common.Constants;
 import com.zhenglz.mapper.UserMapper;
 import com.zhenglz.service.IUserService;
 
@@ -28,6 +31,9 @@ public class test {
 
     @Resource
     private IUserService userService;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @Test
     public void test1() {
@@ -45,5 +51,11 @@ public class test {
         List<Long> deleteIds = old.stream().filter(x -> !collect.contains(x)).collect(Collectors.toList());
         System.out.println(deleteIds.toString());
         System.out.println(insertIds.toString());
+    }
+
+    @Test
+    public void test2() {
+        Set<String> keys = stringRedisTemplate.keys(Constants.REDIS_JWT_KEY_PREFIX + "*");
+        System.out.println(keys);
     }
 }

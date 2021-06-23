@@ -1,13 +1,18 @@
 package com.zhenglz.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -20,6 +25,9 @@ import com.zhenglz.mapper.RoleMapper;
 import com.zhenglz.mapper.UserMapper;
 import com.zhenglz.service.IUserService;
 import com.zhenglz.vo.UserVo;
+
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author zlz
@@ -58,6 +66,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteUser(Long userId) throws RuntimeException {
         roleMapper.deleteByUserId(userId);
         blogContentMapper.deleteByUserId(userId);
@@ -66,6 +75,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(UserVo userVo) throws RuntimeException {
         User user = new User();
         user.setId(userVo.getId()).setStatus(userVo.getStatus()).setUpdateTime(LocalDateTime.now());
@@ -81,9 +91,49 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    //TODO
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void insertUser(User user) throws RuntimeException {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPhone(RandomUtil.randomNumbers(11))
+                .setNickname(RandomUtil.randomNumbers(5))
+                .setSex(1)
+                .setEmail(RandomUtil.randomNumbers(7)+"163.com")
+                .setCreateTime(LocalDateTime.now())
+                .setUpdateTime(LocalDateTime.now())
+                .setStatus(true)
+                .setBirthday(new Date());
         userMapper.insert(user);
-        roleMapper.insertByUserId(user.getId(), 1072806379238068224L);
+        roleMapper.insertByUserId(user.getId(), 2L);
+    }
+
+    @Override
+    public void logout(String username) throws RuntimeException {
+        stringRedisTemplate.delete(Constants.REDIS_JWT_KEY_PREFIX + username);
+    }
+
+    @Override
+    public List<UserVo> getOnlineUsers() throws RuntimeException {
+        Set<String> keys = stringRedisTemplate.keys(Constants.REDIS_JWT_KEY_PREFIX + "*");
+        List<String> userNames = new ArrayList<>();
+        for (String key : keys) {
+            userNames.add(StrUtil.removePrefix(key,Constants.REDIS_JWT_KEY_PREFIX));
+        }
+        List<UserVo> userVos = new ArrayList<>();
+        if(userNames.size()>0){
+            List<User> users = userMapper.listUsersByNames(userNames);
+            for (User user : users) {
+                UserVo userVo = new UserVo();
+                userVo.setUsername(user.getUsername())
+                        .setId(user.getId())
+                        .setPhone(user.getPhone())
+                        .setNickname(user.getNickname())
+                        .setLastTime(LocalDateTime.now()); //TODO
+                userVos.add(userVo);
+            }
+        }
+        return userVos;
     }
 }

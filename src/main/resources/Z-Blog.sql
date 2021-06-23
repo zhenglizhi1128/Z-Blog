@@ -64,19 +64,19 @@ CREATE TABLE `m_permission`
 -- ----------------------------
 BEGIN;
 INSERT INTO `m_permission`
-VALUES (1072806379288399872, '测试页面', '/test', 1, 'page:test', '', 1, 0);
+VALUES (1, '测试页面', '/test', 1, 'page:test', '', 1, 0);
 INSERT INTO `m_permission`
-VALUES (1072806379313565696, '测试页面-查询', '/**/test', 2, 'btn:test:query', 'GET', 1, 1072806379288399872);
+VALUES (2, '测试页面-查询', '/**/test', 2, 'btn:test:query', 'GET', 1, 1);
 INSERT INTO `m_permission`
-VALUES (1072806379330342912, '测试页面-添加', '/**/test', 2, 'btn:test:insert', 'POST', 2, 1072806379288399872);
+VALUES (3, '测试页面-添加', '/**/test', 2, 'btn:test:insert', 'POST', 2, 1);
 INSERT INTO `m_permission`
-VALUES (1072806379342925824, '监控在线用户页面', '/monitor', 1, 'page:monitor:online', '', 2, 0);
+VALUES (4, '监控在线用户页面', '/monitor', 1, 'page:monitor:online', '', 2, 0);
 INSERT INTO `m_permission`
-VALUES (1072806379363897344, '在线用户页面-查询', '/**/api/monitor/online/user', 2, 'btn:monitor:online:query', 'GET', 1,
-        1072806379342925824);
+VALUES (5, '在线用户页面-查询', '/**/api/monitor/online/user', 2, 'btn:monitor:online:query', 'GET', 1,
+        4);
 INSERT INTO `m_permission`
-VALUES (1072806379384868864, '在线用户页面-踢出', '/**/api/monitor/online/user/kickout', 2, 'btn:monitor:online:kickout',
-        'DELETE', 2, 1072806379342925824);
+VALUES (6, '在线用户页面-踢出', '/**/api/monitor/online/user/kickout', 2, 'btn:monitor:online:kickout',
+        'DELETE', 2, 4);
 COMMIT;
 
 -- ----------------------------
@@ -100,9 +100,9 @@ CREATE TABLE `m_role`
 -- ----------------------------
 BEGIN;
 INSERT INTO `m_role`
-VALUES (1072806379208708096, '管理员', '超级管理员', now(), now());
+VALUES (1, '管理员', '超级管理员', now(), now());
 INSERT INTO `m_role`
-VALUES (1072806379238068224, '普通用户', '普通用户', now(), now());
+VALUES (2, '普通用户', '普通用户', now(), now());
 COMMIT;
 
 -- ----------------------------
@@ -122,21 +122,21 @@ CREATE TABLE `m_role_permission`
 -- ----------------------------
 BEGIN;
 INSERT INTO `m_role_permission`
-VALUES (1072806379208708096, 1072806379288399872);
+VALUES (1, 1);
 INSERT INTO `m_role_permission`
-VALUES (1072806379208708096, 1072806379313565696);
+VALUES (1, 2);
 INSERT INTO `m_role_permission`
-VALUES (1072806379208708096, 1072806379330342912);
+VALUES (1, 3);
 INSERT INTO `m_role_permission`
-VALUES (1072806379208708096, 1072806379342925824);
+VALUES (1, 4);
 INSERT INTO `m_role_permission`
-VALUES (1072806379208708096, 1072806379363897344);
+VALUES (1, 5);
 INSERT INTO `m_role_permission`
-VALUES (1072806379208708096, 1072806379384868864);
+VALUES (1, 6);
 INSERT INTO `m_role_permission`
-VALUES (1072806379238068224, 1072806379288399872);
+VALUES (2, 1);
 INSERT INTO `m_role_permission`
-VALUES (1072806379238068224, 1072806379313565696);
+VALUES (2, 2);
 COMMIT;
 
 -- ----------------------------
@@ -151,7 +151,7 @@ CREATE TABLE `m_user`
     `nickname`    varchar(255)        NOT NULL DEFAULT '' COMMENT '昵称',
     `phone`       varchar(11)         NOT NULL DEFAULT '' COMMENT '手机',
     `email`       varchar(50)         NOT NULL DEFAULT '' COMMENT '邮箱',
-    `birthday`    bigint(13)          NOT NULL DEFAULT 0 COMMENT '生日',
+    `create_time` date                NOT NULL DEFAULT '2020-01-01' COMMENT '生日',
     `sex`         tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '性别，男-1，女-2',
     `status`      tinyint(1) unsigned NOT NULL DEFAULT 1 COMMENT '状态，启用-1，禁用-0',
     `create_time` datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -168,10 +168,10 @@ CREATE TABLE `m_user`
 -- ----------------------------
 BEGIN;
 INSERT INTO `m_user`
-VALUES (1072806377661009920, 'admin', '$2a$10$64iuSLkKNhpTN19jGHs7xePvFsub7ZCcCmBqEYw8fbACGTE3XetYq', '管理员',
+VALUES (1, 'admin', '$2a$10$64iuSLkKNhpTN19jGHs7xePvFsub7ZCcCmBqEYw8fbACGTE3XetYq', '管理员',
         '17300000000', 'admin@xkcoding.com', 785433600000, 1, 1, now(), now());
 INSERT INTO `m_user`
-VALUES (1072806378780889088, 'user', '$2a$10$OUDl4thpcHfs7WZ1kMUOb.ZO5eD4QANW5E.cexBLiKDIzDNt87QbO', '普通用户',
+VALUES (2, 'user', '$2a$10$OUDl4thpcHfs7WZ1kMUOb.ZO5eD4QANW5E.cexBLiKDIzDNt87QbO', '普通用户',
         '17300001111', 'user@xkcoding.com', 785433600000, 1, 1, now(), now());
 COMMIT;
 
@@ -192,9 +192,9 @@ CREATE TABLE `m_user_role`
 -- ----------------------------
 BEGIN;
 INSERT INTO `m_user_role`
-VALUES (1072806377661009920, 1072806379208708096);
+VALUES (1, 1);
 INSERT INTO `m_user_role`
-VALUES (1072806378780889088, 1072806379238068224);
+VALUES (2, 2);
 COMMIT;
 
 DROP TABLE IF EXISTS `m_login`;

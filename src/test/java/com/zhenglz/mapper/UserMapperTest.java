@@ -1,6 +1,7 @@
 package com.zhenglz.mapper;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -49,7 +50,7 @@ public class UserMapperTest {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String password = bCryptPasswordEncoder.encode("123456");
         System.out.println(password);
-        user.setUsername("z3").setNickname("z3").setStatus(true).setBirthday(785433600100l).setEmail("1113311@163.com")
+        user.setUsername("z3").setNickname("z3").setStatus(true).setBirthday(new Date()).setEmail("1113311@163.com")
             .setPhone("15333626141").setPassword(password).setSex(1).setCreateTime(LocalDateTime.now())
             .setUpdateTime(LocalDateTime.now());
         int insert = userMapper.insert(user);

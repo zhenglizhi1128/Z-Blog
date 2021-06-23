@@ -2,6 +2,7 @@ package com.zhenglz.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -54,7 +55,7 @@ public class User implements Serializable {
     /**
      * 生日
      */
-    private Long birthday;
+    private Date birthday;
 
     /**
      * 性别，男-1，女-2

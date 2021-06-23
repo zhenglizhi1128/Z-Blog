@@ -92,4 +92,10 @@ public interface UserMapper {
      */
     List<UserVo> listUsersForSet(@Param("status") Boolean status, @Param("roleId") Long roleId, @Param("userNameOrPhone") String userNameOrPhone);
 
+    /**
+     * 获取user集合
+     *
+     * @return
+     */
+    List<User> listUsersByNames(@Param("userNames") List<String> userNames);
 }

@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,10 +67,14 @@ public class AuthController {
                 .put("roles", userPrincipal.getRoles()).put("authorities", userPrincipal.getAuthorities()).map());
     }
 
+    /**
+     * 注册
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/sign-up")
     public Result signup(@RequestBody User user) throws Exception {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.insertUser(user);
         return Result.success();
     }

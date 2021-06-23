@@ -2,6 +2,7 @@ package com.zhenglz.vo;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -73,7 +74,7 @@ public class UserPrincipal implements UserDetails {
     /**
      * 生日
      */
-    private Long birthday;
+    private Date birthday;
 
     /**
      * 性别，男-1，女-2
